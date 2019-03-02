@@ -1,0 +1,20 @@
+server:
+  port: 8841
+spring:
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: service-zuul
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8811/eureka
+zuul:
+  routes:
+    service-user:
+      path: /service-user/**
+      serviceId: user-service
+    service-role:
+      path: /service-role/**
+      serviceId: role-service
