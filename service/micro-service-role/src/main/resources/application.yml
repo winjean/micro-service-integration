@@ -17,3 +17,6 @@ feign:
   hystrix:
     #  feign fallback valid
     enabled: true
+
+
+

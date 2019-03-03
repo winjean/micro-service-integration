@@ -9,6 +9,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://admin:123456@localhost:8081/eureka
+  instance:
+    prefer-ip-address: true
+
 zuul:
   routes:
     service-user:
@@ -17,3 +20,11 @@ zuul:
     service-role:
       path: /role/**
       serviceId: micro-service-role
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
