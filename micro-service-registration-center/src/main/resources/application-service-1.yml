@@ -11,9 +11,9 @@ eureka:
 #    register-with-eureka: true
     service-url:
       defaultZone: http://admin:123456@127.0.0.1:8082/eureka/
-#  server:
+  server:
 #    #eureka server刷新readCacheMap的时间
-#    response-cache-update-interval-ms: 3000
+    response-cache-update-interval-ms: 3000
 
 #    response-cache-auto-expiration-in-seconds: 180
 #

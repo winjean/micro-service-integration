@@ -1,0 +1,19 @@
+server:
+  port: 8581
+
+spring:
+  application:
+    name: @artifactId@
+#  cloud:
+#    config:
+#      name: service-user
+#      label: dev
+#      profile: dev
+#      uri: http://localhost:8851/
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:8081/eureka

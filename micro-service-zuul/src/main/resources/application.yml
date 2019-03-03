@@ -1,20 +1,19 @@
 server:
-  port: 8841
+  port: 8181
+
 spring:
-  output:
-    ansi:
-      enabled: always
   application:
-    name: service-zuul
+    name: @artifactId@
+
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8811/eureka
+      defaultZone: http://admin:123456@localhost:8081/eureka
 zuul:
   routes:
     service-user:
-      path: /service-user/**
-      serviceId: user-service
+      path: /user/**
+      serviceId: micro-service-user
     service-role:
-      path: /service-role/**
-      serviceId: role-service
+      path: /role/**
+      serviceId: micro-service-role

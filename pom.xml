@@ -108,6 +108,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.29</version>
+        </dependency>
+
         <!--spring boot依赖-->
         <!--对自动配置、日志记录和YAML支持，核心starter-->
         <!--<dependency>-->
@@ -153,8 +159,8 @@
 
     <modules>
         <module>micro-service-registration-center</module>
-        <module>service/service-user</module>
-        <module>service/service-role</module>
+        <module>service/micro-service-user</module>
+        <module>service/micro-service-role</module>
         <module>micro-service-zuul</module>
         <module>micro-service-config</module>
     </modules>

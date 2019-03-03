@@ -12,3 +12,5 @@ eureka:
 #    fetch-registry: false
     service-url:
       defaultZone: http://admin:123456@127.0.0.1:8081/eureka/
+  server:
+    response-cache-update-interval-ms: 3000

@@ -7,10 +7,11 @@
 		<groupId>com.winjean</groupId>
 		<artifactId>micro-service-integration</artifactId>
 		<version>1.0-SNAPSHOT</version>
+		<relativePath>../../../micro-service-integration</relativePath>
 	</parent>
 
-	<artifactId>service-role</artifactId>
-	<name>service-role</name>
+	<artifactId>micro-service-role</artifactId>
+	<name>micro-service-role</name>
 	<packaging>jar</packaging>
 	<description>Demo project for Spring Boot</description>
 
