@@ -15,3 +15,13 @@ spring:
 #      #\u63A7\u5236\u53F0\u5F69\u8272\u8F93\u51FA
 #      enabled: always
 
+#定义详情给服务端和eureka注册中心显示
+info:
+  #  version: @project.version@
+  app:
+    groupId: @project.groupId@
+    artifactId: @artifactId@
+    version: @project.version@
+    name: @project.name@
+    description: @project.description@
+    parent-version: @project.parent.version@

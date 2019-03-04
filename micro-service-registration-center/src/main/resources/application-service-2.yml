@@ -3,14 +3,12 @@ server:
 
 eureka:
   instance:
-#    hostname: localhost
+    hostname: winjean2
 #    instance-id: ${spring.application.name}:${server.port}
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
-    prefer-ip-address: true
+#    prefer-ip-address: true
   client:
-#    register-with-eureka: false
-#    fetch-registry: false
     service-url:
-      defaultZone: http://admin:123456@127.0.0.1:8081/eureka/
+      defaultZone: http://admin:123456@winjean1:8081/eureka/
   server:
     response-cache-update-interval-ms: 3000

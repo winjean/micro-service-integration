@@ -12,7 +12,7 @@
 	<artifactId>micro-service-zuul</artifactId>
 	<name>micro-service-zuul</name>
 	<packaging>jar</packaging>
-	<description>Demo project for Spring Boot</description>
+	<description>micro-service-zuul</description>
 
 	<dependencies>
 		<dependency>

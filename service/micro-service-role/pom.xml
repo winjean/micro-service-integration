@@ -13,7 +13,7 @@
 	<artifactId>micro-service-role</artifactId>
 	<name>micro-service-role</name>
 	<packaging>jar</packaging>
-	<description>Demo project for Spring Boot</description>
+	<description>micro-service-role</description>
 
 	<dependencies>
 		<dependency>

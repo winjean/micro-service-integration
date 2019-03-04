@@ -18,5 +18,14 @@ feign:
     #  feign fallback valid
     enabled: true
 
-
+#定义详情给服务端和eureka注册中心显示
+info:
+  #  version: @project.version@
+  app:
+    groupId: @project.groupId@
+    artifactId: @artifactId@
+    version: @project.version@
+    name: @project.name@
+    description: @project.description@
+    parent-version: @project.parent.version@
 
