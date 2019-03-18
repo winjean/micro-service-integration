@@ -30,5 +30,10 @@
 			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.marcosbarbero.cloud</groupId>
+			<artifactId>spring-cloud-zuul-ratelimit</artifactId>
+		</dependency>
+
 	</dependencies>
 </project>

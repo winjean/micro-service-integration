@@ -12,7 +12,7 @@ spring:
 #      uri: http://localhost:8851/
 eureka:
   instance:
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:@project.version@  #${springboot.attribute} @maven.attribute@
     prefer-ip-address: true
   client:
     service-url:

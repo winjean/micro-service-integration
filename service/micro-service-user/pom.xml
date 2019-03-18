@@ -14,6 +14,7 @@
 	<name>micro-service-user</name>
 	<packaging>jar</packaging>
 	<description>micro-service-user</description>
+	<version>1.0-SNAPSHOT</version>
 
 	<dependencies>
 		<dependency>
@@ -72,7 +73,6 @@
 				<executions>
 					<execution>
 						<goals>
-							<!-- TODO 未验证-->
 							<!--服务发现与注册中心显示build信息-->
 							<goal>build-info</goal>
 						</goals>
