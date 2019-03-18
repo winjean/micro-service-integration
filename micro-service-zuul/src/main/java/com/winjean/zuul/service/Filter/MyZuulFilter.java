@@ -3,7 +3,9 @@ package com.winjean.zuul.service.Filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import com.sun.scenario.effect.FilterContext;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +19,7 @@ public class MyZuulFilter extends ZuulFilter {
 //        routing：路由之时
 //        post： 路由之后
 //        error：发送错误调用
-        return "pre";
+        return FilterConstants.PRE_TYPE;
     }
 
     @Override
@@ -33,6 +35,9 @@ public class MyZuulFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         RequestContext ctx = RequestContext.getCurrentContext();
+        String service_id = (String)ctx.get(FilterConstants.SERVICE_ID_KEY);
+
+
         HttpServletRequest request = ctx.getRequest();
         log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
         Object token = request.getParameter("token");
