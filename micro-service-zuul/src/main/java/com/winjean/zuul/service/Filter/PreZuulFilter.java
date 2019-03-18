@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Component
 @Slf4j
-public class MyZuulFilter extends ZuulFilter {
+public class PreZuulFilter extends ZuulFilter {
     @Override
     public String filterType() {
 //        pre：路由之前
