@@ -1,7 +1,7 @@
-package com.winjean.role.service.impl;
+package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.role.service.RoleService;
+import com.winjean.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

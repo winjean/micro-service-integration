@@ -1,4 +1,4 @@
-package com.winjean.user;
+package com.winjean;
 
 //@RunWith(SpringRunner.class)
 //@SpringBootTest

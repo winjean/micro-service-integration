@@ -1,4 +1,4 @@
-package com.winjean.role.service;
+package com.winjean.service;
 
 import com.alibaba.fastjson.JSONObject;
 

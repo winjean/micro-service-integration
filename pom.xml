@@ -165,6 +165,7 @@
         <module>micro-service-registration-center</module>
         <module>service/micro-service-user</module>
         <module>service/micro-service-role</module>
+        <module>service/micro-service-permission</module>
         <module>micro-service-zuul</module>
         <module>micro-service-config</module>
     </modules>

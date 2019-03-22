@@ -1,7 +1,7 @@
-package com.winjean.role.fallback;
+package com.winjean.fallback;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.role.feignClient.UserFeignClient;
+import com.winjean.feignClient.UserFeignClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

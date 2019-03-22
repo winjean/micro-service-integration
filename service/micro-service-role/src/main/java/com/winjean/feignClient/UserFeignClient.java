@@ -1,10 +1,8 @@
-package com.winjean.role.feignClient;
+package com.winjean.feignClient;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.role.fallback.UserFallback;
+import com.winjean.fallback.UserFallback;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 

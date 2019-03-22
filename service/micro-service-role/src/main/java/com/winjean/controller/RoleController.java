@@ -1,8 +1,8 @@
-package com.winjean.role.controller;
+package com.winjean.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.role.feignClient.UserFeignClient;
-import com.winjean.role.service.RoleService;
+import com.winjean.feignClient.UserFeignClient;
+import com.winjean.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,11 +1,11 @@
-package com.winjean.user.service;
+package com.winjean.service;
 
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.List;
 import java.util.Map;
 
-public interface UserService {
+public interface PermissionService {
 
     void addUser(JSONObject json);
 

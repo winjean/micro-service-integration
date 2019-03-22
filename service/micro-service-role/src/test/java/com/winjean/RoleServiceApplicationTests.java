@@ -1,4 +1,4 @@
-package com.winjean.role;
+package com.winjean;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

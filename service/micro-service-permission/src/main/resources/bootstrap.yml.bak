@@ -1,0 +1,18 @@
+spring:
+#  cloud:
+#    config:
+#      label: dev
+#      profile: dev
+#      uri: http://localhost:8851/
+#      discovery:
+#        enabled: true
+#        service-id: config-server
+#      name: service-user
+  application:
+    name: @artifactId@
+server:
+  port: 8581
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka
