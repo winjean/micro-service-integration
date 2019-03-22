@@ -1,9 +1,11 @@
 server:
-  port: 8581
+  port: 8101
 
 spring:
   application:
     name: @artifactId@
+  profiles:
+    active: @profileActive@
 #  cloud:
 #    config:
 #      name: service-user

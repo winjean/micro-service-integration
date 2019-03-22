@@ -1,8 +1,8 @@
 package com.winjean.mapper;
 
+
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
-import com.winjean.common.exception.DaoException;
 import com.winjean.model.entity.UserEntity;
 import com.winjean.model.response.UserQueryResponse;
 import org.apache.ibatis.annotations.*;
@@ -15,7 +15,7 @@ public interface UserMapper {
     @Insert("insert into t_user(id,user_name,birthday,email,telephone,sex,password,state,create_user,create_time,update_user,update_time)" +
             "values "+
             "(#{id},#{name},#{birthday},#{email},#{telephone},#{sex},#{password},#{state},#{createUser},#{createTime},#{updateUser},#{updateTime})")
-    int insert(JSONObject user) throws DaoException;
+    int insert(JSONObject user);
 
 
     @Insert("<script> " +
