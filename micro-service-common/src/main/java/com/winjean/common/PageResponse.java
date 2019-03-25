@@ -1,6 +1,7 @@
 package com.winjean.common;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -8,20 +9,32 @@ import java.util.List;
 @Data
 public class PageResponse<T> extends BaseResponse {
 
+    @JacksonXmlProperty
     private int pageNum;
 
+    @JacksonXmlProperty
     private int pageSize;
 
+    @JacksonXmlProperty
+    private int pages;
+
+    @JacksonXmlProperty
     private long total;
 
+    @JacksonXmlProperty
     private List<T> list;
 
-    public static JSONObject getResponse(int pageNum, int pageSize,int  total, List list){
-        JSONObject response = getSuccessResponse();
-        response.put("pageNum",pageNum);
-        response.put("pageSize",pageSize);
-        response.put("total",total);
-        response.put("list",list);
+    public static PageResponse getResponse(int pageNum, int pageSize,int  total,int pages, List list){
+        PageResponse response = new PageResponse();
+        response.setCode(BaseResponse.INVOKE_SUCCESS_CODE);
+        response.setMsg(BaseResponse.INVOKE_SUCCESS);
+        response.setPageNum(pageNum);
+        response.setPageSize(pageSize);
+        response.setTotal(total);
+        response.setPages(pages);
+
+        response.setList(list);
+
         return response;
     }
 

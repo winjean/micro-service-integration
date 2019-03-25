@@ -11,11 +11,6 @@ import java.util.Date;
 @Entity(name = "t_user")
 public class UserEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="user_id")
-    private String id;
-
     @Column(name = "user_name")
     private String name;
 

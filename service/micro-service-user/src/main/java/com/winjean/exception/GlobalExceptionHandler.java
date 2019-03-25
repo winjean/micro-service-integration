@@ -69,7 +69,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public String handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
-        return "参数解析失败";
+        return "参数解析失败:"+e.getMessage();
     }
 
     @ExceptionHandler(ConstraintViolationException.class)

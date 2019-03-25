@@ -6,6 +6,10 @@ spring:
     name: @artifactId@
   profiles:
     active: @profileActive@
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 #  cloud:
 #    config:
 #      name: service-user
@@ -30,3 +34,4 @@ info:
     name: @project.name@
     description: @project.description@
     parent-version: @project.parent.version@
+
