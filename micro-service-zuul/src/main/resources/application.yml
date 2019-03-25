@@ -4,15 +4,13 @@ server:
 spring:
   application:
     name: @artifactId@
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://admin:123456@localhost:8081/eureka
-  instance:
-    prefer-ip-address: true
-
+  profiles:
+    active: @profileActive@
 zuul:
+  ignored-services: '*' #忽略所有未配置的service
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
   routes:
     service-user:
       path: /user/**
@@ -35,9 +33,6 @@ zuul:
         quota: 300
         refresh-interval: 300
         type: URL
-#  host:
-#    connect-timeout-millis: 60000
-#    socket-timeout-millis: 60000
 
 ribbon:
   ReadTimeout: 60000
