@@ -1,4 +1,4 @@
-package com.winjean.zuul.service.fallback;
+package com.winjean.zuul.fallback;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;

@@ -210,21 +210,7 @@
                 </configuration>
             </plugin>
 
-            <!--增加构建信息-->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <fork>true</fork>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>build-info</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
 
             <!--java编译版本-->
             <plugin>

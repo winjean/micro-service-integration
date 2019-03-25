@@ -1,4 +1,4 @@
-package com.winjean.zuul.service;
+package com.winjean.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

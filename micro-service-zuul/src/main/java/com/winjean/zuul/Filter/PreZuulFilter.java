@@ -1,4 +1,4 @@
-package com.winjean.zuul.service.Filter;
+package com.winjean.zuul.Filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
