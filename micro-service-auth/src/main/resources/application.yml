@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: @artifactId@
+  profiles:
+    active: @profileActive@
+server:
+  port: 8281
+
+#  servlet:
+#    contextPath: /auth
+

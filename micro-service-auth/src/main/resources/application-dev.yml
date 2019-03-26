@@ -37,13 +37,3 @@ jasypt:
   encryptor:
     password: winjean
 
-security:
-  oauth2:
-    client:
-      access-token-uri:
-      user-authorization-uri:
-      client-id:
-      client-secret:
-    resource:
-      jwt:
-        key-value:

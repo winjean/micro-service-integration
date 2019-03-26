@@ -3,9 +3,12 @@ package com.winjean.zuul.Filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import com.sun.scenario.effect.FilterContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,8 +38,15 @@ public class PreZuulFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         RequestContext ctx = RequestContext.getCurrentContext();
-        String service_id = (String)ctx.get(FilterConstants.SERVICE_ID_KEY);
+//        String service_id = (String)ctx.get(FilterConstants.SERVICE_ID_KEY);
 
+        Authentication user = SecurityContextHolder.getContext().getAuthentication();
+        if(user!=null){
+            if(user instanceof OAuth2Authentication){
+                OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) user.getDetails() ;
+                ctx.addZuulRequestHeader("Authorization", details.getTokenType() + " " + details.getTokenValue());
+            }
+        }
 
         HttpServletRequest request = ctx.getRequest();
         log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));

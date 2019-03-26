@@ -241,6 +241,7 @@
     <modules>
         <module>micro-service-registration-center</module>
         <module>micro-service-zuul</module>
+        <module>micro-service-auth</module>
         <module>micro-service-config</module>
         <module>micro-service-common</module>
         <module>service/micro-service-user</module>

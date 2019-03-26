@@ -91,12 +91,12 @@ public class RouteZuulFilter extends ZuulFilter {
 			ILoadBalancer iLoadBalancer = clientFactory.getLoadBalancer(serviceId);
 			Server server = iLoadBalancer.chooseServer("default");
 			if (null == server) {
-				log.info("获取：'" + serviceId + "'服务失败,当前服务不存!!!");
+				log.info("zuul invoke failure：{} not exist" , serviceId);
 			} else {
-				log.info("经过路由后,最后访问真实的服务器地址为:{}/{}", server.getHostPort(), subfix);
+				log.info("zuul invoke success :{}/{}", server.getHostPort(), subfix);
 			}
 		} catch (Exception e) {
-			log.error("RouteZuulFilter.loggerFinalPath error -->> 打印最终请求路径失败，异常信息为:{}", e);
+			log.error("RouteZuulFilter.loggerFinalPath error -->> :{}", e);
 		}
 
 	}
