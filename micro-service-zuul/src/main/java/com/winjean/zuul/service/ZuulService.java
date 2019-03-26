@@ -1,5 +1,6 @@
 package com.winjean.zuul.service;
 
+import com.winjean.zuul.model.request.RequestZuulRouteInsert;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties.ZuulRoute;
 
 import java.util.Map;
@@ -14,4 +15,6 @@ import java.util.Map;
 public interface ZuulService {
 
     Map<String, ZuulRoute> queryRoutes();
+
+    void addRoute(RequestZuulRouteInsert request);
 }

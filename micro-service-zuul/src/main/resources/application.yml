@@ -6,6 +6,11 @@ spring:
     name: @artifactId@
   profiles:
     active: @profileActive@
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
 zuul:
   ignored-services: '*' #忽略所有未配置的service
   host:
