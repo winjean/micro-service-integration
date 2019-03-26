@@ -12,6 +12,9 @@ zuul:
     connect-timeout-millis: 20000
     socket-timeout-millis: 20000
   routes:
+    service-zuul:
+      path: /zuul/**
+      serviceId: micro-service-zuul
     service-user:
       path: /user/**
       serviceId: micro-service-user

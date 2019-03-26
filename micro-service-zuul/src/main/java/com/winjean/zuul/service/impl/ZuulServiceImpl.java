@@ -5,7 +5,6 @@ import com.winjean.zuul.service.ZuulService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
-
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties.ZuulRoute;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +32,6 @@ public class ZuulServiceImpl implements ZuulService {
 
         CustomRouteLocator locator = new CustomRouteLocator(server.getServlet().getServletPrefix(),zuulProperties);
 
-        return locator.getRoutesMap();
+        return locator.locateRoutes();
     }
 }

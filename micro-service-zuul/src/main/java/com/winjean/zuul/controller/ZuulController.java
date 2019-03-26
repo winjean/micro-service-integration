@@ -4,7 +4,7 @@ import com.winjean.common.BaseResponse;
 import com.winjean.zuul.service.ZuulService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -17,14 +17,13 @@ import java.util.Map;
  * @version: $version$
  */
 
-@RestController
-@RequestMapping("zuul")
+@RestController("ZuulServiceController")
 public class ZuulController {
 
     @Autowired
     private ZuulService zuulService;
 
-    @RequestMapping("queryRoutes")
+    @PostMapping("queryRoutes")
     public Object queryRoutes(){
         BaseResponse response = BaseResponse.getSuccessResponse();
 
