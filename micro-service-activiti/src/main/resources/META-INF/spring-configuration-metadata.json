@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "sourceType": "com.winjean.config.ConfigProperties",
+      "name": "config.winjean",
+      "type": "com.winjean.config.ConfigProperties"
+    }
+  ],
+  "properties": [{
+      "sourceType": "com.winjean.config.ConfigProperties",
+      "defaultValue": "winjean",
+      "name": "config.winjean.name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.winjean.config.ConfigProperties",
+      "defaultValue": 40,
+      "name": "config.winjean.age",
+      "type": "java.lang.Integer"
+    }
+  ]
+}
