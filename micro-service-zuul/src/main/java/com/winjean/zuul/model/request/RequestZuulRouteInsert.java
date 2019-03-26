@@ -16,8 +16,6 @@ import java.util.Set;
 @Data
 public class RequestZuulRouteInsert extends BaseEntity {
 
-//    private String id;
-
     private String path;
 
     private String serviceId;
@@ -32,11 +30,4 @@ public class RequestZuulRouteInsert extends BaseEntity {
 
     private boolean customSensitiveHeaders;
 
-//    private String createUser;
-//
-//    private Date createTime;
-//
-//    private String updateUser;
-//
-//    private Date updateTime;
 }

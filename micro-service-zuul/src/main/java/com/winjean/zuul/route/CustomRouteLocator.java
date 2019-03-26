@@ -1,9 +1,7 @@
 package com.winjean.zuul.route;
 
-import com.github.pagehelper.Page;
-import com.winjean.zuul.mapper.ZuulRouteMapper;
-import com.winjean.zuul.model.response.ResponseZuulRouteQuery;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.RefreshableRouteLocator;
 import org.springframework.cloud.netflix.zuul.filters.SimpleRouteLocator;
@@ -11,16 +9,11 @@ import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties.ZuulRoute;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.Resource;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
 public class CustomRouteLocator extends SimpleRouteLocator implements RefreshableRouteLocator {
-
-	@Resource
-	private ZuulRouteMapper zuulRouteMapper;
 
     @Autowired
     private ZuulProperties zuulProperties;
@@ -44,21 +37,13 @@ public class CustomRouteLocator extends SimpleRouteLocator implements Refreshabl
 
 	@Override
 	public Map<String, ZuulRoute> locateRoutes() {
+		Map<String, ZuulRoute> routesMap = RouteMapConstant.getRoute();
 		// 从application.yml中加载路由信息
-		Map<String, ZuulRoute> routesMap = super.locateRoutes();
-		Page<ResponseZuulRouteQuery> zuulRoutes = zuulRouteMapper.query();
-		List<ResponseZuulRouteQuery> list = zuulRoutes.getResult();
-		list.forEach(zr -> {
-			ZuulRoute zuulRoute = new ZuulRoute();
-			zuulRoute.setId(zr.getId());
-			zuulRoute.setPath(zr.getPath());
-			zuulRoute.setServiceId(zr.getServiceId());
-			zuulRoute.setUrl(zr.getUrl());
-			zuulRoute.setStripPrefix(zr.isStripPrefix());
-			zuulRoute.setRetryable(zr.getRetryable());
+		Map<String, ZuulRoute> routeMap = super.locateRoutes();
 
-			routesMap.put(zuulRoute.getPath(),zuulRoute);
-		});
+		if (MapUtils.isNotEmpty(routeMap)) {
+			routesMap.putAll(routeMap);
+		}
 
 		// 优化一下配置
 		LinkedHashMap<String, ZuulRoute> values = new LinkedHashMap<>();

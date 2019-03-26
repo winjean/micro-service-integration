@@ -11,12 +11,13 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface ZuulRouteMapper {
 
-    @Insert("insert into t_zuul_route(id,path,service_id,url,strip_prefix,retryable,create_user,create_time,update_user,update_time)" +
-            "values "+
-            "(#{id},#{path},#{serviceId},#{url},#{stripPrefix},#{retryable},#{createUser},#{createTime},#{updateUser},#{updateTime})")
+    @Insert({"insert into t_zuul_route(id,path,service_id,url,strip_prefix,retryable,create_user,create_time,update_user,update_time)",
+            "values ",
+            "(#{id},#{path},#{serviceId},#{url},#{stripPrefix},#{retryable},#{createUser},#{createTime},#{updateUser},#{updateTime})"})
     int insert(RequestZuulRouteInsert request);
 
-    @Select("select id,user_name as name,birthday,email,sex,telephone,create_user as createUser,create_time as createTime from t_user")
+    @Select({"select id,path,service_id as serviceId,url,strip_prefix as stripPrefix,retryable,create_user,create_time,update_user,update_time ",
+            "from t_zuul_route"})
     Page<ResponseZuulRouteQuery> query();
 
 }

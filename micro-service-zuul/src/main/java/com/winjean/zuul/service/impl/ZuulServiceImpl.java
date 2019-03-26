@@ -1,17 +1,20 @@
 package com.winjean.zuul.service.impl;
 
+import com.github.pagehelper.Page;
 import com.winjean.utils.BeanUtils;
 import com.winjean.zuul.mapper.ZuulRouteMapper;
 import com.winjean.zuul.model.request.RequestZuulRouteInsert;
-import com.winjean.zuul.route.CustomRouteLocator;
+import com.winjean.zuul.model.request.RequestZuulRouteQueryPage;
+import com.winjean.zuul.model.response.ResponseZuulRouteQuery;
+import com.winjean.zuul.route.RefreshRoute;
+import com.winjean.zuul.route.RouteMapConstant;
 import com.winjean.zuul.service.ZuulService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties.ZuulRoute;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,14 +28,11 @@ import java.util.Map;
 @Service
 public class ZuulServiceImpl implements ZuulService {
 
-    @Autowired
-    private ZuulProperties zuulProperties;
-
-    @Autowired
-    private ServerProperties server;
-
     @Resource
     private ZuulRouteMapper mapper;
+
+    @Autowired
+    private RefreshRoute refreshRoute;
 
     @Override
     public void addRoute(RequestZuulRouteInsert request) {
@@ -43,8 +43,31 @@ public class ZuulServiceImpl implements ZuulService {
     @Override
     public Map<String, ZuulRoute> queryRoutes() {
 
-        CustomRouteLocator locator = new CustomRouteLocator(server.getServlet().getPath(),zuulProperties);
+        return RouteMapConstant.getRoute();
+    }
 
-        return locator.locateRoutes();
+    @Override
+    public Page<ResponseZuulRouteQuery> queryRoutes(RequestZuulRouteQueryPage request) {
+        return mapper.query();
+    }
+
+    @Override
+    public void refreshRoute() {
+        RouteMapConstant.clearRoute();
+
+		Page<ResponseZuulRouteQuery> zuulRoutes = mapper.query();
+		List<ResponseZuulRouteQuery> list = zuulRoutes.getResult();
+		list.forEach(zr -> {
+			ZuulRoute zuulRoute = new ZuulRoute();
+			zuulRoute.setId(zr.getId());
+			zuulRoute.setPath(zr.getPath());
+			zuulRoute.setServiceId(zr.getServiceId());
+			zuulRoute.setUrl(zr.getUrl());
+			zuulRoute.setStripPrefix(zr.isStripPrefix());
+			zuulRoute.setRetryable(zr.getRetryable());
+
+			RouteMapConstant.appendRoute(zuulRoute);
+		});
+        refreshRoute.refresh();
     }
 }
