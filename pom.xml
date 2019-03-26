@@ -23,6 +23,7 @@
         <druid>1.1.10</druid>
         <pagehelper>1.2.5</pagehelper>
         <mybatis>1.3.2</mybatis>
+        <swagger2.version>2.6.1</swagger2.version>
         <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 
         <spring-cloud-zuul-ratelimit.version>1.5.0.RELEASE</spring-cloud-zuul-ratelimit.version>
@@ -148,6 +149,20 @@
                 <version>${lombok.version}</version>
             </dependency>
 
+            <!-- swagger start -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <!-- swagger end -->
+
         </dependencies>
     </dependencyManagement>
 
@@ -215,6 +230,18 @@
             <artifactId>jackson-dataformat-csv</artifactId>
         </dependency>
 
+        <!-- swagger start -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+        <!-- swagger end -->
+
     </dependencies>
 
     <build>
@@ -246,6 +273,8 @@
     <modules>
         <module>micro-service-registration-center</module>
         <module>micro-service-zuul</module>
+        <module>micro-service-activiti</module>
+        <module>micro-service-quartz</module>
         <module>micro-service-auth</module>
         <module>micro-service-config</module>
         <module>micro-service-common</module>
