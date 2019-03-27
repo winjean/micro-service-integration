@@ -12,7 +12,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://admin:123456@localhost:8081/eureka
+      defaultZone: http://admin:123456@localhost:8101/eureka
 feign:
   hystrix:
     #  feign fallback valid

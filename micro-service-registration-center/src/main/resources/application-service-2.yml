@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8102
 
 eureka:
   instance:
@@ -9,6 +9,6 @@ eureka:
 #    prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://admin:123456@winjean1:8081/eureka/
+      defaultZone: http://admin:123456@winjean1:8101/eureka/
   server:
     response-cache-update-interval-ms: 3000

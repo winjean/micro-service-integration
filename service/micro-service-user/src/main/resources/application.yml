@@ -22,7 +22,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://admin:123456@localhost:8081/eureka
+      defaultZone: http://admin:123456@localhost:8101/eureka
 
 #定义详情给服务端和eureka注册中心显示
 info:

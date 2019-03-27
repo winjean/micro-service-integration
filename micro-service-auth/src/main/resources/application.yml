@@ -5,7 +5,7 @@ spring:
     active: @profileActive@
 
 server:
-  port: 8281
+  port: 8301
 
 #  servlet:
 #    contextPath: /auth
