@@ -1,0 +1,1 @@
+program arguments : --spring.profiles.active=service-1
