@@ -11,6 +11,8 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Component
 @Slf4j
 public class PreZuulFilter extends ZuulFilter {
@@ -46,20 +48,20 @@ public class PreZuulFilter extends ZuulFilter {
             }
         }
 
-        /*HttpServletRequest request = ctx.getRequest();
-        log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
-        Object token = request.getParameter("token");
-        if(token == null) {
-            log.warn("token is empty");
-            ctx.setSendZuulResponse(false);
-            ctx.setResponseStatusCode(401);
-            try {
-                ctx.getResponse().getWriter().write("token is empty");
-            }catch (Exception e){}
-
-            return null;
-        }
-        log.info("ok");*/
+        HttpServletRequest request = ctx.getRequest();
+        log.info("{} >>> {}", request.getMethod(), request.getRequestURL().toString());
+//        Object token = request.getParameter("token");
+//        if(token == null) {
+//            log.warn("token is empty");
+//            ctx.setSendZuulResponse(false);
+//            ctx.setResponseStatusCode(401);
+//            try {
+//                ctx.getResponse().getWriter().write("token is empty");
+//            }catch (Exception e){}
+//
+//            return null;
+//        }
+        log.info("ok");
         return null;
     }
 }

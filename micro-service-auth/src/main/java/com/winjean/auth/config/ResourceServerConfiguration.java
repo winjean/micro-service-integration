@@ -10,6 +10,8 @@ package com.winjean.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -21,18 +23,18 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableResourceServer
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
-//    @Override
-//    public void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/**")
-//                .hasAuthority("WRIGTH_WRITE")//.authenticated()
-//                .antMatchers(HttpMethod.GET, "/test","/role/**")
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/**")
+                .hasAuthority("WRIGTH_WRITE")//.authenticated()
+                .antMatchers(HttpMethod.GET, "/test","/role/**")
 //                .antMatchers("/test","/role/**")
-//                .hasAuthority("WRIGTH_READ");
-//        http.authorizeRequests().anyRequest().denyAll();
-//    }
+                .hasAuthority("WRIGTH_READ");
+        http.authorizeRequests().anyRequest().denyAll();
+    }
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
