@@ -32,7 +32,7 @@ public class RouteZuulFilter extends ZuulFilter {
 		HttpServletRequest request = ctx.getRequest();
 		String requestUrl = request.getRequestURL().toString();
 		// 打印请求日志
-		log.info("请求到达RouteZuulFilter,准备进行路由, 请求URL为:{}", requestUrl);
+		log.info("request arrived RouteZuulFilter,route URL :{}", requestUrl);
 
 		// 打印最终请求服务器地址日志
 		loggerFinalPath(requestUrl);
@@ -54,7 +54,7 @@ public class RouteZuulFilter extends ZuulFilter {
 	 */
 	@Override
 	public int filterOrder() {
-		return 0;
+		return 1;
 	}
 
 	/**

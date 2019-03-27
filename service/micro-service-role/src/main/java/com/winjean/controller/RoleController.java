@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.winjean.feignClient.UserFeignClient;
 import com.winjean.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,10 +30,10 @@ public class RoleController {
         return json;
     }
 
-    @PostMapping("delete")
+    @GetMapping("delete")
     public Object deleteRole(@RequestBody JSONObject json) {
-        roleService.deleteRole(json);
-        userFeignClient.deleteUser(json);
+//        roleService.deleteRole(json);
+//        userFeignClient.deleteUser(json);
 
         return json;
     }

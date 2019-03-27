@@ -1,8 +1,9 @@
 package com.winjean.zuul.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
@@ -13,18 +14,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @version: $version$
  */
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
+@Order(99)
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/login", "/client/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .csrf()
-                .disable();
+        http.authorizeRequests()
+            .antMatchers(HttpMethod.POST,"/role/**").permitAll()
+            .antMatchers(HttpMethod.GET,"/role/**").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .csrf().disable();
     }
 }

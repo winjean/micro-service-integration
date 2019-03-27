@@ -11,8 +11,6 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Component
 @Slf4j
 public class PreZuulFilter extends ZuulFilter {
@@ -48,7 +46,7 @@ public class PreZuulFilter extends ZuulFilter {
             }
         }
 
-        HttpServletRequest request = ctx.getRequest();
+        /*HttpServletRequest request = ctx.getRequest();
         log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
         Object token = request.getParameter("token");
         if(token == null) {
@@ -61,7 +59,7 @@ public class PreZuulFilter extends ZuulFilter {
 
             return null;
         }
-        log.info("ok");
+        log.info("ok");*/
         return null;
     }
 }

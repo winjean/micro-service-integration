@@ -5,10 +5,10 @@ spring:
   profiles:
     active: service-1
 
-#  security:
-#    user:
-#      name: admin
-#      password: 123456
+  security:
+    user:
+      name: admin
+      password: 123456
 
 #  output:
 #    ansi:
