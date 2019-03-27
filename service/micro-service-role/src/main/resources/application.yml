@@ -5,7 +5,7 @@ spring:
 #    ansi:
 #      enabled: always
   application:
-    name: @artifactId@
+    name: "@artifactId@"
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
@@ -22,10 +22,10 @@ feign:
 info:
   #  version: @project.version@
   app:
-    groupId: @project.groupId@
-    artifactId: @artifactId@
-    version: @project.version@
-    name: @project.name@
-    description: @project.description@
-    parent-version: @project.parent.version@
+    groupId: "@project.groupId@"
+    artifactId: "@artifactId@"
+    version: "@project.version@"
+    name: "@project.name@"
+    description: "@project.description@"
+    parent-version: "@project.parent.version@"
 

@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: @artifactId@
+    name: "@artifactId@"
 #  cloud:
 #    config:
 #      name: service-user
@@ -22,9 +22,9 @@ eureka:
 info:
   #  version: @project.version@
   app:
-    groupId: @project.groupId@
-    artifactId: @artifactId@
-    version: @project.version@
-    name: @project.name@
-    description: @project.description@
-    parent-version: @project.parent.version@
+    groupId: "@project.groupId@"
+    artifactId: "@artifactId@"
+    version: "@project.version@"
+    name: "@project.name@"
+    description: "@project.description@"
+    parent-version: "@project.parent.version@"

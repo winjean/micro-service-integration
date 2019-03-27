@@ -1,6 +1,6 @@
 spring:
   application:
-    name: @artifactId@
+    name: "@artifactId@"
 
   profiles:
     active: service-1
@@ -19,9 +19,9 @@ spring:
 info:
   #  version: @project.version@
   app:
-    groupId: @project.groupId@
-    artifactId: @artifactId@
-    version: @project.version@
-    name: @project.name@
-    description: @project.description@
-    parent-version: @project.parent.version@
+    groupId: "@project.groupId@"
+    artifactId: "@artifactId@"
+    version: "@project.version@"
+    name: "@project.name@"
+    description: "@project.description@"
+    parent-version: "@project.parent.version@"
