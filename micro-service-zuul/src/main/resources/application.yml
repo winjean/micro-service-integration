@@ -56,3 +56,6 @@ info:
     name: "@project.name@"
     description: "@project.description@"
     parent-version: "@project.parent.version@"
+    java:
+      source: "@java.version@"
+      target: "@java.version@"
