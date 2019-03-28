@@ -16,6 +16,11 @@ import java.util.Map;
 @Slf4j
 public class AuthController {
 
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @RequestMapping("/backReferer")
     public void sendBack(HttpServletRequest request, HttpServletResponse response) {
 
