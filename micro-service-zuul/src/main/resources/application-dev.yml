@@ -37,15 +37,15 @@ jasypt:
   encryptor:
     password: winjean
 
-security:
-  oauth2:
-    client:
-      access-token-uri: http://localhost:8281/oauth/token #令牌端点
-      user-authorization-uri: http://localhost:8281/oauth/authorize #授权端点
-      client-id: zuul_server #OAuth2客户端ID
-      client-secret: secret #OAuth2客户端密钥
-    resource:
-      jwt:
-        key-value: springcloud123 #使用对称加密方式，默认算法为HS256
+#security:
+#  oauth2:
+#    client:
+#      access-token-uri: http://localhost:8301/oauth/token #令牌端点
+#      user-authorization-uri: http://localhost:8301/oauth/authorize #授权端点
+#      client-id: zuul_server #OAuth2客户端ID
+#      client-secret: secret #OAuth2客户端密钥
+#    resource:
+#      jwt:
+#        key-value: springcloud123 #使用对称加密方式，默认算法为HS256
 #      user-info-uri:
 

@@ -48,6 +48,14 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
                 .authenticationManager(authenticationManager);
     }
 
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security
+                .tokenKeyAccess("permitAll()")
+                .checkTokenAccess("permitAll()")
+                .allowFormAuthenticationForClients();
+    }
+
     @Bean
     public TokenStore jwtTokenStore() {
         return new JwtTokenStore(jwtTokenConverter());
@@ -58,13 +66,5 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey("springcloud123");
         return converter;
-    }
-
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security
-                .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("permitAll()")
-                .allowFormAuthenticationForClients();
     }
 }

@@ -27,7 +27,6 @@
         <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 
         <spring-cloud-zuul-ratelimit.version>1.5.0.RELEASE</spring-cloud-zuul-ratelimit.version>
-        <!--<spring-cloud.version>Dalston.SR1</spring-cloud.version>-->
     </properties>
 
     <parent>
@@ -256,8 +255,6 @@
                 </configuration>
             </plugin>
 
-
-
             <!--java编译版本-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -281,5 +278,6 @@
         <module>service/micro-service-user</module>
         <module>service/micro-service-role</module>
         <module>service/micro-service-permission</module>
+        <module>service/micro-service-module</module>
     </modules>
 </project>
