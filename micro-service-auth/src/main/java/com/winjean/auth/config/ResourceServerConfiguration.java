@@ -27,9 +27,13 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 //        http
 //                .csrf().disable()
 //                .authorizeRequests()
+//                .antMatchers("/oauth/**").permitAll()
 //                .antMatchers("/**").hasAuthority("WRIGTH_WRITE")//.authenticated()
 //                .antMatchers(HttpMethod.GET, "/test","/role/**").hasAuthority("WRIGTH_READ");
-        http.authorizeRequests().anyRequest().denyAll();
+        http
+                .requestMatchers().anyRequest()
+                .and()
+                .authorizeRequests().antMatchers("/oauth/**").permitAll();
     }
 
     @Override

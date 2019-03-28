@@ -36,3 +36,9 @@ jasypt:
   encryptor:
     password: winjean
 
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"

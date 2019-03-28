@@ -26,6 +26,9 @@ zuul:
     service-role:
       path: /role/**
       serviceId: micro-service-role
+    service-oauth:
+      path: /oauth/**
+      serviceId: micro-service-auth
   ratelimit:
     enabled: true
     repository: IN_MEMORY

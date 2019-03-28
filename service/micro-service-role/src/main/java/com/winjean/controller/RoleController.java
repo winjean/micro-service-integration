@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 
 
 @RestController
@@ -31,9 +33,14 @@ public class RoleController {
     }
 
     @GetMapping("delete")
-    public Object deleteRole(@RequestBody JSONObject json) {
+    public Object deleteRole(@RequestBody JSONObject json, HttpServletRequest request) {
 //        roleService.deleteRole(json);
 //        userFeignClient.deleteUser(json);
+        Enumeration<String> names = request.getHeaderNames();
+        while (names.hasMoreElements()){
+            System.out.println(names.nextElement() +"---"+request.getHeader(names.nextElement()));
+        }
+
 
         return json;
     }

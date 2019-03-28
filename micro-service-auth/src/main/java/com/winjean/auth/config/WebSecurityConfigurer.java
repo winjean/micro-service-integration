@@ -40,4 +40,14 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     public static NoOpPasswordEncoder passwordEncoder() {
         return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
     }
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/oauth/**").permitAll()
+//                .antMatchers("/**").permitAll()
+//                .and()
+//                .httpBasic();
+//    }
 }
