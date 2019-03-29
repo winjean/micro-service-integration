@@ -1,7 +1,5 @@
 package com.winjean.auth.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,8 +7,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PhoneUserDetailService extends BaseUserDetailService {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 //    @Override
 //    protected BaseUser getUser(String phone) {

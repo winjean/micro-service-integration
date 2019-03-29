@@ -2,19 +2,21 @@ package com.winjean.auth.config;
 
 import com.winjean.auth.filter.PhoneLoginAuthenticationFilter;
 import com.winjean.auth.handle.MyLoginAuthSuccessHandler;
+import com.winjean.auth.provider.PhoneAuthenticationProvider;
 import com.winjean.auth.service.PhoneUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author ：winjean
@@ -45,6 +47,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .withUser("guest").password("guest").authorities("WRIGTH_READ")
                 .and()
                 .withUser("admin").password("admin").authorities("WRIGTH_READ", "WRIGTH_WRITE");
+
+//        auth.authenticationProvider(phoneAuthenticationProvider());
     }
 
     @Bean
@@ -55,16 +59,23 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .addFilterBefore(getPhoneLoginAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .formLogin().loginPage("/login").permitAll()
+//                .addFilterBefore(getPhoneLoginAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .formLogin()/*.loginPage("/login")*/.permitAll()
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/")
+                .logout()/*.logoutUrl("/logout")*/.logoutSuccessUrl("/")
                 .and()
-                .authorizeRequests().anyRequest().authenticated()
-                .and()
-                .csrf().disable();
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and().cors()
+                .and().csrf().disable();
+
+        http.rememberMe().rememberMeCookieName("remember");
     }
 
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/druid/**");
+    }
 //    @Bean
 //    public LoginAuthenticationFilter loginAuthenticationFilter(){
 //        LoginAuthenticationFilter provider = new LoginAuthenticationFilter();
@@ -86,5 +97,15 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         filter.setAuthenticationSuccessHandler(new MyLoginAuthSuccessHandler());
         filter.setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler("/login?error"));
         return filter;
+    }
+
+    @Bean
+    public PhoneAuthenticationProvider phoneAuthenticationProvider(){
+        PhoneAuthenticationProvider provider = new PhoneAuthenticationProvider();
+        // 设置userDetailsService
+        provider.setUserDetailsService(phoneUserDetailService);
+        // 禁止隐藏用户未找到异常
+        provider.setHideUserNotFoundExceptions(false);
+        return provider;
     }
 }

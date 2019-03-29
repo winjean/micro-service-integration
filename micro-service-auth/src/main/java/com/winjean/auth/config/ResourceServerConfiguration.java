@@ -10,6 +10,7 @@ package com.winjean.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -24,16 +25,14 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/oauth/**").permitAll()
-//                .antMatchers("/**").hasAuthority("WRIGTH_WRITE")//.authenticated()
-//                .antMatchers(HttpMethod.GET, "/test","/role/**").hasAuthority("WRIGTH_READ");
         http
-                .requestMatchers().anyRequest()
-                .and()
-                .authorizeRequests().antMatchers("/oauth/**").permitAll();
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                .antMatchers("/oauth/**").permitAll()
+                .antMatchers("/test").hasAuthority("WRIGTH_WRITE")
+                .anyRequest().authenticated()
+                .and().cors();
     }
 
     @Override

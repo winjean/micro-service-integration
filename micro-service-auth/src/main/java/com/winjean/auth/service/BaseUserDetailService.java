@@ -17,8 +17,6 @@ import java.util.Collection;
  */
 public abstract class BaseUserDetailService implements UserDetailsService {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
 //    @Autowired
 //    protected BaseUserService baseUserService;
 //    @Autowired

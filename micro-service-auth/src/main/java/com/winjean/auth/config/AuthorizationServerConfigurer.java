@@ -35,7 +35,7 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
                 .inMemory()
                 .withClient("zuul_server")
                 .secret("secret")
-                .scopes("WRIGTH", "read","select").autoApprove(true)
+                .scopes("WRIGTH", "read","select")/*.autoApprove(true)*/
                 .authorities("WRIGTH_READ", "WRIGTH_WRITE","client")
                 .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code");
     }
