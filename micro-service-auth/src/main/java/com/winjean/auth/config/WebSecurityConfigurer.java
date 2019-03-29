@@ -7,7 +7,6 @@ import com.winjean.auth.service.PhoneUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.util.ClassUtils;
 
 /**
  * @author ：winjean
@@ -27,7 +27,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
  */
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -60,9 +60,16 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
 //                .addFilterBefore(getPhoneLoginAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .formLogin()/*.loginPage("/login")*/.permitAll()
+                .authorizeRequests()
+                .antMatchers("/login.jsp").permitAll()
+                .anyRequest().hasRole("USER")
                 .and()
-                .logout()/*.logoutUrl("/logout")*/.logoutSuccessUrl("/")
+                .exceptionHandling()
+                .accessDeniedPage("/login.jsp?authorization_error=true")
+                .and()
+                .formLogin().loginPage("/login").permitAll()
+                .and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/")
                 .and()
                 .authorizeRequests()
                 .anyRequest().authenticated()
