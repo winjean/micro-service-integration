@@ -1,7 +1,9 @@
 package com.winjean.auth.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -25,13 +27,18 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
     @Resource
     private AuthenticationManager authenticationManager;
 
+    @Bean
+    public static BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         //用来配置客户端详情服务（ClientDetailsService），客户端详情信息在这里进行初始化，你能够把客户端详情信息写死在这里或者是通过数据库来存储调取详情信息。
         clients
                 .inMemory()
                 .withClient("zuul_server")
-                .secret("secret")
+                .secret(passwordEncoder().encode("secret"))
                 .scopes("WRIGTH", "read","select")/*.autoApprove(true)*/
                 .authorities("WRIGTH_READ", "WRIGTH_WRITE","client")
                 .redirectUris("http://www.baidu.com")
@@ -58,6 +65,7 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
                 .tokenKeyAccess("permitAll()") //url:/oauth/token_key,exposes public key for token verification if using JWT tokens
                 .checkTokenAccess("isAuthenticated()") //url:/oauth/check_token allow check token
                 .allowFormAuthenticationForClients();
+
 //        security.addTokenEndpointAuthenticationFilter(null);
     }
 

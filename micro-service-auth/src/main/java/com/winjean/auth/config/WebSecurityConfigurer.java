@@ -53,7 +53,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 //                .withUser("guest").password(new BCryptPasswordEncoder().encode("guest")).authorities("WRIGTH_READ")
 //                .and()
                 .passwordEncoder(passwordEncoder())
-                .withUser("admin").password("admin").authorities("WRIGTH_READ", "WRIGTH_WRITE");
+                .withUser("admin").password(passwordEncoder().encode("admin")).authorities("WRIGTH_READ", "WRIGTH_WRITE");
 
 //        auth.authenticationProvider(phoneAuthenticationProvider());
     }

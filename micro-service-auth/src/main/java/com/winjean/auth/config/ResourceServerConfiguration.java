@@ -24,26 +24,26 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         http.requestMatchers().antMatchers("/api/**")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/**").authenticated();;
+                .antMatchers("/api/**").authenticated();
     }
 
     /*@Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources
-                .resourceId("WRIGTH")*//*
-                .tokenStore(jwtTokenStore())*//*;
+                .resourceId("WRIGTH")
+                .tokenStore(jwtTokenStore());
+    }
+
+    @Bean
+    protected JwtAccessTokenConverter jwtTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("springcloud123");
+        return converter;
+    }
+
+    @Bean
+    public TokenStore jwtTokenStore() {
+        return new JwtTokenStore(jwtTokenConverter());
     }*/
-
-//    @Bean
-//    protected JwtAccessTokenConverter jwtTokenConverter() {
-//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-//        converter.setSigningKey("springcloud123");
-//        return converter;
-//    }
-
-//    @Bean
-//    public TokenStore jwtTokenStore() {
-//        return new JwtTokenStore(jwtTokenConverter());
-//    }
 
 }

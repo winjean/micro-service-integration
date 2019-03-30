@@ -1,0 +1,780 @@
+{
+	"info": {
+		"_postman_id": "751f7e97-d135-4e2f-a94c-83e67bb30ba9",
+		"name": "micro-service-integration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "insert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"aa\",\n\t\"password\": \"12345678\",\n\t\"birthday\": \"2010-01-05\",\n\t\"sex\": true,\n\t\"email\": \"19548901@qq.com\",\n\t\"telephone\": \"13851941860\",\n\t\"status\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:7101/insert",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7101",
+							"path": [
+								"insert"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "zuul",
+			"item": [
+				{
+					"name": "role",
+					"item": [
+						{
+							"name": "role-add",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTM3MjEwOTAsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiV1JJR1RIX1dSSVRFIiwiV1JJR1RIX1JFQUQiXSwianRpIjoiNzE2MjZjN2ItODVlYS00N2VjLWFjYmMtNTU0YmQxNzY4YjljIiwiY2xpZW50X2lkIjoienV1bF9zZXJ2ZXIiLCJzY29wZSI6WyJXUklHVEgiXX0.Y8-WlBJ0FvOHOrwuRJOXpoNb5Ijjmot6V1-C_JNbVTI",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"a\":\"winjean\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8201/role/add",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"role",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "role-delete",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTM3MjQzMTEsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiV1JJR1RIX1dSSVRFIiwiV1JJR1RIX1JFQUQiXSwianRpIjoiODZiNmQ4ODQtYjJhNi00MDVkLWJhM2MtNWU5YjBjMzY5ZTBjIiwiY2xpZW50X2lkIjoienV1bF9zZXJ2ZXIiLCJzY29wZSI6WyJXUklHVEgiXX0.MFYT2OdabMQ6z4z1yVPx1_Xbcij7heelWwsuZ4B3H-E",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"a\":\"winjean\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8201/role/delete",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"role",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "oauth",
+					"item": [
+						{
+							"name": "authorization-code",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "client_id",
+											"value": "zuul_server",
+											"type": "text"
+										},
+										{
+											"key": "response_type",
+											"value": "code",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "http://www.baidu.com",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "state",
+											"value": "123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8301/oauth/authorize",
+									"host": [
+										"localhost"
+									],
+									"port": "8301",
+									"path": [
+										"oauth",
+										"authorize"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "test",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "localhost:8301/api/test?access_token=af608b6d-2054-44b7-bb66-cf062a0e6431",
+									"host": [
+										"localhost"
+									],
+									"port": "8301",
+									"path": [
+										"api",
+										"test"
+									],
+									"query": [
+										{
+											"key": "access_token",
+											"value": "af608b6d-2054-44b7-bb66-cf062a0e6431"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "authorization-code-token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "wrr52v",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "zuul_server",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "secret",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "http://www.baidu.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8301/oauth/token",
+									"host": [
+										"localhost"
+									],
+									"port": "8301",
+									"path": [
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "authorization-code-implicit",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "client_id",
+											"value": "zuul_server",
+											"type": "text"
+										},
+										{
+											"key": "response_type",
+											"value": "token",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "http://www.baidu.com",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "state",
+											"value": "123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8301/oauth/authorize",
+									"host": [
+										"localhost"
+									],
+									"port": "8301",
+									"path": [
+										"oauth",
+										"authorize"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "authorize",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8301/oauth/authorize?client_id=zuul_server&response_type=code&redirect_uri=http://www.baidu.com",
+									"host": [
+										"localhost"
+									],
+									"port": "8301",
+									"path": [
+										"oauth",
+										"authorize"
+									],
+									"query": [
+										{
+											"key": "client_id",
+											"value": "zuul_server"
+										},
+										{
+											"key": "response_type",
+											"value": "code"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "http://www.baidu.com"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "token-password",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "select",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "zuul_server",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "secret",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8301/oauth/token",
+									"host": [
+										"localhost"
+									],
+									"port": "8301",
+									"path": [
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "check_token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "token",
+											"value": "61076187-a52c-4341-8894-0c6daded2f94",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8301/oauth/check_token",
+									"host": [
+										"localhost"
+									],
+									"port": "8301",
+									"path": [
+										"oauth",
+										"check_token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "token-refresh",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "select",
+											"type": "text"
+										},
+										{
+											"key": "refresh_token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInNlbGVjdCJdLCJhdGkiOiI0ZWI1YTdmZC1jMTBkLTRkYjItOGUwOS0yNmIxMzMyZjNkZDciLCJleHAiOjE1NTY1MjE3MzIsImF1dGhvcml0aWVzIjpbIldSSUdUSF9XUklURSIsIldSSUdUSF9SRUFEIl0sImp0aSI6IjY5ZDNiOTJlLWMyNDktNDgwYy05M2E1LWRmYjk4Mjc0OTU0NCIsImNsaWVudF9pZCI6Inp1dWxfc2VydmVyIn0.pFVj6Z5he4_9JZ9e05yaXI_niWoytHmPrc2YC_fraBE",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8301/oauth/oauth/token",
+									"host": [
+										"localhost"
+									],
+									"port": "8301",
+									"path": [
+										"oauth",
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "token-client-credentials",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "select",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "zuul_server",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "secret",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8301/oauth/token",
+									"host": [
+										"localhost"
+									],
+									"port": "8301",
+									"path": [
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "queryRoutes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "aa"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"a\":\"winjean\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8201/zuul/queryRoutes?token=11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8201",
+							"path": [
+								"zuul",
+								"queryRoutes"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refreshRoute",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "aa"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8201/refreshRoute?token=11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8201",
+							"path": [
+								"refreshRoute"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-route",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "aa"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"path\":\"aaa\",\n\t\"serviceId\":\"aaa\",\n\t\"url\":\"winjeaaaa1n\",\n\t\"stripPrefix\":\"true\",\n\t\"retryable\":\"true\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8201/addRoutes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8201",
+							"path": [
+								"addRoutes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "token",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTM3MDcwNDYsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiV1JJR1RIX1dSSVRFIiwiV1JJR1RIX1JFQUQiXSwianRpIjoiNWRkMWE2YjUtOGJmZC00OTg2LWE3MmYtOWEwNGY4NzVkM2M3IiwiY2xpZW50X2lkIjoienV1bF9zZXJ2ZXIiLCJzY29wZSI6WyJXUklHVEgiLCJyZWFkIl19.Ag0ZZSLgo7fyagUxc_WIKZSB9T_9J53pSPca6hgqh5c",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8281/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8281",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
