@@ -4,7 +4,6 @@ spring:
   profiles:
     active: @profileActive@
 
-
   flyway: #sql自动升级管理
     enabled: true # 是否启用flyway
     encoding: UTF-8 # 编码格式，默认UTF-8
@@ -30,8 +29,6 @@ spring:
 
 server:
   port: 8301
-
-
 #  servlet:
-#    contextPath: /auth
+#    context-path: "/oauth"
 

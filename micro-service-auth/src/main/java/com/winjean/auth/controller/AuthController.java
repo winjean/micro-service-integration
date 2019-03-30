@@ -1,27 +1,29 @@
 package com.winjean.auth.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
 
 @Controller
 @Slf4j
 public class AuthController {
 
-    @GetMapping("/test")
+    @GetMapping("/")
     @ResponseBody
     public String test() {
+        return "authorize";
+    }
+
+    @GetMapping("/api/test")
+    @ResponseBody
+    public String testa(@RequestBody String a) {
         return "test";
     }
 
@@ -46,7 +48,7 @@ public class AuthController {
         }
     }
 
-    @RequestMapping("/oauth/confirm_access")
+    /*@RequestMapping("/oauth/confirm_access")
     public ModelAndView authorizePage(Map<String, Object> model) {
         // 获取用户名
         String userName = ((UserDetails) SecurityContextHolder.getContext()
@@ -54,10 +56,10 @@ public class AuthController {
                 .getPrincipal())
                 .getUsername();
         model.put("userName", userName);
-        return new ModelAndView("authorize", model);
-    }
+        return new ModelAndView("bbbb-authorize", model);
+    }*/
 
-    @RequestMapping("/")
+    /*@RequestMapping("/")
     public ModelAndView indexPage(Map<String, Object> model) {
         // 获取用户名
 //        String userName = ((UserDetails) SecurityContextHolder.getContext()
@@ -72,7 +74,7 @@ public class AuthController {
 //        } else {
             model.put("client",new ArrayList<>());
 //        }
-        return new ModelAndView("index", model);
-    }
+        return new ModelAndView("bbbb-index", model);
+    }*/
 
 }

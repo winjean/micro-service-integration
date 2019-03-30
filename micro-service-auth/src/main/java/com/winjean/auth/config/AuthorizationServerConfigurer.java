@@ -1,6 +1,5 @@
 package com.winjean.auth.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -8,9 +7,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import javax.annotation.Resource;
 
@@ -38,15 +34,19 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
                 .secret("secret")
                 .scopes("WRIGTH", "read","select")/*.autoApprove(true)*/
                 .authorities("WRIGTH_READ", "WRIGTH_WRITE","client")
-                .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code","client_credentials");
+                .redirectUris("http://www.baidu.com")
+                .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code","client_credentials")
+                .resourceIds("oauth2-resource")
+                .accessTokenValiditySeconds(1200)
+                .refreshTokenValiditySeconds(50000);
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         //用来配置授权（authorization）以及令牌（token）的访问端点和令牌服务(token services)
         endpoints
-                .tokenStore(jwtTokenStore())
-                .tokenEnhancer(jwtTokenConverter())
+//                .tokenStore(jwtTokenStore())
+//                .tokenEnhancer(jwtTokenConverter())
                 .authenticationManager(authenticationManager);
     }
 
@@ -54,21 +54,22 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         //用来配置令牌端点(Token Endpoint)的安全约束
         security
-                .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("permitAll()")
+                .realm("oauth2-resources")
+                .tokenKeyAccess("permitAll()") //url:/oauth/token_key,exposes public key for token verification if using JWT tokens
+                .checkTokenAccess("isAuthenticated()") //url:/oauth/check_token allow check token
                 .allowFormAuthenticationForClients();
 //        security.addTokenEndpointAuthenticationFilter(null);
     }
 
-    @Bean
-    public TokenStore jwtTokenStore() {
-        return new JwtTokenStore(jwtTokenConverter());
-    }
+//    @Bean
+//    public TokenStore jwtTokenStore() {
+//        return new JwtTokenStore(jwtTokenConverter());
+//    }
 
-    @Bean
-    protected JwtAccessTokenConverter jwtTokenConverter() {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("springcloud123");
-        return converter;
-    }
+//    @Bean
+//    protected JwtAccessTokenConverter jwtTokenConverter() {
+//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+//        converter.setSigningKey("springcloud123");
+//        return converter;
+//    }
 }
