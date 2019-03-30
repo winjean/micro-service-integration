@@ -63,7 +63,8 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
         security
                 .realm("oauth2-resources")
                 .tokenKeyAccess("permitAll()") //url:/oauth/token_key,exposes public key for token verification if using JWT tokens
-                .checkTokenAccess("isAuthenticated()") //url:/oauth/check_token allow check token
+                .checkTokenAccess("permitAll()") //url:/oauth/token_key,exposes public key for token verification if using JWT tokens
+//                .checkTokenAccess("isAuthenticated()") //url:/oauth/check_token allow check token
                 .allowFormAuthenticationForClients();
 
 //        security.addTokenEndpointAuthenticationFilter(null);
