@@ -1,9 +1,8 @@
-server:
-  port: 8851
+
 
 spring:
   application:
     name: @artifactId@
   profiles:
-    active: @profileActive@
-
+    active: secure
+    include: @profileActive@

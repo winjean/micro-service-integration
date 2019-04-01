@@ -27,8 +27,5 @@ spring:
     out-of-order: false
     table: schema_version #使用的元数据表名-->版本记录
 
-server:
-  port: 8301
-#  servlet:
-#    context-path: "/oauth"
+
 

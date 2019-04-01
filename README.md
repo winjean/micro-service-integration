@@ -1,3 +1,10 @@
+* micro-service-registration-center 8101
+* micro-service-zuul 8201
+* micro-service-config 8301
+* micro-service-auth 8401
+* micro-service-admin 8501
+
+
 ## micro-service-integration
 * 使用版本  
     + Spring Cloud Finchley
