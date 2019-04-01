@@ -2,12 +2,8 @@ spring:
   application:
     name: @artifactId@
   profiles:
-    active: insecure
+    active: secure
     include: @profileActive@
-#  security:
-#    user:
-#      name: admin
-#      password: 123456
 
 #定义详情给服务端和eureka注册中心显示
 info:
