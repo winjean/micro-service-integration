@@ -3,8 +3,6 @@ spring:
     admin:
       client:
         url: http://localhost:8501
-        username: admin
-        password: 123456
         instance:
           prefer-ip: true
 
