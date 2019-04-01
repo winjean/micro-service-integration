@@ -18,10 +18,17 @@ public class AdminApplication {
         SpringApplication.run(AdminApplication.class,args);
     }
 
+//    @Bean
+//    public Config hazelcastConfig() {
+//        MapConfig mapConfig = new MapConfig("spring-boot-admin-event-store").setInMemoryFormat(InMemoryFormat.OBJECT)
+//                .setBackupCount(1)
+//                .setEvictionPolicy(EvictionPolicy.NONE);
+//        return new Config().setProperty("hazelcast.jmx", "true").addMapConfig(mapConfig);
+//    }
+
     @Profile("insecure")
     @Configuration
     public static class SecurityPermitAllConfig extends WebSecurityConfigurerAdapter {
-
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests().anyRequest().permitAll()//

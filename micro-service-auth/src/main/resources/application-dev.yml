@@ -11,6 +11,15 @@ eureka:
     prefer-ip-address: true
 
 spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8501
+        username: admin
+        password: 123456
+        instance:
+          prefer-ip: true
+
   datasource:
     # simple data source
     driver-class-name: com.mysql.jdbc.Driver
@@ -42,8 +51,11 @@ jasypt:
     password: winjean
 
 
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #<2>
+  endpoint:
+    health:
+      show-details: ALWAYS

@@ -12,14 +12,14 @@ eureka:
     health-check-url-path: /actuator/health #2.0后actuator的地址发生了变化
 
 # 2.0开始，actuator默认不开放，所以要设置为开放
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"  #<2>
-  endpoint:
-    health:
-      show-details: ALWAYS
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"  #<2>
+#  endpoint:
+#    health:
+#      show-details: ALWAYS
 
 ---
 spring:
@@ -31,8 +31,18 @@ spring:
   profiles: secure
   security:
     user:
-      name: "user"
-      password: "password"
+      name: admin
+      password: 123456
+  boot:
+    admin:
+      client:
+        url: http://localhost:8501
+        username: admin
+        password: 123456
+        instance:
+          prefer-ip: true
+#          name: @artifactId@
+#info.tags.security: secured
 
 # 注册给eureka的时候告诉eureka自己的密码
 eureka:
