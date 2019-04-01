@@ -4,6 +4,7 @@ spring:
 
   profiles:
     active: service-1
+    include: "@profileActive@"
 
   security:
     user:
@@ -28,3 +29,4 @@ info:
     java:
       source: "@java.version@"
       target: "@java.version@"
+
