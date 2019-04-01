@@ -18,6 +18,12 @@ public class UserController  {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/")
+    @ResponseBody
+    public String test() {
+        return "index";
+    }
+
     @PostMapping("insert")
     public Object insert(@Validated @RequestBody RequestUserInsert request){
 
