@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -85,25 +86,26 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/oauth/**")
                 .authenticated()
-//                .authenticated();
                 .and()
                 .formLogin().permitAll()
                 /*.loginPage("/login")
                 .defaultSuccessUrl("/confirm").and()
-                .logout().deleteCookies(appCookieName)*/;
+                .logout().deleteCookies(appCookieName)*/
 //                .authorizeRequests()
 //                .antMatchers("/oauth/**").permitAll()
 //                .anyRequest().authenticated()
 ////                .and().cors()
 //                .and().csrf().disable();
+                ;
 
-//        http.rememberMe().rememberMeCookieName("remember");
+        http.rememberMe().rememberMeCookieName("remember");
     }
 
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/druid/**");
-//    }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/druid/**");
+    }
+
 //    @Bean
 //    public LoginAuthenticationFilter loginAuthenticationFilter(){
 //        LoginAuthenticationFilter provider = new LoginAuthenticationFilter();
@@ -126,7 +128,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 //        filter.setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler("/login?error"));
 //        return filter;
 //    }
-//
+
 //    @Bean
 //    public PhoneAuthenticationProvider phoneAuthenticationProvider(){
 //        PhoneAuthenticationProvider provider = new PhoneAuthenticationProvider();

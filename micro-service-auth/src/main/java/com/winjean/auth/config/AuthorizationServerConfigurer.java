@@ -9,6 +9,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import javax.annotation.Resource;
 
@@ -52,8 +55,8 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         //用来配置授权（authorization）以及令牌（token）的访问端点和令牌服务(token services)
         endpoints
-//                .tokenStore(jwtTokenStore())
-//                .tokenEnhancer(jwtTokenConverter())
+                .tokenStore(jwtTokenStore())
+                .tokenEnhancer(jwtTokenConverter())
                 .authenticationManager(authenticationManager);
     }
 
@@ -64,21 +67,20 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
                 .realm("oauth2-resources")
                 .tokenKeyAccess("permitAll()") //url:/oauth/token_key,exposes public key for token verification if using JWT tokens
                 .checkTokenAccess("permitAll()") //url:/oauth/token_key,exposes public key for token verification if using JWT tokens
-//                .checkTokenAccess("isAuthenticated()") //url:/oauth/check_token allow check token
                 .allowFormAuthenticationForClients();
 
 //        security.addTokenEndpointAuthenticationFilter(null);
     }
 
-//    @Bean
-//    public TokenStore jwtTokenStore() {
-//        return new JwtTokenStore(jwtTokenConverter());
-//    }
+    @Bean
+    public TokenStore jwtTokenStore() {
+        return new JwtTokenStore(jwtTokenConverter());
+    }
 
-//    @Bean
-//    protected JwtAccessTokenConverter jwtTokenConverter() {
-//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-//        converter.setSigningKey("springcloud123");
-//        return converter;
-//    }
+    @Bean
+    protected JwtAccessTokenConverter jwtTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("springcloud123");
+        return converter;
+    }
 }
