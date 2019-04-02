@@ -7,7 +7,7 @@ spring:
       server:
         git:
           uri: https://github.com/winjean/micro-service-integration.git
-          searchPaths: '/micro-service-config/config-info/' #使用应用名称作为搜索路径
+          searchPaths: '/config-info/' #使用应用名称作为搜索路径
           label: master
 
   boot:
