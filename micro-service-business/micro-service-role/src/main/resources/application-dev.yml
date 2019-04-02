@@ -5,6 +5,11 @@ spring:
         url: http://localhost:8501
         instance:
           prefer-ip: true
+  cloud:
+    config:
+      uri: http://localhost:8301/
+      label: master
+      profile: dev
 
   datasource:
     # simple data source
@@ -31,6 +36,7 @@ spring:
       filters: stat #,wall,log4j # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000 # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
       use-global-data-source-stat: true # 合并多个DruidDataSource的监控数据
+
 
 jasypt:
   encryptor:
