@@ -12,8 +12,12 @@
 	<artifactId>micro-service-business</artifactId>
 	<name>micro-service-business</name>
 	<packaging>pom</packaging>
-	<!--<description>micro-service-business</description>
-	<version>1.0-SNAPSHOT</version>-->
+	<description>micro-service-business</description>
+	<version>1.0-SNAPSHOT</version>
+
+	<properties>
+
+	</properties>
 
 	<modules>
 		<module>micro-service-user</module>

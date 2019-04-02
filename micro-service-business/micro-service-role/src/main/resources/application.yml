@@ -2,19 +2,13 @@ server:
   port: 7201
 
 spring:
-#  output:
-#    ansi:
-#      enabled: always
+  output:
+    ansi:
+      enabled: always
   application:
     name: "@artifactId@"
-
-eureka:
-  instance:
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
-    prefer-ip-address: true
-  client:
-    service-url:
-      defaultZone: http://admin:123456@localhost:8101/eureka
+  profiles:
+    active: "@profileActive@"
 
 feign:
   hystrix:
