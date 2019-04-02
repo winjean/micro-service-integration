@@ -6,7 +6,7 @@ spring:
         enabled: true #开启config服务发现，既开启集群环境，此开关开启时，client必须使用服务名链接config server。
       server:
         git:
-          uri: https://github.com/winjean/micro-service-integration/
+          uri: https://github.com/winjean/micro-service-integration.git
           searchPaths: '/micro-service-config/config-info/' #使用应用名称作为搜索路径
           label: master
 
@@ -16,6 +16,13 @@ spring:
         url: http://localhost:8501
         instance:
           prefer-ip: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:8101/eureka
+  instance:
+    prefer-ip-address: true
 
 management:
   endpoints:
