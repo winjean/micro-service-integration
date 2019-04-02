@@ -4,7 +4,7 @@
 * micro-service-auth 8401
 * micro-service-admin 8501
 
-* Turbine Zipkin
+* Turbine Sleuth Zipkin
 
 
 ## micro-service-integration
