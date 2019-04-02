@@ -2,5 +2,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://admin:123456@localhost:8101/eureka
+#    fetch-registry: false
+#    register-with-eureka: false
   instance:
     prefer-ip-address: true

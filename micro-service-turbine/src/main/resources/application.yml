@@ -1,11 +1,27 @@
 server:
-  port: 8901
+  port: 8701
 
 spring:
   application:
     name: "@artifactId@"
   profiles:
     active: "@profileActive@"
+
+turbine:
+  aggregator:
+    cluster-config: default
+  app-config: micro-service-role
+  instanceUrlSuffix: /hystrix.stream
+  cluster-name-expression: new String("default")
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
 
 #定义详情给服务端和eureka注册中心显示
 info:

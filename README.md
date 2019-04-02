@@ -6,7 +6,10 @@
 * micro-service-Zipkin 8601
 * micro-service-turbine 8701
 
-* Turbine Sleuth Zipkin
+* micro-service-user 7101
+* micro-service-role 7201
+* micro-service-permission 7301
+* micro-service-module 7401
 
 
 ## micro-service-integration
@@ -26,7 +29,7 @@ feign
 Histrix
 
 * 智能路由
-    * Zuul  
+Zuul  
  
 * 配置管理
 
