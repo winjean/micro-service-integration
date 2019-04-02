@@ -309,7 +309,8 @@
         <module>micro-service-zuul</module>
         <module>micro-service-activiti</module>
         <module>micro-service-admin</module>
-        <module>micro-service-sample</module>
+        <module>micro-service-turbine</module>
+        <module>micro-service-zipkin</module>
         <module>micro-service-quartz</module>
         <module>micro-service-auth</module>
         <module>micro-service-config</module>
