@@ -3,6 +3,8 @@
 * micro-service-config 8301
 * micro-service-auth 8401
 * micro-service-admin 8501
+* micro-service-Zipkin 8601
+* micro-service-turbine 8701
 
 * Turbine Sleuth Zipkin
 
