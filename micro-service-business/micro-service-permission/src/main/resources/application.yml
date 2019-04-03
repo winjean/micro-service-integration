@@ -13,7 +13,7 @@ spring:
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}:@project.version@  #${springboot.attribute} @maven.attribute@
-    prefer-ip-address: true
+#    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://admin:123456@localhost:8101/eureka
