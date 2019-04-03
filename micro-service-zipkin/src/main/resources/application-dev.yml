@@ -7,3 +7,10 @@ eureka:
       defaultZone: http://admin:123456@localhost:8101/eureka
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+management:
+  metrics:
+    web:
+      server:
+        #避免访问zipkin页面报java.lang.IllegalArgumentException
+        auto-time-requests: false

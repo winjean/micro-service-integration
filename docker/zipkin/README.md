@@ -9,3 +9,6 @@ dockerfile
     |    |- data
     |- docker-compose.yml
 ```    
+
+命令模式进入dockerfile目录，执行启动命令
+docker-compose up -d
