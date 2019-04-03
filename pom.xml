@@ -169,6 +169,13 @@
 
             <!-- swagger end -->
 
+            <!-- logback 推送日志文件到logstash -->
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>5.3</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
