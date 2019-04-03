@@ -1,4 +1,4 @@
-package com.winjean.sample;
+package com.winjean.turbine;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
