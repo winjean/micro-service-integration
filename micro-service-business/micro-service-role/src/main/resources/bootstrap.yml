@@ -1,9 +1,4 @@
 spring:
   cloud:
     config:
-      #      discovery:
-      #        enabled: true
-      #        service-id: micro-service-config
       uri: http://10.20.7.26:8301
-      label: master
-      profile: dev

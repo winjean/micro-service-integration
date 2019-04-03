@@ -1,7 +1,7 @@
 spring:
   cloud:
     config:
-      enabled: true
+#      enabled: true
       discovery:
         enabled: true #开启config服务发现，既开启集群环境，此开关开启时，client必须使用服务名链接config server。
       server:
