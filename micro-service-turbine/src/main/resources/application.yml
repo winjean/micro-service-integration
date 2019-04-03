@@ -10,7 +10,7 @@ spring:
 turbine:
   aggregator:
     cluster-config: default
-  app-config: micro-service-role
+  app-config: micro-service-user,micro-service-role
   instanceUrlSuffix: /hystrix.stream
   cluster-name-expression: new String("default")
 
