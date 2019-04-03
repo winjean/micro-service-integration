@@ -2,13 +2,16 @@ server:
   port: 7201
 
 spring:
-  output:
-    ansi:
-      enabled: always
+#  output:
+#    ansi:
+#      enabled: always
   application:
     name: "@artifactId@"
   profiles:
     active: "@profileActive@"
+#  cloud:
+#    config:
+#      fail-fast: true
 
 feign:
   hystrix:

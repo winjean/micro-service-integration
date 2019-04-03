@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.winjean.feignClient.UserFeignClient;
 import com.winjean.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import java.util.Enumeration;
 
 
 @RestController
+//@RefreshScope
 public class RoleController {
 
     @Resource
@@ -23,8 +25,8 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-//    @Value("${winjean}")
-    private String configValue = "-----";
+    @Value("${winjean}")
+    private String configValue;
 
     @PostMapping("add")
     public Object addRole(@RequestBody JSONObject json) {
@@ -32,7 +34,9 @@ public class RoleController {
         roleService.addRole(json);
         userFeignClient.addUser(json);
 
-        return json + configValue;
+        json.put("configValue",configValue);
+
+        return json;
     }
 
     @GetMapping("delete")

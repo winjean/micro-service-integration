@@ -1,15 +1,18 @@
 spring:
-  boot:
-    admin:
-      client:
-        url: http://localhost:8501
-        instance:
-          prefer-ip: true
-  cloud:
-    config:
-      uri: http://localhost:8301/
-      label: master
-      profile: dev
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8501
+#        instance:
+#          prefer-ip: true
+#  cloud:
+#    config:
+##      discovery:
+##        enabled: true
+##        service-id: micro-service-config
+#      uri: http://10.20.7.26:8301
+#      label: master
+#      profile: dev
 
   datasource:
     # simple data source
@@ -37,6 +40,12 @@ spring:
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000 # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
       use-global-data-source-stat: true # 合并多个DruidDataSource的监控数据
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:8101/eureka
+  instance:
+    prefer-ip-address: true
 
 jasypt:
   encryptor:
