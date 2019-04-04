@@ -1,17 +1,17 @@
 package com.winjean.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.service.PermissionService;
+import com.winjean.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
-public class PermissionController {
+public class ModuleController {
 
     @Autowired
-    private PermissionService userService;
+    private ModuleService userService;
 
     @PostMapping("add")
     public Object addUser(@RequestBody JSONObject json){

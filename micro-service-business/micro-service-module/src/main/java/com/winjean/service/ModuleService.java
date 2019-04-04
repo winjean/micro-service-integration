@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.List;
 import java.util.Map;
 
-public interface PermissionService {
+public interface ModuleService {
 
     void addUser(JSONObject json);
 

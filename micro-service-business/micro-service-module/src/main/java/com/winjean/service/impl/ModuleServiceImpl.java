@@ -1,7 +1,7 @@
 package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.service.PermissionService;
+import com.winjean.service.ModuleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Service
 @Slf4j
-public class PermissionServiceImpl implements PermissionService {
+public class ModuleServiceImpl implements ModuleService {
     @Override
     public void addUser(JSONObject json) {
         log.info("add user success.");
