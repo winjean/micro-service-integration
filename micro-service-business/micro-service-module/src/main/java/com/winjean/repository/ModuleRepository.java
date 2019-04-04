@@ -2,6 +2,7 @@ package com.winjean.repository;
 
 import com.winjean.model.entity.ModuleEntity;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -26,6 +27,6 @@ public interface ModuleRepository extends JpaRepository<ModuleEntity, Integer> {
     @Query(value = "select * from t_module where name = ?1",
             countQuery = "select count(*) from t_module where name = ?1",
             nativeQuery = true)
-    Page<ModuleEntity> find_SQL_Page(String name);
+    Page<ModuleEntity> find_SQL_Page(String name, Pageable page);
 
 }
