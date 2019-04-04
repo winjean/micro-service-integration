@@ -5,6 +5,7 @@
 * micro-service-admin 8501
 * micro-service-Zipkin 8601
 * micro-service-turbine 8701
+* micro-service-gateway 8801
 
 * micro-service-user 7101
 * micro-service-role 7201
