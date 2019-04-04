@@ -1,5 +1,5 @@
 ##micro-service-module7401
-*spring-data-jpa
+* spring-data-jpa
 
  | 关键字 | 方法命名 | sqlwhere 字句 | 
  | :---: | :---: | :---: | 

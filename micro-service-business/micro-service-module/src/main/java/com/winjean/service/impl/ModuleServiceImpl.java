@@ -54,7 +54,9 @@ public class ModuleServiceImpl implements ModuleService {
     @Modifying //定义事务为修改
     @CacheEvict(cacheNames="ModuleCache",allEntries = true)
     //清除所有缓存使新增的数据能够被查到
-    //update() 方法用于更新实体信息，spring data jpa对于数据的更新还有query update这种基于类sql的方式，这里我们不采用这种方式，我们采用的方式更简单update方法参数中包含了待更新实体的唯一标识，通过标识将原本的实体查询出来再将需要修改的属性值传递到查询中的实体就完成了数据库数据的更新十分简单
+    //update() 方法用于更新实体信息，spring data jpa对于数据的更新还有query update这种基于类sql的方式，
+    // 这里我们不采用这种方式，我们采用的方式更简单update方法参数中包含了待更新实体的唯一标识，
+    // 通过标识将原本的实体查询出来再将需要修改的属性值传递到查询中的实体就完成了数据库数据的更新十分简单
     public void update(ModuleEntity entity) {
         int id = entity.getId();
         Optional<ModuleEntity> optional =  moduleRepository.findById(id);
