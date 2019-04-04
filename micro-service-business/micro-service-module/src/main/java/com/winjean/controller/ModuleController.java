@@ -4,11 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.winjean.model.entity.ModuleEntity;
 import com.winjean.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class ModuleController {
@@ -23,7 +23,7 @@ public class ModuleController {
     }
 
     @PostMapping("delete")
-    public Object delete(@RequestBody int id){
+    public Object delete(@RequestParam int id){
         moduleService.delete(id);
         return "delete success";
     }
@@ -35,7 +35,7 @@ public class ModuleController {
         return "update success";
     }
 
-    @PostMapping("findModuleById")
+    @PostMapping("findById")
     public Object findModuleById(@RequestBody JSONObject json){
         int id = json.getInteger("id");
 
@@ -43,7 +43,7 @@ public class ModuleController {
         return module;
     }
 
-    @PostMapping("findModuleByName")
+    @PostMapping("findByName")
     public Object findModuleByName(@RequestBody JSONObject json){
         String name = json.getString("name");
         ModuleEntity module = moduleService.findByName(name);
@@ -52,7 +52,9 @@ public class ModuleController {
 
     @PostMapping("findAll")
     public Object findAll(@RequestBody JSONObject json){
-        List<ModuleEntity> modules = moduleService.findAll();
+        int pageNo = json.getInteger("pageNo");
+        int pageSize = json.getInteger("pageSize");
+        Page<ModuleEntity> modules = moduleService.findAll(pageNo, pageSize);
         return modules;
     }
 }

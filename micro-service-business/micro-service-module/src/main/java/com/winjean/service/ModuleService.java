@@ -1,8 +1,7 @@
 package com.winjean.service;
 
 import com.winjean.model.entity.ModuleEntity;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface ModuleService {
 
@@ -10,7 +9,7 @@ public interface ModuleService {
 
     ModuleEntity findByName(String name);
 
-    List<ModuleEntity> findAll();
+    Page<ModuleEntity> findAll(int pageNo, int pageSize);
 
     void save(ModuleEntity entity);
 

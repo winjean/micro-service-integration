@@ -1,7 +1,7 @@
 package com.winjean.repository;
 
 import com.winjean.model.entity.ModuleEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  * @author ：winjean
@@ -10,10 +10,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @modified By：
  * @version: $version$
  */
-public interface ModuleRepository extends JpaRepository<ModuleEntity, Integer> {
+public interface ModuleRepository extends PagingAndSortingRepository<ModuleEntity, Integer> {
 
     ModuleEntity findModuleByName(String name);
-
-//    List<ModuleEntity> findAll();
 
 }
