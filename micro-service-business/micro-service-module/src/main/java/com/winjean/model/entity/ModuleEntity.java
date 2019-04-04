@@ -1,8 +1,10 @@
 package com.winjean.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author ：winjean
@@ -63,4 +65,30 @@ public class ModuleEntity {
      * 菜单排序
      */
     private int sorting;
+
+    /**
+     * 创建人
+     */
+    @Column(name = "create_user")
+    private String createUser;
+
+    /**
+     * 创建时间
+     */
+    @Column(name = "create_time")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
+
+    /**
+     * 修改人
+     */
+    @Column(name = "update_user")
+    private String updateUser;
+
+    /**
+     * 创建时间
+     */
+    @Column(name = "update_time")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
 }
