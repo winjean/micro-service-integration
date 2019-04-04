@@ -1,19 +1,21 @@
 package com.winjean.service;
 
-import com.alibaba.fastjson.JSONObject;
+import com.winjean.model.entity.ModuleEntity;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ModuleService {
 
-    void addUser(JSONObject json);
+    ModuleEntity findById(int id);
 
-    void updateUser(JSONObject json);
+    ModuleEntity findByName(String name);
 
-    void deleteUser(Map<String, Object> map);
+    List<ModuleEntity> findAll();
 
-    JSONObject queryUser(JSONObject json);
+    void save(ModuleEntity entity);
 
-    List<JSONObject> queryUserList(JSONObject json);
+    void delete(int id);
+
+    void update(ModuleEntity entity);
+
 }

@@ -1,45 +1,58 @@
 package com.winjean.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.winjean.model.entity.ModuleEntity;
 import com.winjean.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
+import java.util.List;
 
 @RestController
 public class ModuleController {
 
     @Autowired
-    private ModuleService userService;
+    private ModuleService moduleService;
 
-    @PostMapping("add")
-    public Object addUser(@RequestBody JSONObject json){
-        userService.addUser(json);
-        return json;
+    @PostMapping("save")
+    public Object save(@RequestBody ModuleEntity entity){
+        moduleService.save(entity);
+        return "save success";
     }
 
-    @GetMapping("delete")
-    public Object deleteUser(@RequestParam Map map){
-        userService.deleteUser(map);
-        return map;
+    @PostMapping("delete")
+    public Object delete(@RequestBody int id){
+        moduleService.delete(id);
+        return "delete success";
     }
 
     @PostMapping("update")
-    public Object updateUser(@RequestBody JSONObject json){
-        userService.updateUser(json);
-        return json;
+    public Object findModuleById(@RequestBody ModuleEntity entity){
+
+        moduleService.update(entity);
+        return "update success";
     }
 
-    @PostMapping("query")
-    public Object queryUser(@RequestBody JSONObject json){
-        userService.queryUser(json);
-        return json;
+    @PostMapping("findModuleById")
+    public Object findModuleById(@RequestBody JSONObject json){
+        int id = json.getInteger("id");
+
+        ModuleEntity module =  moduleService.findById(id);
+        return module;
     }
 
-    @PostMapping("queryList")
-    public Object queryUserList(@RequestBody JSONObject json){
-        userService.queryUserList(json);
-        return json;
+    @PostMapping("findModuleByName")
+    public Object findModuleByName(@RequestBody JSONObject json){
+        String name = json.getString("name");
+        ModuleEntity module = moduleService.findByName(name);
+        return module;
+    }
+
+    @PostMapping("findAll")
+    public Object findAll(@RequestBody JSONObject json){
+        List<ModuleEntity> modules = moduleService.findAll();
+        return modules;
     }
 }
