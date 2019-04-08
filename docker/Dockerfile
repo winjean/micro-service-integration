@@ -52,7 +52,7 @@ EXPOSE 9000
 # ENTRYPOINT command param1 param2（shell中执行）。
 # 配置容器启动后执行的命令，并且不可被 docker run 提供的参数覆盖。
 # 每个 Dockerfile 中只能有一个 ENTRYPOINT，当指定多个时，只有最后一个起效
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","app.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
 
 #########################################
 # 一个镜像不能超过127层

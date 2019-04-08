@@ -1,10 +1,27 @@
-version: '2' # Docker-Compose Version 2 file
+version: '3' # Docker-Compose Version 2 file
 services:
   micro-service-sample:  # service name
     container_name: sample
-    build: .  # Dockerfile path
+    build:   # Dockerfile path
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8901:8901"
+    networks:
+      - mynet
+    deploy:
+      mode: replicated
+      replicas: 6
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50M
+        reservations:
+          cpus: '0.25'
+          memory: 20M
+networks:
+  mynet:
+    driver: bridge
 
 ###################################################
 # use Compose step：
