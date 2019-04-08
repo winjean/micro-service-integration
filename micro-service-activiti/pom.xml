@@ -293,15 +293,18 @@
         </resources>
 
         <plugins>
-            <!-- maven热启动 -->
-            <!--<plugin>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-            <!--<configuration>-->
-            <!--<fork>true</fork>-->
-            <!--<addResources>true</addResources>-->
-            <!--</configuration>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!--服务发现与注册中心显示build信息-->
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
             <!-- sql自动升级管理 -->
             <!--<plugin>
