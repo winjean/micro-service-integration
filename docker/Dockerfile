@@ -1,6 +1,6 @@
 # 如果在同一个Dockerfile中创建多个镜像时，可以使用多个 FROM 指令（每个镜像一次）
 FROM java:8
-MAINTAINER winjean 19548901@qq.com
+MAINTAINER 19548901@qq.com
 
 # 创建一个可以从本地主机或其他容器挂载的挂载点，一般用来存放数据库和需要保持的数据等
 VOLUME /tmp
@@ -40,10 +40,13 @@ RUN bash -c 'touch /app.jar'
 # EXPOSE <port> [<port>...]
 EXPOSE 9000
 
-# 指定启动容器时执行的命令，每个 Dockerfile 只能有一条 CMD 命令。如果指定了多条命令，只有最后一条会被执行
+# 指定启动容器时执行的命令，每个 Dockerfile 只能有一条 CMD 命令。
+# 如果指定了多条命令，只有最后一条会被执行
+# 如果用户启动容器时候指定了运行的命令，则会覆盖掉 CMD 指定的命令。
 # CMD ["executable","param1","param2"] 使用 exec 执行，推荐方式；
 # CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；
 # CMD ["param1","param2"] 提供给 ENTRYPOINT 的默认参数
+# CMD指令为ENTRYPOINT指令提供默认参数是基于镜像层次结构生效的，而不是基于是否在同个Dockerfile文件中
 
 # ENTRYPOINT ["executable", "param1", "param2"]
 # ENTRYPOINT command param1 param2（shell中执行）。
@@ -52,6 +55,8 @@ EXPOSE 9000
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","app.jar"]
 
 #########################################
+# 一个镜像不能超过127层
+#
 # 编写完Dockerfile文件后，通过运行docker build命令来创建自定义的镜像。
 # Docker build命令格式如下：
 # docker build [options] <path>
