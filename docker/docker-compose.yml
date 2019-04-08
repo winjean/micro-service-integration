@@ -2,5 +2,21 @@ version: '2' # Docker-Compose Version 2 file
 services:
   micro-service-sample:  # service name
     build: .  # Dockerfile path
-    ports:    
+    ports:
       - "8901:8901"
+
+###################################################
+# use Compose step：
+# 1. Dockerfile
+# 2. docker-compose.yml
+# 3. docker-compose up or docker-compose up -d
+
+# command
+# * docker-compose start service
+# * docker-compose stop service
+# * docker-compose ps
+# * docker-compose run service env
+# * docker-compose build
+# * docker-compose rm container
+# * docker-compose kill container
+###################################################
