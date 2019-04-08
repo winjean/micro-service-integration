@@ -26,7 +26,7 @@ VOLUME /tmp
 # 该命令将复制指定的 <src> 到容器中的 <dest>。
 # 其中 <src> 可以是Dockerfile所在目录的一个相对路径
 # 也可以是一个 URL；还可以是一个 tar 文件（自动解压为目录）
-ADD micro-service-sample-2-SNAPSHOT.jar app.jar
+ADD micro-service-sample-1.0-SNAPSHOT.jar app.jar
 
 # 格式为 COPY <src> <dest>。
 # 复制本地主机的 <src>（为 Dockerfile 所在目录的相对路径）到容器中的 <dest>。
