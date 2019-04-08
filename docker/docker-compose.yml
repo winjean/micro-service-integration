@@ -1,6 +1,7 @@
 version: '2' # Docker-Compose Version 2 file
 services:
   micro-service-sample:  # service name
+    container_name: sample
     build: .  # Dockerfile path
     ports:
       - "8901:8901"
