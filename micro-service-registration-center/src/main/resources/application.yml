@@ -18,7 +18,6 @@ spring:
 
 #定义详情给服务端和eureka注册中心显示
 info:
-  #  version: @project.version@
   app:
     groupId: "@project.groupId@"
     artifactId: "@artifactId@"
