@@ -9,16 +9,21 @@ services:
       - "8901:8901"
     networks:
       - mynet
-    deploy:
-      mode: replicated
-      replicas: 6
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 50M
-        reservations:
-          cpus: '0.25'
-          memory: 20M
+    mem_limit: 50M
+    cpu_quota: 10000
+    cpuset: 0,1
+    mem_reservation: 20M
+    restart: always
+#    deploy:
+#      mode: replicated
+#      replicas: 6
+#      resources:
+#        limits:
+#          cpus: '0.50'
+#          memory: 50M
+#        reservations:
+#          cpus: '0.25'
+#          memory: 20M
 networks:
   mynet:
     driver: bridge

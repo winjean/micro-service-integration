@@ -9,7 +9,7 @@
 
     <contextName>micro-service-role</contextName>
     <!-- name的值是变量的名称，value的值是变量定义的值。通过定义的值会被插入到logger上下文中。定义变量后，可以使“${}”来使用变量。 -->
-    <property name="log.path" value="logs/" />
+    <property name="log.path" value="logs" />
     <property name="log.level" value="info" />
     <property name="log.maxHistory" value="60" />
     <property name="log.maxFileSize" value="50MB" />
@@ -69,7 +69,7 @@
     <!-- 时间滚动输出 level为 DEBUG 日志 -->
     <appender name="InfoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${log.path}/debug-role.log</file>
+        <file>${log.path}/info-role.log</file>
         <!--日志文件输出格式-->
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
@@ -78,7 +78,7 @@
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 日志归档 -->
-            <fileNamePattern>${log.path}/debug/log-debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${log.path}/info/log-debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>${log.maxFileSize}</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -176,10 +176,10 @@
         可以包含零个或多个元素，标识这个appender将会添加到这个logger。
     -->
     <root level= "${log.level}">
-        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ConsoleAppender" />
         <appender-ref ref="InfoAppender" />
         <appender-ref ref="ErrorAppender" />
-        <appender-ref ref="LOGSTASH" />
+        <appender-ref ref="LogstashAppender" />
     </root>
 
     <!--<springProfile name="prod">-->
