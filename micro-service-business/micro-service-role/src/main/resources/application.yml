@@ -1,5 +1,5 @@
 server:
-  port: 7201
+  port: 7201 #8443
   ssl:
     key-store: micro-service-business/micro-service-role/target/classes/springboottest.keystore
     key-password: 123456
