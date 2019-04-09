@@ -74,10 +74,10 @@ public class Http2HttpsConfig {
         Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
         connector.setScheme("http");
         //connector监听的端口号
-        connector.setPort(7202);
+        connector.setPort(8443);
         connector.setSecure(false);
         //监听到http的端口后转向到https的端口
-        connector.setRedirectPort(8443);
+        connector.setRedirectPort(7201);
         return connector;
     }
 }
