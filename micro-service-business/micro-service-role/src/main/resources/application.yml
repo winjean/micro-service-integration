@@ -1,7 +1,8 @@
 server:
-  port: 7201 #8443
+  port: 7201
   ssl:
-    key-store: micro-service-business/micro-service-role/target/classes/springboottest.keystore
+#    keytool -genkey -alias springboot -keypass 123456 -keyalg RSA -keysize 1024 -validity 3650 -keystore E:/tmp/springboottest.keystore -storepass 123456
+    key-store: classpath:springboottest.keystore
     key-password: 123456
     key-store-type: JKS
     key-alias: springboot
