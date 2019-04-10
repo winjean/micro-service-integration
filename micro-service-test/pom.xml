@@ -41,7 +41,11 @@
     </profiles>
 
     <dependencies>
-
+        <!-- logback 推送日志文件到logstash -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

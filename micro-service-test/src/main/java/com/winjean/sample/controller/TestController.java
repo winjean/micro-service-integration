@@ -10,9 +10,11 @@ public class TestController {
     @GetMapping("/")
     @ResponseBody
     public String test() {
-        log.error("this is error test !!");
-        log.debug("this is debug test !!");
-        log.info("this is info test !!");
-        return "test index";
+        log.trace("--------------------------this is trace test !!--------------------------");
+        log.debug("--------------------------this is debug test !!--------------------------");
+        log.info("--------------------------this is info test !!--------------------------");
+        log.warn("--------------------------this is warn test !!--------------------------");
+        log.error("--------------------------this is error test !!--------------------------");
+        return "-------------test index-------------";
     }
 }

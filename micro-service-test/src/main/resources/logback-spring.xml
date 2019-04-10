@@ -7,12 +7,13 @@
 
     <!--<include resource="org/springframework/boot/logging/logback/base.xml" />-->
 
-    <contextName>micro-service-role</contextName>
+    <contextName>micro-service-test</contextName>
     <!-- name的值是变量的名称，value的值是变量定义的值。通过定义的值会被插入到logger上下文中。定义变量后，可以使“${}”来使用变量。 -->
     <property name="log.path" value="logs" />
-    <property name="log.level" value="info" />
+    <property name="log.level" value="INFO" />
     <property name="log.maxHistory" value="60" />
     <property name="log.maxFileSize" value="50MB" />
+    <property name="service.name" value="micro-service-test" />
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->
@@ -27,7 +28,7 @@
     <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <!--此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>debug</level>
+            <level>DEBUG</level>
         </filter>
         <encoder>
             <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
@@ -42,7 +43,7 @@
     <!-- 时间滚动输出 level为 DEBUG 日志 -->
     <appender name="DebugAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${log.path}/debug-role.log</file>
+        <file>${log.path}/${service.name}-debug.log</file>
         <!--日志文件输出格式-->
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
@@ -58,9 +59,10 @@
             <!--日志文件保留天数-->
             <maxHistory>${log.maxHistory}</maxHistory>
         </rollingPolicy>
-        <!-- 此日志文件只记录debug级别的 -->
+
+        <!-- 此日志文件只记录 DEBUG 级别的 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>debug</level>
+            <level>DEBUG</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
@@ -69,7 +71,7 @@
     <!-- 时间滚动输出 level为 DEBUG 日志 -->
     <appender name="InfoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${log.path}/info-role.log</file>
+        <file>${log.path}/${service.name}-info.log</file>
         <!--日志文件输出格式-->
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
@@ -85,9 +87,9 @@
             <!--日志文件保留天数-->
             <maxHistory>${log.maxHistory}</maxHistory>
         </rollingPolicy>
-        <!-- 此日志文件只记录debug级别的 -->
+        <!-- 此日志文件只记录 INFO 级别的 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>info</level>
+            <level>INFO</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
@@ -96,7 +98,7 @@
     <!-- 时间滚动输出 level为 ERROR 日志 -->
     <appender name="ErrorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${log.path}/server-user-error.log</file>
+        <file>${log.path}/${service.name}-error.log</file>
         <!--日志文件输出格式-->
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
@@ -149,7 +151,7 @@
 
     <!--开发环境:打印控制台-->
     <springProfile name="dev">
-        <logger name="com.winjean" level="WARN" additivity="false">
+        <logger name="com.winjean" level="DEBUG" additivity="false">
             <appender-ref ref="ConsoleAppender" />
             <appender-ref ref="DebugAppender" />
             <appender-ref ref="InfoAppender" />
@@ -178,18 +180,9 @@
     <root level= "${log.level}">
         <appender-ref ref="ConsoleAppender" />
         <appender-ref ref="InfoAppender" />
+        <appender-ref ref="DebugAppender" />
         <appender-ref ref="ErrorAppender" />
         <appender-ref ref="LogstashAppender" />
     </root>
-
-    <!--<springProfile name="prod">-->
-    <!--<root level="info">-->
-    <!--<appender-ref ref="CONSOLE" />-->
-    <!--<appender-ref ref="DEBUG_FILE" />-->
-    <!--<appender-ref ref="INFO_FILE" />-->
-    <!--<appender-ref ref="ERROR_FILE" />-->
-    <!--<appender-ref ref="WARN_FILE" />-->
-    <!--</root>-->
-    <!--</springProfile>-->
 
 </configuration>

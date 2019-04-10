@@ -40,3 +40,4 @@ services:
 
 networks:
   elk:
+    driver: bridge

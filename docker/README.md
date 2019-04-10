@@ -14,3 +14,11 @@
   docker-compose kill service  
   docker-compose port service 8080  
   docker-compose logs
+
+* docker 加速
+编辑 /etc/docker/daemon.json  
+{
+  "registry-mirrors": ["https://l10nt4hq.mirror.aliyuncs.com"]
+}  
+sudo systemctl daemon-reload  
+sudo systemctl restart docker  
