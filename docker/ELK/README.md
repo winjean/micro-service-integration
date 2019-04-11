@@ -19,3 +19,8 @@ dockerfile
     |    |    |- logstash.conf
     |- docker-compose.yml
 ```
+
+## 检查是否安装成功  
+* elasticsearch http://192.168.71.128:9200/?pretty  
+* kibana http://192.168.71.128:5601  
+* logstash  

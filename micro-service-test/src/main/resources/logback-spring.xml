@@ -145,7 +145,7 @@
         <!--<remoteHost>localhost</remoteHost>
         <port>9601</port>-->
         <destination>
-            localhost:9601,localhost:9602,localhost:9603
+            192.168.71.128:9601,192.168.71.128:9602,192.168.71.128:9603
         </destination>
         <!-- encoder必须配置,有多种可选 -->
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" >

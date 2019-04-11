@@ -1,4 +1,6 @@
 * docker command  
+ docker search image
+ docker pull image
  docker network ls 查看网络列表  
  docker network inspect <container_id>  查看对应网络的配置
  docker run -i -t --name container_name -v 宿主机目录:容器目录 centos /bin/bash  
