@@ -3,6 +3,7 @@ services:
 
   elasticsearch:
     image: elasticsearch:latest
+    hostname: elasticsearch
     container_name: elasticsearch
     restart: always
     networks:
@@ -15,6 +16,7 @@ services:
 
   logstash:
     image: logstash:latest
+    hostname: logstash
     container_name: logstash
     restart: always
     networks:
@@ -29,6 +31,7 @@ services:
 
   kibana:
     image: kibana:latest
+    hostname: kibana
     container_name: kibana
     restart: always
     networks:
@@ -38,6 +41,30 @@ services:
     depends_on:
       - elasticsearch
 
+#  nginx:
+#    image: nginx
+#    hostname: nginx
+#    container_name: nginx
+#    restart: always
+#    networks:
+#      - elk
+#    ports:
+#      - 80:80
+#    volumes:
+#      - ./nginx/conf/vhost:/etc/nginx/vhost
+#      - ./upload/nginx/logs:/opt/nginx/logs
+#
+#  filebeat:
+#    image: filebeat
+#    hostname: filebeat
+#    container_name: filebeat
+#    restart: always
+#    networks:
+#      - elk
+#    volumes:
+#      - ./filebeat/conf/filebeat.yml:/filebeat.yml
+#      - ./upload:/data/logs
+#      - ./filebeat/registry:/etc/registry
 networks:
   elk:
     driver: bridge

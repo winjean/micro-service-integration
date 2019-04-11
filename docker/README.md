@@ -9,6 +9,8 @@
  docker ps –a   显示所有容器
  docker rm container_id 删除容器
  docker rmi container_id  删除镜像
+ docker tag image:tag image:tag 使用tag命令重新打包镜像
+ 
  
 * docker-compose command  
   docker-compose ps   
@@ -20,6 +22,7 @@
   docker-compose kill service  
   docker-compose port service 8080  
   docker-compose logs
+
 
 * docker 加速
 编辑 /etc/docker/daemon.json  
