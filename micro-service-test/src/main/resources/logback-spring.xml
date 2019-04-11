@@ -149,8 +149,8 @@
         </destination>
         <!-- encoder必须配置,有多种可选 -->
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" >
-            <!-- "appname":"debug-role" 的作用是指定创建索引的名字时用，并且在生成的文档中会多了这个字段  -->
-            <customFields>{"appname":"debug-role"}</customFields>
+            <!-- appname 的作用是指定创建索引的名字时用，并且在生成的文档中会多了这个字段  -->
+            <customFields>{"appname":"micro-service-test"}</customFields>
         </encoder>
     </appender>
 
