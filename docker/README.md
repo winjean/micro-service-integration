@@ -1,8 +1,12 @@
-* 查看网络列表  
- docker network ls
- 
-* 查看对应网络的配置  
- docker network inspect <container id>
+* docker command  
+ docker network ls 查看网络列表  
+ docker network inspect <container_id>  查看对应网络的配置
+ docker run -i -t --name container_name -v 宿主机目录:容器目录 centos /bin/bash  
+ docker exec -i -t container_id /bin/bash  
+ docker ps      默认显示运行的容器  
+ docker ps –a   显示所有容器
+ docker rm container_id 删除容器
+ docker rmi container_id  删除镜像
  
 * docker-compose command  
   docker-compose ps   
