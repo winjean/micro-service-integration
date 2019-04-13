@@ -11,6 +11,7 @@
 * micro-service-role 7201
 * micro-service-permission 7301
 * micro-service-module 7401
+* micro-service-kafka 7501
 
 
 ## micro-service-integration

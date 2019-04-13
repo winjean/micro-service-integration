@@ -19,7 +19,14 @@ kafka-console-producer.sh --broker-list 172.119.0.14:9092,172.119.0.15:9092,172.
 * consumer message
 kafka-console-consumer.sh --bootstrap-server 172.119.0.14:9092,172.119.0.15:9092,172.119.0.15:9092 --topic topic_name
 
-kafka-consumer-groups.sh --bootstrap-server 172.119.0.14:9092,172.119.0.15:9092,172.119.0.15:9092 --describe --group order-group
+* producer message  
+kafka-producer-perf-test.sh --topic topic-1 --throughput -1 --num-records 5000000 --record-size 100 --producer-props bootstrap.servers=172.119.0.15:9092 ack=-1  
+
+* create consumer  
+kafka-console-consumer.sh --bootstrap-server=172.119.0.15:9092 --topic topic-1 --from-beginning --consumer-property group.id=test-group1
+
+* consumer info 
+kafka-consumer-groups.sh --bootstrap-server 172.119.0.15:9092 --describe --group test-group1
 
 
 ````
@@ -34,7 +41,7 @@ To the following:
 修改为：
  
 # JMX port to use 
-if [ $ISKAFKASERVER = "true" ]; then 
+if [ "$ISKAFKASERVER" = "true" ]; then 
   JMX_REMOTE_PORT=$JMX_PORT 
 else 
   JMX_REMOTE_PORT=$CLIENT_JMX_PORT 

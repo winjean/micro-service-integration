@@ -24,6 +24,7 @@
 		<module>micro-service-role</module>
 		<module>micro-service-permission</module>
 		<module>micro-service-module</module>
+		<module>micro-service-kafka</module>
 	</modules>
 
 	<profiles>
