@@ -17,7 +17,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: 172.119.0.11:2181,172.119.0.12:2181,172.119.0.13:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.71.128:9092
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-      JMX_PORT: 9971
+#      JMX_PORT: 9971
     volumes:
       - ./kafka1/logs:/kafka
     external_links:
@@ -44,7 +44,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: 172.119.0.11:2181,172.119.0.12:2181,172.119.0.13:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.71.128:9093
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-      JMX_PORT: 9981
+#      JMX_PORT: 9981
     volumes:
       - ./kafka2/logs:/kafka
     external_links:
@@ -71,7 +71,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: 172.119.0.11:2181,172.119.0.12:2181,172.119.0.13:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.71.128:9094
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-      JMX_PORT: 9991
+#      JMX_PORT: 9991
     volumes:
       - ./kafka3/logs:/kafka
     external_links:
@@ -81,29 +81,31 @@ services:
     networks:
       zkka:
         ipv4_address: 172.119.0.16
-  kafka-manager:
-    image: kafka-manager
-    restart: always
-    container_name: kafka-manager-1
-    hostname: kafka-manager-1
-    ports:
-      - "9000:9000"
-    links:            # 连接本compose文件创建的container
-      - kafka1
-      - kafka2
-      - kafka3
-    external_links:   # 连接本compose文件以外的container
-      - zoo1
-      - zoo2
-      - zoo3
-    environment:
-      ZK_HOSTS: 172.119.0.11:2181,172.119.0.12:2181,172.119.0.13:2181
-      KAFKA_BROKERS: kafka1:9092,kafka2:9092,kafka3:9092
-      APPLICATION_SECRET: letmein
-      KM_ARGS: -Djava.net.preferIPv4Stack=true
-    networks:
-      zkka:
-        ipv4_address: 172.119.0.17
+
+#  kafka-manager:
+#    image: kafka-manager
+#    restart: always
+#    container_name: kafka-manager-1
+#    hostname: kafka-manager-1
+#    ports:
+#      - "9000:9000"
+#    links:            # 连接本compose文件创建的container
+#      - kafka1
+#      - kafka2
+#      - kafka3
+#    external_links:   # 连接本compose文件以外的container
+#      - zoo1
+#      - zoo2
+#      - zoo3
+#    environment:
+#      ZK_HOSTS: 172.119.0.11:2181,172.119.0.12:2181,172.119.0.13:2181
+#      KAFKA_BROKERS: kafka1:9092,kafka2:9092,kafka3:9092
+#      APPLICATION_SECRET: letmein
+#      KM_ARGS: -Djava.net.preferIPv4Stack=true
+#    networks:
+#      zkka:
+#        ipv4_address: 172.119.0.17
+
 networks:
   zkka:
     external:
