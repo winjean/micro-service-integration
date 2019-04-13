@@ -27,9 +27,9 @@ public class ProducerController {
         return "index";
     }
 
-    @PostMapping("send")
+    @GetMapping("send")
     public String send(@RequestParam String msg){
-        kafkaTemplate.send("test_topic", msg);
+        kafkaTemplate.send("topic-1", msg);
         return "success";
     }
 }
