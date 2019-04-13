@@ -14,6 +14,9 @@ kafka-topics.sh --zookeeper zoo1:2181,zoo2:2181,zoo3:2181 --list
 kafka-topics.sh --zookeeper zoo1:2181,zoo2:2181,zoo3:2181 --topic topic_name --describe   
 
 * send message  
-kafka-console-producer.sh --broker-list kafka1:9092,kafka2:9093,kafka3:9094 --topic topic_name  
+kafka-console-producer.sh --broker-list 172.119.0.14:9092,172.119.0.15:9092,172.119.0.15:9092 --topic topic_name  
 
-kafka-console-consumer.sh --bootstrap-server kafka1:9092,kafka2:9093,kafka3:9094 --topic topic_name
+* consumer message
+kafka-console-consumer.sh --bootstrap-server 172.119.0.14:9092,172.119.0.15:9092,172.119.0.15:9092 --topic topic_name
+
+kafka-consumer-groups.sh --bootstrap-server 172.119.0.14:9092,172.119.0.15:9092,172.119.0.15:9092 --describe --group order-group
