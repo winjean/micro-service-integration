@@ -24,7 +24,7 @@ kafka-consumer-groups.sh --bootstrap-server 172.119.0.14:9092,172.119.0.15:9092,
 
 ````
 kafka 加入JMX_PORT 后报 Port already in use
-编辑kafka-run-class.sh 将
+编辑 /opt/kafka/bin/kafka-run-class.sh 将
 # JMX port to use 
 if [ $JMX_PORT ]; then 
   KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT" 
