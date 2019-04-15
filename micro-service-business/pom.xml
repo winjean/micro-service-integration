@@ -26,6 +26,7 @@
 		<module>micro-service-module</module>
 		<module>micro-service-kafka</module>
 		<module>micro-service-mongo</module>
+		<module>micro-service-websocket</module>
 	</modules>
 
 	<profiles>

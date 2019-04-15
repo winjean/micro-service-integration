@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+
+networks:
+  mongodb:
+    ipam:
+      config:
+        - subnet: 172.120.0.0/16
