@@ -25,6 +25,7 @@
 		<module>micro-service-permission</module>
 		<module>micro-service-module</module>
 		<module>micro-service-kafka</module>
+		<module>micro-service-mongo</module>
 	</modules>
 
 	<profiles>
