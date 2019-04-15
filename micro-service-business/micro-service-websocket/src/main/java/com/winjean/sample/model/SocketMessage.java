@@ -15,5 +15,5 @@ public class SocketMessage {
 
     private String message;
 
-    private String date;
+    private String data;
 }

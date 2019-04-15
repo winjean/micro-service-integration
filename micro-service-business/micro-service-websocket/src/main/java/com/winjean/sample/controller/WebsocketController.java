@@ -51,7 +51,7 @@ public class WebsocketController {
     @SendTo("/topic/send")
     public SocketMessage send(SocketMessage message) throws Exception {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        message.setDate("浏览器消息: "+ message.getMessage()+ "---"+ df.format(new Date()));
+        message.setData("浏览器消息: "+ message.getMessage()+ "---"+ df.format(new Date()));
         return message;
     }
 
@@ -59,13 +59,14 @@ public class WebsocketController {
     @SendTo("/topic/callback")
     //定时5秒给页面推一次数据
     @Scheduled(cron="0/5 * * * * ?")
-    public Object callback() throws Exception {
+    public void callback() throws Exception {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println("推送消息了"+df.format(new Date()));
         //向页面这个地址推送消息
-        messagingTemplate.convertAndSend("/topic/callback","客户端消息"+count );
+        SocketMessage sm = new SocketMessage();
+        sm.setData(count+ "---" +df.format(new Date()));
+        messagingTemplate.convertAndSend("/topic/callback",sm );
         count++;
-        return null;
     }
 
 }

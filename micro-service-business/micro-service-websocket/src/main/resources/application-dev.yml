@@ -3,3 +3,16 @@ server:
 spring:
   thymeleaf:
     prefix: classpath:/templates/
+
+#eureka:
+#  instance:
+#    instance-id: ${spring.cloud.client.ip-address}:${server.port}:@project.version@  #${springboot.attribute} @maven.attribute@
+#    #    metadata-map:
+#    #      "user.name": admin         #These two are needed so that the server
+#    #      "user.password": 123456 #can access the protected client endpoints
+#
+#    leaseRenewalIntervalInSeconds: 10
+#    health-check-url-path: /actuator/health
+#  client:
+#    service-url:
+#      defaultZone: http://admin:123456@localhost:8101/eureka

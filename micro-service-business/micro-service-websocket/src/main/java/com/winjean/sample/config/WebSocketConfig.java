@@ -29,7 +29,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     //添加服务端点 浏览器链接这个地址
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/my-websocket").withSockJS();
+        registry.addEndpoint("/my-websocket")
+                .setAllowedOrigins("*")
+                .withSockJS();
     }
 
 }
