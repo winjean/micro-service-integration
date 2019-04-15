@@ -1,5 +1,6 @@
 package com.winjean.sample.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * @modified By：
  * @version: $version$
  */
-//@Configuration
+@Configuration
 public class WebConfiguration extends WebMvcConfigurationSupport {
 
     //1.这个为解决中文乱码
