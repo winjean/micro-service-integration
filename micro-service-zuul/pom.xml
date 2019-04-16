@@ -54,6 +54,12 @@
 			<artifactId>spring-cloud-zuul-ratelimit</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.github.mthizo247</groupId>
+			<artifactId>spring-cloud-netflix-zuul-websocket</artifactId>
+			<version>1.0.0-RELEASE</version>
+		</dependency>
+
 		<!-- database begin -->
 		<!-- mybatis -->
 		<dependency>

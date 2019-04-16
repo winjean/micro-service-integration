@@ -28,6 +28,14 @@ zuul:
     service-oauth:
       path: /oauth/**
       serviceId: micro-service-auth
+
+  ws:
+    brokerages:
+      hello:
+        end-points: /ws
+        brokers:  /topic
+        destination-prefixes: /app
+
   ratelimit:
     enabled: true
     repository: IN_MEMORY
