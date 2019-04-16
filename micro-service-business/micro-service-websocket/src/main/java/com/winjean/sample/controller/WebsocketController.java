@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,6 +51,16 @@ public class WebsocketController {
     //服务端向浏览器推送地址设置
     @SendTo("/topic/send")
     public SocketMessage send(SocketMessage message) throws Exception {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        message.setData("浏览器消息: "+ message.getMessage()+ "---"+ df.format(new Date()));
+        return message;
+    }
+
+    //接收浏览器消息路径设置
+    @MessageMapping("/send-single")
+    //服务端向浏览器推送地址设置
+    @SendToUser("/topic/send-single")
+    public SocketMessage sendSingle(SocketMessage message) throws Exception {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         message.setData("浏览器消息: "+ message.getMessage()+ "---"+ df.format(new Date()));
         return message;

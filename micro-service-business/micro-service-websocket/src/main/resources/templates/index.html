@@ -45,6 +45,20 @@
                     $scope.data.connected = true;
                     $scope.$apply();
                 });
+
+                var socketSingle = new SockJS('http://localhost:7701/websocket-simple-single');
+                stompClientSingle = Stomp.over(socketSingle);
+                stompClientSingle.connect({}, function(frame) {
+                    // 接收后台服务推送消息
+                    stompClientSingle.subscribe('/user/topic/send-single', function(msg) {
+                        $scope.data.rows.push(JSON.parse(msg.body));
+                        $scope.data.connected = true;
+                        $scope.$apply();
+                    });
+
+                    $scope.data.connected = true;
+                    $scope.$apply();
+                });
             };
 
             $scope.disconnect = function() {
@@ -57,6 +71,12 @@
             //浏览器向后台推送消息
             $scope.send = function() {
                 stompClient.send("/app/send", {}, JSON.stringify({
+                    'message' : $scope.data.message
+                }));
+            }
+
+            $scope.sendSingle = function() {
+                stompClientSingle.send("/app/send-single", {}, JSON.stringify({
                     'message' : $scope.data.message
                 }));
             }
@@ -91,6 +111,7 @@
 
     <input type="text" ng-model="data.message" placeholder="请输入内容..." />
     <button ng-click="send()" type="button">发送</button>
+    <button ng-click="sendSingle()" type="button">single发送</button>
     <br /> <br /> 消息列表： <br />
     <table>
         <thead>

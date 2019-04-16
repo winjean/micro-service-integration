@@ -39,10 +39,11 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     //添加服务端点 浏览器链接这个地址
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/my-websocket")
+        registry.addEndpoint("/my-websocket","/websocket-simple-single")
                 .setAllowedOrigins("*")
                 .addInterceptors(myHandShakeInterceptor)
                 .withSockJS();
+
     }
 
     @Override
