@@ -5,29 +5,41 @@ spring:
   profiles:
     active: "@profileActive@"
 
-#  cloud:
-#    gateway:
-#      default-filters:
+  cloud:
+    gateway:
+      default-filters:
 #      discovery:
 #        locator:
 #          enabled: true
-#      routes:
-#      - id: micro-service-role
-#        uri: lb://micro-service-role
-#        predicates:
-#        - Path=/micro-service-role/**
-#        filters:
-#        - StripPrefix=1
+#          lower-case-service-id: true
+      routes:
+      - id: micro-service-sample
+        uri: lb://micro-service-sample
+        predicates:  #Path，Query，Method，Header，After，Before，Between，Cookie，Host，RemoteAddr
+        - Path=/sample/**
+        - Query=param,value
+#        - Cookie=chocolate, value
+#        - Header=X-Request-Id, \d+
+#        - Host=**.somehost.org
+        - Method=GET
+#        - RemoteAddr=192.168.1.1/24
+        filters:
+        - StripPrefix=1
+        - name: Hystrix
+          args:
+            name: authHystrixCommand
+            fallbackUri: forward:/www.baidu.com
+        - name: Retry
+          args:
+            retries: 3 #重试次数，默认3，不包含本次
+            status: 404 #重试response code，默认没有
+            statusSeries: 500 #重试response code的系列，100（info），200（success），300（redirect），400（client error），500（server error），默认500
+            method: GET #重试的request请求，默认GET
 
-
-
-#        - id: websocket
-#        url: lb:wb://micro-service-websocket
-
-#        predicates:
-#          Path=/role/{segment}
-#          Method=GET
-#      - id:
+      - id: websocket
+        uri: lb:ws://micro-service-websocket
+        predicates:
+          - Path=/websocket/**
 
 #定义详情给服务端和eureka注册中心显示
 info:
