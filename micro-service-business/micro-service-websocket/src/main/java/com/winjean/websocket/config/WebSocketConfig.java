@@ -1,7 +1,7 @@
-package com.winjean.sample.config;
+package com.winjean.websocket.config;
 
-import com.winjean.sample.interceptor.MyChannelInterceptor;
-import com.winjean.sample.interceptor.MyHandShakeInterceptor;
+import com.winjean.websocket.interceptor.MyChannelInterceptor;
+import com.winjean.websocket.interceptor.MyHandShakeInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.ChannelRegistration;

@@ -1,4 +1,4 @@
-package com.winjean.sample.interceptor;
+package com.winjean.websocket.interceptor;
 
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;

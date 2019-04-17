@@ -1,4 +1,4 @@
-package com.winjean.sample.model;
+package com.winjean.websocket.model;
 
 import lombok.Data;
 

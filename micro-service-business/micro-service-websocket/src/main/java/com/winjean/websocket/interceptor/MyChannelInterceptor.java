@@ -1,4 +1,4 @@
-package com.winjean.sample.interceptor;
+package com.winjean.websocket.interceptor;
 
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;

@@ -1,4 +1,4 @@
-package com.winjean.sample.controller;
+package com.winjean.test.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;

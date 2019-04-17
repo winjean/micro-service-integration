@@ -1,4 +1,4 @@
-package com.winjean.sample.config;
+package com.winjean.websocket.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
