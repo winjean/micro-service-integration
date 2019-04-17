@@ -67,6 +67,14 @@
                 <scope>import</scope>
             </dependency>
 
+           <!-- <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-config-dependencies</artifactId>
+                <version>${spring-cloud-config.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>-->
+
             <!-- alibaba的druid数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -177,10 +185,10 @@
 
     <dependencies>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

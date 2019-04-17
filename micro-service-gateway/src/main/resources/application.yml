@@ -1,8 +1,33 @@
 spring:
   application:
     name: "@artifactId@"
+
   profiles:
     active: "@profileActive@"
+
+#  cloud:
+#    gateway:
+#      default-filters:
+#      discovery:
+#        locator:
+#          enabled: true
+#      routes:
+#      - id: micro-service-role
+#        uri: lb://micro-service-role
+#        predicates:
+#        - Path=/micro-service-role/**
+#        filters:
+#        - StripPrefix=1
+
+
+
+#        - id: websocket
+#        url: lb:wb://micro-service-websocket
+
+#        predicates:
+#          Path=/role/{segment}
+#          Method=GET
+#      - id:
 
 #定义详情给服务端和eureka注册中心显示
 info:

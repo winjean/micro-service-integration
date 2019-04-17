@@ -7,15 +7,3 @@ eureka:
       defaultZone: http://admin:123456@localhost:8101/eureka
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
-spring:
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        id: micro-service-role
-        url: micro-service-role
-        predicates:
-          Path=/role/{segment}
-          Method=GET
