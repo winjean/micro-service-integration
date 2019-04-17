@@ -9,10 +9,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>micro-service-registration-center</artifactId>
-    <name>micro-service-registration-center</name>
+    <artifactId>micro-service-eureka</artifactId>
+    <name>micro-service-eureka</name>
     <packaging>jar</packaging>
-    <description>micro-service-registration-center</description>
+    <description>micro-service-eureka</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

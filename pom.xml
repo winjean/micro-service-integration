@@ -288,7 +288,7 @@
     </build>
 
     <modules>
-        <module>micro-service-registration-center</module>
+        <module>micro-service-eureka</module>
         <module>micro-service-zuul</module>
         <module>micro-service-gateway</module>
         <module>micro-service-admin</module>
