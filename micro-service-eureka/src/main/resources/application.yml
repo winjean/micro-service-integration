@@ -3,8 +3,8 @@ spring:
     name: "@artifactId@"
 
   profiles:
-    active: service-1
-    include: "@profileActive@"
+    active: "@profileActive@"
+    include: service-1
 
   security:
     user:

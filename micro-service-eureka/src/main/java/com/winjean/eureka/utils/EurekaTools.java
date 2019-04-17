@@ -1,4 +1,4 @@
-package com.winjean.registration.center.utils;
+package com.winjean.eureka.utils;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
