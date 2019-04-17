@@ -3,12 +3,12 @@ server:
 
 spring:
   profiles: service-1
-  boot:
-    admin:
-      client:
-        url: http://localhost:8501
-        instance:
-          prefer-ip: true
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8501
+#        instance:
+#          prefer-ip: true
 
 eureka:
   instance:
@@ -35,14 +35,14 @@ server:
 
 spring:
   profiles: service-2
-  boot:
-    admin:
-      client:
-        url: http://localhost:8501
-#        username: admin
-#        password: 123456
-        instance:
-          prefer-ip: true
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8501
+##        username: admin
+##        password: 123456
+#        instance:
+#          prefer-ip: true
 
 eureka:
   instance:
