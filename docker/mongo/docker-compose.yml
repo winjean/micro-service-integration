@@ -1,6 +1,16 @@
 version: '3'
 
 services:
+  mongodb:
+    image: mongo:latest
+    hostname: mongodb
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - "./mongo/db:/data/db"
+      - "/etc/localtime:/etc/localtime"
 
 networks:
   mongodb:
