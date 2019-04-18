@@ -26,7 +26,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void saveUser(User user) {
-        mongoTemplate.save(user);
+        mongoTemplate.save(user,"winjean");
     }
 
     @Override

@@ -1,8 +1,0 @@
-server:
-  port: 7601
-
-spring:
-  data:
-    mongodb:
-#      uri: mongodb://user:pwd@ip1:port1,ip2:port2/database
-      uri: mongodb://192.168.71.128:27019/winjean

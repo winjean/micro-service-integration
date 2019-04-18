@@ -1,8 +1,17 @@
+server:
+  port: 7601
+
 spring:
   application:
     name: "@artifactId@"
   profiles:
     active: "@profileActive@"
+  data:
+    mongodb:
+      #      uri: mongodb://user:pwd@ip1:port1,ip2:port2/database
+      uri: mongodb://192.168.71.128:27019/winjean
+      username: guest
+      password: guest
 
 #定义详情给服务端和eureka注册中心显示
 info:
