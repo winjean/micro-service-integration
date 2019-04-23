@@ -2,7 +2,7 @@ server:
   port: 8101
 
 spring:
-  profiles: service-1
+  profiles: winjean1
 #  boot:
 #    admin:
 #      client:
@@ -13,13 +13,14 @@ spring:
 eureka:
   instance:
     hostname: winjean1
+    prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
-  #    prefer-ip-address: true
   client:
     #    fetch-registry: true
     #    register-with-eureka: true
     service-url:
       defaultZone: http://admin:123456@winjean2:8102/eureka/
+      register-with-eureka: true
   server:
     #    #eureka server刷新readCacheMap的时间
     response-cache-update-interval-ms: 3000
@@ -34,7 +35,7 @@ server:
   port: 8102
 
 spring:
-  profiles: service-2
+  profiles: winjean2
 #  boot:
 #    admin:
 #      client:
@@ -48,10 +49,12 @@ eureka:
   instance:
     hostname: winjean2
     #    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
-  #    prefer-ip-address: true
+#    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
   client:
     service-url:
       defaultZone: http://admin:123456@winjean1:8101/eureka/
+      register-with-eureka: true
   server:
     response-cache-update-interval-ms: 3000

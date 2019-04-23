@@ -59,7 +59,7 @@ public class ModuleEntity {
     /**
      * 菜单状态
      */
-    private int status;
+    private boolean enable;
 
     /**
      * 菜单排序
