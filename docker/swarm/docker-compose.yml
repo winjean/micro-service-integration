@@ -1,51 +1,54 @@
 version: '3.4'
 services:
-  winjean1: # 默认情况下，其他服务可以使用服务名称连接到该服务。因此，对于eurekaService1的节点，它需要连接http://eurekaService2/3:951X/eureka/，因此需要配置该服务的名称是eurekaService1。
-    image: micro-service-eureka
-    deploy:
-      replicas: 1   #定义 replicated 模式的服务的复本数量
-      update_config:
-        parallelism: 1    #每次更新复本数量
-        delay: 2s       #每次更新间隔
-      restart_policy:
-        condition: on-failure     #定义服务的重启条件
-    networks:
-      - euraka-network
-    ports:
-      - "8101:8101"
-    environment:
-      - spring.profiles.active=winjean1
-
-  winjean2:      # 默认情况下，其他服务可以使用服务名称连接到该服务。因此，对于eurekaService1的节点，它需要连接http://eurekaService2/3:951X/eureka/，因此需要配置该服务的名称是eurekaService1。
-    image: micro-service-eureka
-    deploy:
-      replicas: 1   #定义 replicated 模式的服务的复本数量
-      update_config:
-        parallelism: 1    #每次更新复本数量
-        delay: 2s       #每次更新间隔
-      restart_policy:
-        condition: on-failure     #定义服务的重启条件
-    networks:
-      - euraka-network
-    ports:
-      - "8102:8102"
-    environment:
-      - spring.profiles.active=winjean2
-          
-  # web:
-  #   image: test_micro-service-sample
-  #   hostname: micro-service-sample
+  # winjean1: # 默认情况下，其他服务可以使用服务名称连接到该服务。因此，对于eurekaService1的节点，它需要连接http://eurekaService2/3:951X/eureka/，因此需要配置该服务的名称是eurekaService1。
+  #   image: test_micro-service-eureka      
+  #   deploy:
+  #     replicas: 1   #定义 replicated 模式的服务的复本数量
+  #     update_config:
+  #       parallelism: 1    #每次更新复本数量
+  #       delay: 2s       #每次更新间隔
+  #     restart_policy:
+  #       condition: on-failure     #定义服务的重启条件
   #   networks:
   #     - euraka-network
-  #   environment:
-  #     - EUREKA_SERVER_ADDRESS=eureka
   #   ports:
-  #     - "8901:8901"
+  #     - "8101:8101"
+  #   environment:
+  #     - spring.profiles.active=winjean1
+  #     - winjean=winjean1
+
+  # winjean2:      # 默认情况下，其他服务可以使用服务名称连接到该服务。因此，对于eurekaService1的节点，它需要连接http://eurekaService2/3:951X/eureka/，因此需要配置该服务的名称是eurekaService1。
+  #   image: test_micro-service-eureka
   #   deploy:
-  #     mode: replicated
-      # restart_policy:
-      #   condition: on-failure
-      # replicas: 3 
+  #     replicas: 1   #定义 replicated 模式的服务的复本数量
+  #     update_config:
+  #       parallelism: 1    #每次更新复本数量
+  #       delay: 2s       #每次更新间隔
+  #     restart_policy:
+  #       condition: on-failure     #定义服务的重启条件
+  #   networks:
+  #     - euraka-network
+  #   ports:
+  #     - "8102:8102"
+  #   environment:
+  #     - spring.profiles.active=winjean2
+          
+  web:
+    image: test_micro-service-sample
+    hostname: micro-service-sample
+    networks:
+      euraka-network:
+        aliases:
+          - net-alias # in euraka-network,can use net-alias as host to access
+    environment:
+      - win=helloworld-
+    ports:
+      - "8901:8901"
+    deploy:
+      mode: replicated
+      restart_policy:
+        condition: on-failure
+      replicas: 3 
       # placement:
       #   constraints: [node.role == worker]
       # resources:

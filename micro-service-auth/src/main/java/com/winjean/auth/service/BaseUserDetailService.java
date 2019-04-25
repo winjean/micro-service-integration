@@ -1,7 +1,5 @@
 package com.winjean.auth.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,12 +17,16 @@ public abstract class BaseUserDetailService implements UserDetailsService {
 
 //    @Autowired
 //    protected BaseUserService baseUserService;
+
 //    @Autowired
 //    private BaseRoleService baseRoleService;
+
 //    @Autowired
 //    private BaseModuleResourceService baseModuleResourceService;
+
 //    @Autowired
 //    private RedisTemplate<String, BaseRole> redisTemplate;
+
 //    @Autowired
 //    private RedisTemplate<String, BaseModuleResources> resourcesTemplate;
 

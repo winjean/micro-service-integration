@@ -16,3 +16,5 @@ info:
     java:
       source: "@java.version@"
       target: "@java.version@"
+
+winjean: "${win:false}"
