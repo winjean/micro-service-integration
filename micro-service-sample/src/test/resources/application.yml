@@ -18,6 +18,8 @@ info:
       target: "@java.version@"
 
 winjean: ${win:false}
+#winjean: ENC(f1n3bnPoQhnG6NGpagrI975fGSnbL6Ko)
+
 
 jasypt:
   encryptor:
