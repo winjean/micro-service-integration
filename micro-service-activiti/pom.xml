@@ -160,11 +160,11 @@
         </dependency>
 
         <!-- activiti start -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-spring-boot-starter-basic</artifactId>
             <version>${activiti.version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.activiti</groupId>
@@ -178,6 +178,28 @@
             <version>${activiti.version}</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-explorer</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-diagram-rest</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-simple-workflow</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>-->
+
+        <!--<dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.xmlgraphics</groupId>
             <artifactId>batik-codec</artifactId>
@@ -198,28 +220,6 @@
             <artifactId>batik-svggen</artifactId>
             <version>1.7</version>
         </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-explorer</artifactId>
-            <version>${activiti.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-diagram-rest</artifactId>
-            <version>${activiti.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-simple-workflow</artifactId>
-            <version>${activiti.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-spring</artifactId>
-            <version>${activiti.version}</version>
-        </dependency>
-
 
         <!--<dependency>
             <groupId>org.activiti</groupId>
