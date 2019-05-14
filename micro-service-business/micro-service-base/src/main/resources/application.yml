@@ -1,0 +1,33 @@
+server:
+  port: 7101
+
+spring:
+  application:
+    name: "@artifactId@"
+  profiles:
+    active: "@profileActive@"
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#  cloud:
+#    config:
+#      name: service-user
+#      label: dev
+#      profile: dev
+#      uri: http://localhost:8851/
+
+
+#定义详情给服务端和eureka注册中心显示
+info:
+  app:
+    groupId: "@project.groupId@"
+    artifactId: "@artifactId@"
+    version: "@project.version@"
+    name: "@project.name@"
+    description: "@project.description@"
+    parent-version: "@project.parent.version@"
+    java:
+      source: "@java.version@"
+      target: "@java.version@"

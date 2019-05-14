@@ -29,8 +29,9 @@ import java.util.Set;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value=Exception.class)
-    public Object globalExceptionHandler(Exception e) throws Exception {
-        ExceptionUtil.getTrace(e);
+    public Object globalExceptionHandler(Exception e) {
+        String errorMessage =ExceptionUtil.getTrace(e);
+        log.error(errorMessage);
         return e.getMessage();
     }
 
