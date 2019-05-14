@@ -1,29 +1,25 @@
 package com.winjean.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.winjean.common.BaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
 @Data
 @Table(name="t_department")
-public class EntityDepartment extends BaseEntity {
+public class EntityDepartment {
 
-    /**
-     * ID
-     */
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id")
-//    @NotNull(groups = Update.class)
-//    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(groups = Update.class)
+    private Long id;
 
     /**
      * 名称
@@ -42,10 +38,6 @@ public class EntityDepartment extends BaseEntity {
     @NotNull
     private Long pid;
 
-    @Column(name = "create_time")
-    @CreationTimestamp
-    private Timestamp createTime;
-
     @ManyToMany(mappedBy = "departments")
     @JsonIgnore
     private Set<EntityRole> roles;
@@ -53,6 +45,22 @@ public class EntityDepartment extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "department_id")
     private EntityDepartment departmentId;
+
+    @Column(name = "create_user")
+    private String createUser;
+
+    @Column(name = "create_time")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
+    private Date createTime;
+
+    @Column(name = "update_user")
+    private String updateUser;
+
+    @Column(name = "update_time")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
+    private Date updateTime;
 
     public @interface Update {}
 }

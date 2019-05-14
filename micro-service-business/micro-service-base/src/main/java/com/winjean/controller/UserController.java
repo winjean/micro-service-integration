@@ -18,14 +18,8 @@ public class UserController  {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/")
-    @ResponseBody
-    public String test() {
-        return "index";
-    }
-
     @PostMapping("insert")
-    public Object insert(@Validated @RequestBody RequestUserInsert request){
+    public BaseResponse insert(@Validated @RequestBody RequestUserInsert request){
 
         BaseResponse response = BaseResponse.getSuccessResponse();
         try {
@@ -38,27 +32,27 @@ public class UserController  {
         return response;
     }
 
-    @GetMapping("delete")
-    public Object delete(@RequestParam Map map){
+    @DeleteMapping("delete")
+    public BaseResponse delete(@RequestParam Map map){
         userService.delete(map);
-        return map;
+        return null;
     }
 
-    @PostMapping("update")
-    public Object update(@RequestBody JSONObject json){
+    @PutMapping("update")
+    public BaseResponse update(@RequestBody JSONObject json){
         userService.update(json);
-        return json;
+        return null;
     }
 
-    @PostMapping("query")
-    public Object query(@RequestBody JSONObject json){
+    @GetMapping("query")
+    public BaseResponse query(@RequestBody JSONObject json){
         userService.query(json);
-        return json;
+        return null;
     }
 
     @PostMapping("queryList")
-    public Object queryList(@RequestBody JSONObject json){
+    public BaseResponse queryList(@RequestBody JSONObject json){
         userService.queryList(json);
-        return json;
+        return null;
     }
 }

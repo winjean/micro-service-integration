@@ -1,24 +1,25 @@
 package com.winjean.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.winjean.common.BaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.sql.Timestamp;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "t_role")
-public class EntityRole extends BaseEntity {
+public class EntityRole {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @NotNull(groups = {Update.class})
-//    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(groups = EntityDictionaryDetail.Update.class)
+    private Long id;
 
     @Column(nullable = false)
     @NotBlank
@@ -34,7 +35,6 @@ public class EntityRole extends BaseEntity {
     @Column(name = "built_in")
     private boolean builtIn = false;
 
-    @Column
     private String remark;
 
     @JsonIgnore
@@ -53,19 +53,20 @@ public class EntityRole extends BaseEntity {
     @JoinTable(name = "t_role_department", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "department_id",referencedColumnName = "id")})
     private Set<EntityDepartment> departments;
 
-    @CreationTimestamp
+    @Column(name = "create_user")
+    private String createUser;
+
     @Column(name = "create_time")
-    private Timestamp createTime;
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
+    private Date createTime;
 
-//    @Override
-//    public String toString() {
-//        return "Role{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", remark='" + remark + '\'' +
-//                ", createDateTime=" + createTime +
-//                '}';
-//    }
+    @Column(name = "update_user")
+    private String updateUser;
 
-    public interface Update{}
+    @Column(name = "update_time")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
+    private Date updateTime;
+
 }

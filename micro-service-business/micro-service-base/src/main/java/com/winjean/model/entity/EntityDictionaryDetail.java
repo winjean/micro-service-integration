@@ -1,20 +1,22 @@
 package com.winjean.model.entity;
 
-import com.winjean.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Data
 @Table(name="t_dictionary_detail")
-public class EntityDictionaryDetail extends BaseEntity {
+public class EntityDictionaryDetail {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id")
-//    @NotNull(groups = Update.class)
-//    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(groups = Update.class)
+    private Long id;
 
     /**
      * 字典标签
@@ -32,7 +34,7 @@ public class EntityDictionaryDetail extends BaseEntity {
      * 排序
      */
     @Column(name = "sort")
-    private String sort = "999";
+    private int sort;
 
     /**
      * 字典id
@@ -40,6 +42,22 @@ public class EntityDictionaryDetail extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "dictionary_id")
     private EntityDictionary dictionary;
+
+    @Column(name = "create_user")
+    private String createUser;
+
+    @Column(name = "create_time")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
+    private Date createTime;
+
+    @Column(name = "update_user")
+    private String updateUser;
+
+    @Column(name = "update_time")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
+    private Date updateTime;
 
     public @interface Update {}
 }

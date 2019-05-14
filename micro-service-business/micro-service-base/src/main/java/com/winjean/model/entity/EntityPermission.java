@@ -1,24 +1,25 @@
 package com.winjean.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.winjean.common.BaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "t_permission")
-public class EntityPermission extends BaseEntity {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @NotNull(groups = {Update.class})
-//    private Long id;
+public class EntityPermission {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(groups = EntityDictionaryDetail.Update.class)
+    private Long id;
 
     @NotBlank
     private String name;
@@ -37,20 +38,20 @@ public class EntityPermission extends BaseEntity {
     @ManyToMany(mappedBy = "permissions")
     private Set<EntityRole> roles;
 
-    @CreationTimestamp
+    @Column(name = "create_user")
+    private String createUser;
+
     @Column(name = "create_time")
-    private Timestamp createTime;
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
+    private Date createTime;
 
-//    @Override
-//    public String toString() {
-//        return "Permission{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", pid=" + pid +
-//                ", alias='" + alias + '\'' +
-//                ", createTime=" + createTime +
-//                '}';
-//    }
+    @Column(name = "update_user")
+    private String updateUser;
 
-    public interface Update{}
+    @Column(name = "update_time")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
+    private Date updateTime;
+
 }

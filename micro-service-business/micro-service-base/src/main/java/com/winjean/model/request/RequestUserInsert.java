@@ -1,10 +1,9 @@
 package com.winjean.model.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
 import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
@@ -41,9 +40,11 @@ public class RequestUserInsert {
 
     private String createUser;
 
+    @CreationTimestamp
     private Date createTime;
 
     private String updateUser;
 
+    @CreationTimestamp
     private Date updateTime;
 }
