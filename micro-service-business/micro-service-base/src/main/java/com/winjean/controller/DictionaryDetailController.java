@@ -2,9 +2,9 @@ package com.winjean.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.common.BaseResponse;
-import com.winjean.model.entity.EntityDictionary;
+import com.winjean.model.entity.EntityDictionaryDetail;
 import com.winjean.model.entity.EntityUser;
-import com.winjean.service.DictionaryService;
+import com.winjean.service.DictionaryDetailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,36 +12,37 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("user")
 @Slf4j
-public class DictionaryController {
+public class DictionaryDetailController {
 
     @Autowired
-    private DictionaryService dictionaryService;
+    private DictionaryDetailService dictionaryDetailService;
 
     @PostMapping
-    public BaseResponse insert(@Validated @RequestBody EntityDictionary dictionary){
-        return BaseResponse.getSuccessResponse(dictionaryService.insert(dictionary));
+    public BaseResponse insert(@Validated @RequestBody EntityDictionaryDetail dictionaryDetail){
+        return BaseResponse.getSuccessResponse(dictionaryDetailService.insert(dictionaryDetail));
     }
 
     @DeleteMapping("{id}")
     public BaseResponse delete(@PathVariable long id){
-        dictionaryService.delete(id);
+        dictionaryDetailService.delete(id);
         return BaseResponse.getSuccessResponse();
     }
 
     @PutMapping
-    public BaseResponse update(@Validated(EntityUser.Update.class) @RequestBody EntityDictionary dictionary){
-        return BaseResponse.getSuccessResponse(dictionaryService.update(dictionary));
+    public BaseResponse update(@Validated(EntityUser.Update.class) @RequestBody EntityDictionaryDetail dictionaryDetail){
+        return BaseResponse.getSuccessResponse(dictionaryDetailService.update(dictionaryDetail));
     }
 
     @GetMapping("{id}")
     public BaseResponse query(@PathVariable long id){
-        return BaseResponse.getSuccessResponse(dictionaryService.query(id));
+        return BaseResponse.getSuccessResponse(dictionaryDetailService.query(id));
     }
 
     @PostMapping("list")
     public BaseResponse list(@RequestBody JSONObject json){
-        Page<EntityDictionary> page = dictionaryService.list(json);
+        Page<EntityDictionaryDetail> page = dictionaryDetailService.list(json);
         return BaseResponse.getSuccessResponse(page);
     }
 }

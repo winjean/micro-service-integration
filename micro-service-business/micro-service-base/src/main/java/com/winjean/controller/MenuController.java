@@ -2,9 +2,9 @@ package com.winjean.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.common.BaseResponse;
-import com.winjean.model.entity.EntityDictionary;
+import com.winjean.model.entity.EntityMenu;
 import com.winjean.model.entity.EntityUser;
-import com.winjean.service.DictionaryService;
+import com.winjean.service.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,36 +12,37 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("user")
 @Slf4j
-public class DictionaryController {
+public class MenuController {
 
     @Autowired
-    private DictionaryService dictionaryService;
+    private MenuService menuService;
 
     @PostMapping
-    public BaseResponse insert(@Validated @RequestBody EntityDictionary dictionary){
-        return BaseResponse.getSuccessResponse(dictionaryService.insert(dictionary));
+    public BaseResponse insert(@Validated @RequestBody EntityMenu menu){
+        return BaseResponse.getSuccessResponse(menuService.insert(menu));
     }
 
     @DeleteMapping("{id}")
     public BaseResponse delete(@PathVariable long id){
-        dictionaryService.delete(id);
+        menuService.delete(id);
         return BaseResponse.getSuccessResponse();
     }
 
     @PutMapping
-    public BaseResponse update(@Validated(EntityUser.Update.class) @RequestBody EntityDictionary dictionary){
-        return BaseResponse.getSuccessResponse(dictionaryService.update(dictionary));
+    public BaseResponse update(@Validated(EntityUser.Update.class) @RequestBody EntityMenu menu){
+        return BaseResponse.getSuccessResponse(menuService.update(menu));
     }
 
     @GetMapping("{id}")
     public BaseResponse query(@PathVariable long id){
-        return BaseResponse.getSuccessResponse(dictionaryService.query(id));
+        return BaseResponse.getSuccessResponse(menuService.query(id));
     }
 
     @PostMapping("list")
     public BaseResponse list(@RequestBody JSONObject json){
-        Page<EntityDictionary> page = dictionaryService.list(json);
+        Page<EntityMenu> page = menuService.list(json);
         return BaseResponse.getSuccessResponse(page);
     }
 }
