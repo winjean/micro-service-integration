@@ -19,8 +19,8 @@ public class UserController  {
     private UserService userService;
 
     @PostMapping
-    public BaseResponse insert(@Validated @RequestBody EntityUser user){
-        return BaseResponse.getSuccessResponse(userService.insert(user));
+    public BaseResponse save(@Validated @RequestBody EntityUser user){
+        return BaseResponse.getSuccessResponse(userService.save(user));
     }
 
     @DeleteMapping("{id}")

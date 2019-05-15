@@ -20,8 +20,8 @@ public class PermissionController {
     private PermissionService permissionService;
 
     @PostMapping
-    public BaseResponse insert(@Validated @RequestBody EntityPermission permission){
-        return BaseResponse.getSuccessResponse(permissionService.insert(permission));
+    public BaseResponse save(@Validated @RequestBody EntityPermission permission){
+        return BaseResponse.getSuccessResponse(permissionService.save(permission));
     }
 
     @DeleteMapping("{id}")

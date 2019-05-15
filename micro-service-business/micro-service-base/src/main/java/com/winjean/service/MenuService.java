@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 
 public interface MenuService {
 
-    EntityMenu insert(EntityMenu menu);
+    EntityMenu save(EntityMenu menu);
 
     EntityMenu update(EntityMenu menu);
 

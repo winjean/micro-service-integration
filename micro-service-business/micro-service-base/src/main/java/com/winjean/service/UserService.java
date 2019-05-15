@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 
 public interface UserService {
 
-    EntityUser insert(EntityUser user);
+    EntityUser save(EntityUser user);
 
     EntityUser update(EntityUser user);
 

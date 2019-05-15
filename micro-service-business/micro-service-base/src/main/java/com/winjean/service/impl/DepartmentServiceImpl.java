@@ -8,6 +8,7 @@ import com.winjean.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentRepository departmentRepository;
 
     @Override
-    public EntityDepartment insert(EntityDepartment department) {
+    public EntityDepartment save(EntityDepartment department) {
         department = departmentRepository.save(department);
         log.info("add department success.");
 
@@ -29,6 +30,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public EntityDepartment update(EntityDepartment department) {
+        Assert.isTrue(department.getId() != department.getPid(),"上级部门和本部门不能为同一个");
+
         EntityDepartment _department = query(department.getId());
         _department.setName(department.getName());
         _department.setPid(department.getPid());

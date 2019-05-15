@@ -20,8 +20,8 @@ public class RoleController {
     private RoleService roleService;
 
     @PostMapping
-    public BaseResponse insert(@Validated @RequestBody EntityRole role){
-        return BaseResponse.getSuccessResponse(roleService.insert(role));
+    public BaseResponse save(@Validated @RequestBody EntityRole role){
+        return BaseResponse.getSuccessResponse(roleService.save(role));
     }
 
     @DeleteMapping("{id}")

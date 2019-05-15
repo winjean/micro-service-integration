@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 
 public interface DictionaryDetailService {
 
-    EntityDictionaryDetail insert(EntityDictionaryDetail dictionaryDetail);
+    EntityDictionaryDetail save(EntityDictionaryDetail dictionaryDetail);
 
     EntityDictionaryDetail update(EntityDictionaryDetail dictionaryDetail);
 

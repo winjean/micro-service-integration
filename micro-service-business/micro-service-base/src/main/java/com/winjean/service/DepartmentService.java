@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 
 public interface DepartmentService {
 
-    EntityDepartment insert(EntityDepartment department);
+    EntityDepartment save(EntityDepartment department);
 
     EntityDepartment update(EntityDepartment department);
 

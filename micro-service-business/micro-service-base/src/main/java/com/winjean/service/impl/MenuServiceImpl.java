@@ -19,7 +19,7 @@ public class MenuServiceImpl implements MenuService {
     private MenuRepository menuRepository;
 
     @Override
-    public EntityMenu insert(EntityMenu menu) {
+    public EntityMenu save(EntityMenu menu) {
         menu = menuRepository.save(menu);
         log.info("add menu success.");
 

@@ -20,8 +20,8 @@ public class MenuController {
     private MenuService menuService;
 
     @PostMapping
-    public BaseResponse insert(@Validated @RequestBody EntityMenu menu){
-        return BaseResponse.getSuccessResponse(menuService.insert(menu));
+    public BaseResponse save(@Validated @RequestBody EntityMenu menu){
+        return BaseResponse.getSuccessResponse(menuService.save(menu));
     }
 
     @DeleteMapping("{id}")

@@ -20,8 +20,8 @@ public class DictionaryDetailController {
     private DictionaryDetailService dictionaryDetailService;
 
     @PostMapping
-    public BaseResponse insert(@Validated @RequestBody EntityDictionaryDetail dictionaryDetail){
-        return BaseResponse.getSuccessResponse(dictionaryDetailService.insert(dictionaryDetail));
+    public BaseResponse save(@Validated @RequestBody EntityDictionaryDetail dictionaryDetail){
+        return BaseResponse.getSuccessResponse(dictionaryDetailService.save(dictionaryDetail));
     }
 
     @DeleteMapping("{id}")

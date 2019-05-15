@@ -20,8 +20,8 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @PostMapping
-    public BaseResponse insert(@Validated @RequestBody EntityDepartment department){
-        return BaseResponse.getSuccessResponse(departmentService.insert(department));
+    public BaseResponse save(@Validated @RequestBody EntityDepartment department){
+        return BaseResponse.getSuccessResponse(departmentService.save(department));
     }
 
     @DeleteMapping("{id}")

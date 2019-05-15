@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 
 public interface RoleService {
 
-    EntityRole insert(EntityRole role);
+    EntityRole save(EntityRole role);
 
     EntityRole update(EntityRole role);
 

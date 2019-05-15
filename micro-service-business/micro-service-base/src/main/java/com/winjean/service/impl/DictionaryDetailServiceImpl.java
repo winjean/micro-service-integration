@@ -20,7 +20,7 @@ public class DictionaryDetailServiceImpl implements DictionaryDetailService {
     private DictionaryDetailRepository dictionaryDetailRepository;
 
     @Override
-    public EntityDictionaryDetail insert(EntityDictionaryDetail dictionaryDetail) {
+    public EntityDictionaryDetail save(EntityDictionaryDetail dictionaryDetail) {
         dictionaryDetail = dictionaryDetailRepository.save(dictionaryDetail);
         log.info("add dictionary detail success.");
 

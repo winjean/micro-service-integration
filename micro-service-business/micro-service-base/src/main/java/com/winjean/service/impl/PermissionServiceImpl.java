@@ -19,7 +19,7 @@ public class PermissionServiceImpl implements PermissionService {
     private PermisssionRepository permisssionRepository;
 
     @Override
-    public EntityPermission insert(EntityPermission permission) {
+    public EntityPermission save(EntityPermission permission) {
         permission = permisssionRepository.save(permission);
         log.info("add permission success.");
 

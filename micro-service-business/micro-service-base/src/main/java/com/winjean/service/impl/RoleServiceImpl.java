@@ -19,7 +19,7 @@ public class RoleServiceImpl implements RoleService {
     private RoleRepository roleRepository;
 
     @Override
-    public EntityRole insert(EntityRole role) {
+    public EntityRole save(EntityRole role) {
         role = roleRepository.save(role);
         log.info("add role success.");
 

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 
 public interface PermissionService {
 
-    EntityPermission insert(EntityPermission permission);
+    EntityPermission save(EntityPermission permission);
 
     EntityPermission update(EntityPermission permission);
 

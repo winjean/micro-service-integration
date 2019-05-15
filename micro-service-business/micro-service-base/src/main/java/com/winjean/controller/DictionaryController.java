@@ -19,8 +19,8 @@ public class DictionaryController {
     private DictionaryService dictionaryService;
 
     @PostMapping
-    public BaseResponse insert(@Validated @RequestBody EntityDictionary dictionary){
-        return BaseResponse.getSuccessResponse(dictionaryService.insert(dictionary));
+    public BaseResponse save(@Validated @RequestBody EntityDictionary dictionary){
+        return BaseResponse.getSuccessResponse(dictionaryService.save(dictionary));
     }
 
     @DeleteMapping("{id}")

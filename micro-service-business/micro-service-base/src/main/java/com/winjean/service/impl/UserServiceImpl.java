@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public EntityUser insert(EntityUser user) {
+    public EntityUser save(EntityUser user) {
         user = userRepository.save(user);
         log.info("add user success.");
 

@@ -19,7 +19,7 @@ public class DictionaryServiceImpl implements DictionaryService {
     private DictionaryRepository dictionaryRepository;
 
     @Override
-    public EntityDictionary insert(EntityDictionary dictionary) {
+    public EntityDictionary save(EntityDictionary dictionary) {
         dictionary = dictionaryRepository.save(dictionary);
         log.info("add dictionary  success.");
 
