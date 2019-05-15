@@ -1,20 +1,18 @@
 package com.winjean.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.common.BaseResponse;
-import com.winjean.model.request.RequestUserInsert;
-
-import java.util.Map;
+import com.winjean.model.entity.EntityUser;
+import org.springframework.data.domain.Page;
 
 public interface UserService {
 
-    BaseResponse insert(RequestUserInsert request);
+    EntityUser insert(EntityUser user);
 
-    BaseResponse update(JSONObject json);
+    EntityUser update(EntityUser user);
 
-    BaseResponse delete(Map<String, Object> map);
+    boolean delete(long id);
 
-    BaseResponse query(JSONObject json);
+    EntityUser query(long id);
 
-    BaseResponse queryList(JSONObject json);
+    Page<EntityUser> list(JSONObject json);
 }

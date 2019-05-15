@@ -16,7 +16,7 @@ public class EntityUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(groups = EntityDictionaryDetail.Update.class)
+    @NotNull(groups = Update.class)
     private Long id;
 
     @Column(name = "user_name")
@@ -63,4 +63,6 @@ public class EntityUser {
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     @CreationTimestamp
     private Date updateTime;
+
+    public @interface Update {}
 }

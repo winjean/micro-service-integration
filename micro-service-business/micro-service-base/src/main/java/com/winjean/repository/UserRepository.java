@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @version: $version$
  */
 
-public interface UserRepository extends JpaRepository<EntityUser, Integer> {
+public interface UserRepository extends JpaRepository<EntityUser, Long> {
 
     EntityUser findModuleByName(String name);
 
