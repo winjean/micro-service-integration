@@ -1,9 +1,10 @@
 package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.winjean.model.entity.EntityPermission;
 import com.winjean.model.entity.EntityUser;
-import com.winjean.repository.UserRepository;
-import com.winjean.service.UserService;
+import com.winjean.repository.PermisssionRepository;
+import com.winjean.service.PermissionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -13,32 +14,32 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class PermissionServiceImpl implements PermissionService {
 
     @Resource
-    private UserRepository userRepository;
+    private PermisssionRepository permisssionRepository;
 
     @Override
-    public EntityUser insert(EntityUser user) {
-        user = userRepository.save(user);
+    public EntityPermission insert(EntityPermission user) {
+        user = permisssionRepository.save(user);
         log.info("add user success.");
 
         return user;
     }
 
     @Override
-    public EntityUser update(EntityUser user) {
-        EntityUser _user = query(user.getId());
-        _user.setName(user.getName());
-        _user.setBirthday(user.getBirthday());
-        _user.setTelephone(user.getTelephone());
-        _user.setSex(user.getSex());
-        _user.setEmail(user.getEmail());
-        _user.setEmail(user.getEmail());
-        _user.setDepartment(user.getDepartment());
-        _user.setRoles(user.getRoles());
+    public EntityPermission update(EntityPermission user) {
+        EntityPermission _user = query(user.getId());
+//        _user.setName(user.getName());
+//        _user.setBirthday(user.getBirthday());
+//        _user.setTelephone(user.getTelephone());
+//        _user.setSex(user.getSex());
+//        _user.setEmail(user.getEmail());
+//        _user.setEmail(user.getEmail());
+//        _user.setDepartment(user.getDepartment());
+//        _user.setRoles(user.getRoles());
 
-        _user = userRepository.save(_user);
+        _user = permisssionRepository.save(_user);
 
         log.info("update user success.");
         return _user;
@@ -46,21 +47,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean delete(long id) {
-        userRepository.deleteById(id);
+        permisssionRepository.deleteById(id);
 
         log.info("delete user success.");
         return true;
     }
 
     @Override
-    public EntityUser query(long id) {
-        Optional<EntityUser> user = userRepository.findById(id);
+    public EntityPermission query(long id) {
+        Optional<EntityPermission> user = permisssionRepository.findById(id);
         log.info("query user success.");
         return user.get();
     }
 
     @Override
-    public Page<EntityUser> list(JSONObject json) {
+    public Page<EntityPermission> list(JSONObject json) {
         int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
         int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
 
@@ -71,7 +72,7 @@ public class UserServiceImpl implements UserService {
         Example example = Example.of(user, matcher);
 
         PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
-        Page<EntityUser> list = userRepository.findAll(example, pageable);
+        Page<EntityPermission> list = permisssionRepository.findAll(example, pageable);
 
         log.info("query user list success.");
         return list;

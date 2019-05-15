@@ -20,8 +20,7 @@ public class UserController  {
 
     @PostMapping
     public BaseResponse insert(@Validated @RequestBody EntityUser user){
-        userService.insert(user);
-        return BaseResponse.getSuccessResponse();
+        return BaseResponse.getSuccessResponse(userService.insert(user));
     }
 
     @DeleteMapping("{id}")
@@ -30,16 +29,14 @@ public class UserController  {
         return BaseResponse.getSuccessResponse();
     }
 
-    @PutMapping("update")
+    @PutMapping
     public BaseResponse update(@Validated(EntityUser.Update.class) @RequestBody EntityUser user){
-        userService.update(user);
-        return BaseResponse.getSuccessResponse();
+        return BaseResponse.getSuccessResponse(userService.update(user));
     }
 
     @GetMapping("{id}")
     public BaseResponse query(@PathVariable long id){
-        userService.query(id);
-        return null;
+        return BaseResponse.getSuccessResponse(userService.query(id));
     }
 
     @PostMapping("list")

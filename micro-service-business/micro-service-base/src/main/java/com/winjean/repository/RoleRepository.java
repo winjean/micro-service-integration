@@ -1,6 +1,6 @@
 package com.winjean.repository;
 
-import com.winjean.model.entity.EntityUser;
+import com.winjean.model.entity.EntityRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @version: $version$
  */
 
-public interface UserRepository extends JpaRepository<EntityUser, Long> {
+public interface RoleRepository extends JpaRepository<EntityRole, Long> {
 
 }

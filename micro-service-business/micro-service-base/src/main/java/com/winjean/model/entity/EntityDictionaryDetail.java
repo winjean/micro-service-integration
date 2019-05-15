@@ -3,6 +3,7 @@ package com.winjean.model.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -31,6 +32,12 @@ public class EntityDictionaryDetail {
     private String value;
 
     /**
+     * 是否可用状态
+     */
+    @Column(columnDefinition = "bit default 0")
+    private boolean status = true;
+
+    /**
      * 排序
      */
     @Column(name = "sort")
@@ -56,7 +63,7 @@ public class EntityDictionaryDetail {
 
     @Column(name = "update_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @CreationTimestamp
+    @UpdateTimestamp
     private Date updateTime;
 
     public @interface Update {}

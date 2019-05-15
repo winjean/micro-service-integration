@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -18,7 +19,7 @@ public class EntityRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(groups = EntityDictionaryDetail.Update.class)
+    @NotNull(groups = Update.class)
     private Long id;
 
     @Column(nullable = false)
@@ -30,11 +31,20 @@ public class EntityRole {
     private String dataScope = "本级";
 
     /**
+     * 是否可用状态
+     */
+    @Column(columnDefinition = "bit default 0")
+    private boolean status = true;
+
+    /**
      * 是否为内置
      */
     @Column(name = "built_in")
     private boolean builtIn = false;
 
+    /**
+     * 备注信息
+     */
     private String remark;
 
     @JsonIgnore
@@ -66,7 +76,8 @@ public class EntityRole {
 
     @Column(name = "update_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @CreationTimestamp
+    @UpdateTimestamp
     private Date updateTime;
 
+    public @interface Update{}
 }

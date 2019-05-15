@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -18,11 +19,17 @@ public class EntityMenu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(groups = EntityDictionaryDetail.Update.class)
+    @NotNull(groups = Update.class)
     private Long id;
 
     @NotBlank
     private String name;
+
+    /**
+     * 是否可用状态
+     */
+    @Column(columnDefinition = "bit default 0")
+    private boolean status = true;
 
     @Column(unique = true)
     @NotNull
@@ -64,9 +71,8 @@ public class EntityMenu {
 
     @Column(name = "update_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @CreationTimestamp
+    @UpdateTimestamp
     private Date updateTime;
 
-    public interface Update{}
-
+    public @interface Update {}
 }

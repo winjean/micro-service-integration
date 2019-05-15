@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -24,27 +25,28 @@ public class EntityDepartment {
     /**
      * 名称
      */
-    @Column(name = "name",nullable = false)
     @NotBlank
     private String name;
 
-    @NotNull
-    private Boolean enabled;
+    /**
+     * 是否可用状态
+     */
+    @Column(columnDefinition = "bit default 0")
+    private boolean status = true;
 
     /**
-     * 上级部门
+     * 上级部门编号
      */
     @Column(name = "pid",nullable = false)
     @NotNull
-    private Long pid;
+    private Long pid = 0l;
 
+    /**
+     * 部门拥有的角色
+     */
     @ManyToMany(mappedBy = "departments")
     @JsonIgnore
     private Set<EntityRole> roles;
-
-    @OneToOne
-    @JoinColumn(name = "department_id")
-    private EntityDepartment departmentId;
 
     @Column(name = "create_user")
     private String createUser;
@@ -59,7 +61,7 @@ public class EntityDepartment {
 
     @Column(name = "update_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @CreationTimestamp
+    @UpdateTimestamp
     private Date updateTime;
 
     public @interface Update {}

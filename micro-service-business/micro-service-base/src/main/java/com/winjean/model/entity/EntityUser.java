@@ -1,10 +1,13 @@
 package com.winjean.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
@@ -19,25 +22,50 @@ public class EntityUser {
     @NotNull(groups = Update.class)
     private Long id;
 
-    @Column(name = "user_name")
+    /**
+     * 用户名
+     */
+    @NotBlank
     private String name;
 
+    /**
+     * 用户密码
+     */
+    @JsonIgnore
     private String password;
 
     /**
      * 密码加盐
      */
+    @JsonIgnore
     private String salt;
 
+    /**
+     * 出生日期
+     */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
     private Date birthday;
 
+    /**
+     * 联系电话
+     */
     private String telephone;
 
+    /**
+     * 性别
+     */
     private String sex;
 
+    /**
+     * 邮箱
+     */
+    @NotBlank
     private String email;
 
+    /**
+     * 是否可用状态
+     */
+    @Column(columnDefinition = "bit default 0")
     private boolean status = true;
 
     @ManyToMany
@@ -61,7 +89,7 @@ public class EntityUser {
 
     @Column(name = "update_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @CreationTimestamp
+    @UpdateTimestamp
     private Date updateTime;
 
     public @interface Update {}

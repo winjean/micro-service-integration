@@ -1,9 +1,10 @@
 package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.winjean.model.entity.EntityRole;
 import com.winjean.model.entity.EntityUser;
-import com.winjean.repository.UserRepository;
-import com.winjean.service.UserService;
+import com.winjean.repository.RoleRepository;
+import com.winjean.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -13,32 +14,32 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class RoleServiceImpl implements RoleService {
 
     @Resource
-    private UserRepository userRepository;
+    private RoleRepository roleRepository;
 
     @Override
-    public EntityUser insert(EntityUser user) {
-        user = userRepository.save(user);
+    public EntityRole insert(EntityRole user) {
+        user = roleRepository.save(user);
         log.info("add user success.");
 
         return user;
     }
 
     @Override
-    public EntityUser update(EntityUser user) {
-        EntityUser _user = query(user.getId());
-        _user.setName(user.getName());
-        _user.setBirthday(user.getBirthday());
-        _user.setTelephone(user.getTelephone());
-        _user.setSex(user.getSex());
-        _user.setEmail(user.getEmail());
-        _user.setEmail(user.getEmail());
-        _user.setDepartment(user.getDepartment());
-        _user.setRoles(user.getRoles());
+    public EntityRole update(EntityRole user) {
+        EntityRole _user = query(user.getId());
+//        _user.setName(user.getName());
+//        _user.setBirthday(user.getBirthday());
+//        _user.setTelephone(user.getTelephone());
+//        _user.setSex(user.getSex());
+//        _user.setEmail(user.getEmail());
+//        _user.setEmail(user.getEmail());
+//        _user.setDepartment(user.getDepartment());
+//        _user.setRoles(user.getRoles());
 
-        _user = userRepository.save(_user);
+        _user = roleRepository.save(_user);
 
         log.info("update user success.");
         return _user;
@@ -46,21 +47,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean delete(long id) {
-        userRepository.deleteById(id);
+        roleRepository.deleteById(id);
 
         log.info("delete user success.");
         return true;
     }
 
     @Override
-    public EntityUser query(long id) {
-        Optional<EntityUser> user = userRepository.findById(id);
+    public EntityRole query(long id) {
+        Optional<EntityRole> user = roleRepository.findById(id);
         log.info("query user success.");
         return user.get();
     }
 
     @Override
-    public Page<EntityUser> list(JSONObject json) {
+    public Page<EntityRole> list(JSONObject json) {
         int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
         int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
 
@@ -71,7 +72,7 @@ public class UserServiceImpl implements UserService {
         Example example = Example.of(user, matcher);
 
         PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
-        Page<EntityUser> list = userRepository.findAll(example, pageable);
+        Page<EntityRole> list = roleRepository.findAll(example, pageable);
 
         log.info("query user list success.");
         return list;
