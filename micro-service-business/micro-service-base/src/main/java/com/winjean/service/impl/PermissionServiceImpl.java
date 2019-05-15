@@ -2,7 +2,6 @@ package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.model.entity.EntityPermission;
-import com.winjean.model.entity.EntityUser;
 import com.winjean.repository.PermisssionRepository;
 import com.winjean.service.PermissionService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,44 +19,43 @@ public class PermissionServiceImpl implements PermissionService {
     private PermisssionRepository permisssionRepository;
 
     @Override
-    public EntityPermission insert(EntityPermission user) {
-        user = permisssionRepository.save(user);
-        log.info("add user success.");
+    public EntityPermission insert(EntityPermission permission) {
+        permission = permisssionRepository.save(permission);
+        log.info("add permission success.");
 
-        return user;
+        return permission;
     }
 
     @Override
-    public EntityPermission update(EntityPermission user) {
-        EntityPermission _user = query(user.getId());
-//        _user.setName(user.getName());
-//        _user.setBirthday(user.getBirthday());
-//        _user.setTelephone(user.getTelephone());
-//        _user.setSex(user.getSex());
-//        _user.setEmail(user.getEmail());
-//        _user.setEmail(user.getEmail());
-//        _user.setDepartment(user.getDepartment());
-//        _user.setRoles(user.getRoles());
+    public EntityPermission update(EntityPermission permission) {
+        EntityPermission _permission = query(permission.getId());
+        _permission.setName(permission.getName());
+        _permission.setPid(permission.getPid());
+        _permission.setNickname(permission.getNickname());
+        _permission.setRemark(permission.getRemark());
+        _permission.setRoles(permission.getRoles());
+        _permission.setStatus(permission.isStatus());
+        _permission.setUpdateUser("update_user");
 
-        _user = permisssionRepository.save(_user);
+        _permission = permisssionRepository.save(_permission);
 
-        log.info("update user success.");
-        return _user;
+        log.info("update permission success.");
+        return _permission;
     }
 
     @Override
     public boolean delete(long id) {
         permisssionRepository.deleteById(id);
 
-        log.info("delete user success.");
+        log.info("delete permission success.");
         return true;
     }
 
     @Override
     public EntityPermission query(long id) {
-        Optional<EntityPermission> user = permisssionRepository.findById(id);
-        log.info("query user success.");
-        return user.get();
+        Optional<EntityPermission> permission = permisssionRepository.findById(id);
+        log.info("query permission success.");
+        return permission.get();
     }
 
     @Override
@@ -65,16 +63,15 @@ public class PermissionServiceImpl implements PermissionService {
         int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
         int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
 
-        EntityUser user = new EntityUser();
+        EntityPermission permission = new EntityPermission();
         ExampleMatcher matcher = ExampleMatcher.matching()
-//                .withIgnorePaths("status")
                 .withMatcher("status", match -> match.exact());
-        Example example = Example.of(user, matcher);
+        Example example = Example.of(permission, matcher);
 
         PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
         Page<EntityPermission> list = permisssionRepository.findAll(example, pageable);
 
-        log.info("query user list success.");
+        log.info("query permission list success.");
         return list;
     }
 }

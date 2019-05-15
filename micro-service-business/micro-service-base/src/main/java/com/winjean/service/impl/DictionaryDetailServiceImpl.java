@@ -28,21 +28,18 @@ public class DictionaryDetailServiceImpl implements DictionaryDetailService {
     }
 
     @Override
-    public EntityDictionaryDetail update(EntityDictionaryDetail dictionaryDetail) {
-        EntityDictionaryDetail _dictionaryDetail = query(dictionaryDetail.getId());
-//        _user.setName(user.getName());
-//        _user.setBirthday(user.getBirthday());
-//        _user.setTelephone(user.getTelephone());
-//        _user.setSex(user.getSex());
-//        _user.setEmail(user.getEmail());
-//        _user.setEmail(user.getEmail());
-//        _user.setDepartment(user.getDepartment());
-//        _user.setRoles(user.getRoles());
+    public EntityDictionaryDetail update(EntityDictionaryDetail detail) {
+        EntityDictionaryDetail _detail = query(detail.getId());
+        _detail.setLabel(detail.getLabel());
+        _detail.setValue(detail.getValue());
+        _detail.setSort(detail.getSort());
+        _detail.setStatus(detail.isStatus());
+        _detail.setUpdateUser("update_user");
 
-        _dictionaryDetail = dictionaryDetailRepository.save(_dictionaryDetail);
+        _detail = dictionaryDetailRepository.save(_detail);
 
         log.info("update dictionary detail success.");
-        return _dictionaryDetail;
+        return _detail;
     }
 
     @Override
@@ -67,7 +64,6 @@ public class DictionaryDetailServiceImpl implements DictionaryDetailService {
 
         EntityUser user = new EntityUser();
         ExampleMatcher matcher = ExampleMatcher.matching()
-//                .withIgnorePaths("status")
                 .withMatcher("status", match -> match.exact());
         Example example = Example.of(user, matcher);
 

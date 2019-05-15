@@ -2,7 +2,6 @@ package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.model.entity.EntityMenu;
-import com.winjean.model.entity.EntityUser;
 import com.winjean.repository.MenuRepository;
 import com.winjean.service.MenuService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,44 +19,46 @@ public class MenuServiceImpl implements MenuService {
     private MenuRepository menuRepository;
 
     @Override
-    public EntityMenu insert(EntityMenu user) {
-        user = menuRepository.save(user);
-        log.info("add user success.");
+    public EntityMenu insert(EntityMenu menu) {
+        menu = menuRepository.save(menu);
+        log.info("add menu success.");
 
-        return user;
+        return menu;
     }
 
     @Override
-    public EntityMenu update(EntityMenu user) {
-        EntityMenu _user = query(user.getId());
-//        _user.setName(user.getName());
-//        _user.setBirthday(user.getBirthday());
-//        _user.setTelephone(user.getTelephone());
-//        _user.setSex(user.getSex());
-//        _user.setEmail(user.getEmail());
-//        _user.setEmail(user.getEmail());
-//        _user.setDepartment(user.getDepartment());
-//        _user.setRoles(user.getRoles());
+    public EntityMenu update(EntityMenu menu) {
+        EntityMenu _menu = query(menu.getId());
+        _menu.setName(menu.getName());
+        _menu.setSort(menu.getSort());
+        _menu.setPath(menu.getPath());
+        _menu.setComponent(menu.getComponent());
+        _menu.setIcon(menu.getIcon());
+        _menu.setPid(menu.getPid());
+        _menu.setIFrame(menu.getIFrame());
+        _menu.setRoles(menu.getRoles());
+        _menu.setStatus(menu.isStatus());
+        _menu.setUpdateUser("update_user");
 
-        _user = menuRepository.save(_user);
+        _menu = menuRepository.save(_menu);
 
-        log.info("update user success.");
-        return _user;
+        log.info("update menu success.");
+        return _menu;
     }
 
     @Override
     public boolean delete(long id) {
         menuRepository.deleteById(id);
 
-        log.info("delete user success.");
+        log.info("delete menu success.");
         return true;
     }
 
     @Override
     public EntityMenu query(long id) {
-        Optional<EntityMenu> user = menuRepository.findById(id);
-        log.info("query user success.");
-        return user.get();
+        Optional<EntityMenu> menu = menuRepository.findById(id);
+        log.info("query menu success.");
+        return menu.get();
     }
 
     @Override
@@ -65,16 +66,15 @@ public class MenuServiceImpl implements MenuService {
         int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
         int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
 
-        EntityUser user = new EntityUser();
+        EntityMenu menu = new EntityMenu();
         ExampleMatcher matcher = ExampleMatcher.matching()
-//                .withIgnorePaths("status")
                 .withMatcher("status", match -> match.exact());
-        Example example = Example.of(user, matcher);
+        Example example = Example.of(menu, matcher);
 
         PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
         Page<EntityMenu> list = menuRepository.findAll(example, pageable);
 
-        log.info("query user list success.");
+        log.info("query menu list success.");
         return list;
     }
 }

@@ -29,20 +29,17 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public EntityDepartment update(EntityDepartment department) {
-        EntityDepartment _user = query(department.getId());
-//        _user.setName(user.getName());
-//        _user.setBirthday(user.getBirthday());
-//        _user.setTelephone(user.getTelephone());
-//        _user.setSex(user.getSex());
-//        _user.setEmail(user.getEmail());
-//        _user.setEmail(user.getEmail());
-//        _user.setDepartment(user.getDepartment());
-//        _user.setRoles(user.getRoles());
+        EntityDepartment _department = query(department.getId());
+        _department.setName(department.getName());
+        _department.setPid(department.getPid());
+        _department.setRoles(department.getRoles());
+        _department.setStatus(department.isStatus());
+        _department.setUpdateUser("update_user");
 
-        _user = departmentRepository.save(_user);
+        _department = departmentRepository.save(_department);
 
         log.info("update department success.");
-        return _user;
+        return _department;
     }
 
     @Override
