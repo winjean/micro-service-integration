@@ -2,7 +2,6 @@ package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.model.entity.EntityDepartment;
-import com.winjean.model.entity.EntityUser;
 import com.winjean.repository.DepartmentRepository;
 import com.winjean.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
@@ -65,10 +64,10 @@ public class DepartmentServiceImpl implements DepartmentService {
         int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
         int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
 
-        EntityUser user = new EntityUser();
+        EntityDepartment department = new EntityDepartment();
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withMatcher("status", match -> match.exact());
-        Example example = Example.of(user, matcher);
+        Example example = Example.of(department, matcher);
 
         PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
         Page<EntityDepartment> list = departmentRepository.findAll(example, pageable);

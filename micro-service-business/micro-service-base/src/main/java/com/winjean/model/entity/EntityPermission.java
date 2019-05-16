@@ -43,7 +43,7 @@ public class EntityPermission {
     /**
      * 是否可用状态
      */
-    @Column(columnDefinition = "bit default 0")
+    @Column(columnDefinition = "bit default 1")
     private boolean status = true;
 
     @JsonIgnore

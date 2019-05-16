@@ -2,7 +2,6 @@ package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.model.entity.EntityDictionary;
-import com.winjean.model.entity.EntityUser;
 import com.winjean.repository.DictionaryRepository;
 import com.winjean.service.DictionaryService;
 import lombok.extern.slf4j.Slf4j;
@@ -61,10 +60,10 @@ public class DictionaryServiceImpl implements DictionaryService {
         int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
         int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
 
-        EntityUser user = new EntityUser();
+        EntityDictionary dictionary = new EntityDictionary();
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withMatcher("status", match -> match.exact());
-        Example example = Example.of(user, matcher);
+        Example example = Example.of(dictionary, matcher);
 
         PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
         Page<EntityDictionary> list = dictionaryRepository.findAll(example, pageable);

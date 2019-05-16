@@ -67,7 +67,6 @@ public class RoleServiceImpl implements RoleService {
 
         EntityRole role = new EntityRole();
         ExampleMatcher matcher = ExampleMatcher.matching()
-//                .withIgnorePaths("status")
                 .withMatcher("status", match -> match.exact());
         Example example = Example.of(role, matcher);
 
