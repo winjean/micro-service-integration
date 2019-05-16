@@ -1,6 +1,7 @@
 package com.winjean.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -46,8 +47,9 @@ public class EntityDictionaryDetail {
     /**
      * 字典id
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dictionary_id")
+    @JsonIgnoreProperties("dictionaryDetails")
     private EntityDictionary dictionary;
 
     @Column(name = "create_user")
