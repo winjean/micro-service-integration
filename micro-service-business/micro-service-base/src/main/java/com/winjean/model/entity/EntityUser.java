@@ -26,6 +26,7 @@ public class EntityUser {
      * 用户名
      */
     @NotBlank
+    @Column(nullable = false)
     private String name;
 
     /**
@@ -49,6 +50,7 @@ public class EntityUser {
     /**
      * 联系电话
      */
+    @NotBlank
     private String telephone;
 
     /**

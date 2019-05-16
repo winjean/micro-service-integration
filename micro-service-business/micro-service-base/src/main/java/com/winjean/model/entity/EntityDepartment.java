@@ -26,6 +26,7 @@ public class EntityDepartment {
      * 名称
      */
     @NotBlank
+    @Column(nullable = false,unique = true)
     private String name;
 
     /**

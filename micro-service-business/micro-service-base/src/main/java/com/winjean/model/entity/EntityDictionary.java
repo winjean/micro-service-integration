@@ -24,7 +24,7 @@ public class EntityDictionary {
     /**
      * 字典名称
      */
-    @Column(name = "name",nullable = false,unique = true)
+    @Column(nullable = false,unique = true)
     @NotBlank
     private String name;
 

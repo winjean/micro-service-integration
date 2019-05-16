@@ -23,6 +23,7 @@ public class EntityPermission {
     private Long id;
 
     @NotBlank
+    @Column(nullable = false, unique = true)
     private String name;
 
     /**
