@@ -1,15 +1,22 @@
 package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.winjean.model.entity.EntityRole;
 import com.winjean.model.entity.EntityUser;
 import com.winjean.repository.UserRepository;
 import com.winjean.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Slf4j
@@ -77,5 +84,41 @@ public class UserServiceImpl implements UserService {
 
         log.info("query user list success.");
         return list;
+    }
+
+    @Override
+    public User loadUserByUsername(String username) {
+        EntityUser entityUser = userRepository.findByName(username);
+
+        if(null == entityUser){
+            entityUser = userRepository.findByEmail(username);
+        }
+
+        if(null == entityUser){
+            entityUser = userRepository.findBytelephone(username);
+        }
+
+        if (entityUser == null) {
+            throw new UsernameNotFoundException(username);
+        }
+
+        User user = transverter(entityUser);
+
+        return user;
+    }
+
+    private User transverter(EntityUser entityUser){
+
+        Set<EntityRole> roles = entityUser.getRoles();
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        roles.stream().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+
+        User user = new User(entityUser.getName(), entityUser.getPassword(),
+                entityUser.isStatus(),      //是否可用
+                entityUser.isExpired(),     //是否过期
+                true,   //证书不过期为true
+                entityUser.isLocked(),      //账户未锁定为true
+                authorities);
+        return user;
     }
 }

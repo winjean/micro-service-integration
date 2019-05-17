@@ -2,6 +2,7 @@ package com.winjean.common;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,6 +22,7 @@ public class BaseEntity implements Serializable {
 
     @Column(name = "create_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
     private Date createTime;
 
     @Column(name = "update_user")
@@ -28,5 +30,6 @@ public class BaseEntity implements Serializable {
 
     @Column(name = "update_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
     private Date updateTime;
 }

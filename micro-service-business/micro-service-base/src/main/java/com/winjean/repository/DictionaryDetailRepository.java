@@ -2,6 +2,7 @@ package com.winjean.repository;
 
 import com.winjean.model.entity.EntityDictionaryDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  * @author ：winjean
@@ -11,6 +12,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @version: $version$
  */
 
-public interface DictionaryDetailRepository extends JpaRepository<EntityDictionaryDetail, Long> {
+public interface DictionaryDetailRepository extends JpaRepository<EntityDictionaryDetail, Long>, JpaSpecificationExecutor<EntityDictionaryDetail> {
 
 }
