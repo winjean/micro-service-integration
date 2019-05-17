@@ -14,9 +14,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -110,8 +111,7 @@ public class UserServiceImpl implements UserService {
     private User transverter(EntityUser entityUser){
 
         Set<EntityRole> roles = entityUser.getRoles();
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        roles.stream().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+        Collection<GrantedAuthority> authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toSet());
 
         User user = new User(entityUser.getName(), entityUser.getPassword(),
                 entityUser.isStatus(),      //是否可用

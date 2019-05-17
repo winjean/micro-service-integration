@@ -77,12 +77,14 @@ public class EntityUser {
     /**
      * 账号过期
      */
-    private boolean expired;
+    @Column(columnDefinition = "bit default 1")
+    private boolean expired = true;
 
     /**
      * 账号被锁定
      */
-    private boolean locked;
+    @Column(columnDefinition = "bit default 1")
+    private boolean locked = true;
 
     @ManyToMany
     @JoinTable(name = "t_user_role", joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})

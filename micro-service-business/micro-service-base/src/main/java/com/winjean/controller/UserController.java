@@ -7,6 +7,7 @@ import com.winjean.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ public class UserController  {
     private UserService userService;
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_SELECT')")
     public BaseResponse save(@Validated @RequestBody EntityUser user){
         return BaseResponse.getSuccessResponse(userService.save(user));
     }
