@@ -115,10 +115,15 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    // 身份验证配置
+    @Override // 身份验证配置
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoderBean());
     }
 
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .userDetailsService(userService)
+//                .passwordEncoder(passwordEncoderBean());
+//    }
 }

@@ -26,7 +26,7 @@ public class EntityUser {
      * 用户名
      */
     @NotBlank
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "varchar(100) COMMENT '用户名'")
     @Size(min = 2,max = 20,message = "用户名长度为[2-20]")
     private String name;
 
@@ -40,6 +40,7 @@ public class EntityUser {
      * 密码加盐
      */
     @JsonIgnore
+    @Column(columnDefinition = "varchar(255) COMMENT '密码加盐'")
     private String salt;
 
     /**
@@ -47,6 +48,8 @@ public class EntityUser {
      */
     @Past(message = "出生日期必须为过去时间")
     @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @Column(columnDefinition = "date COMMENT '出生日期'")
     private Date birthday;
 
     /**
@@ -77,7 +80,7 @@ public class EntityUser {
     /**
      * 账号过期
      */
-    @Column(columnDefinition = "bit default 1")
+    @Column(columnDefinition = "bit default 1  COMMENT '账号过期'")
     private boolean expired = true;
 
     /**
@@ -105,7 +108,7 @@ public class EntityUser {
     @Column(name = "update_user")
     private String updateUser;
 
-    @Column(name = "update_time")
+    @Column(name = "update_time", columnDefinition = "datetime COMMENT '更新日期'")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     @UpdateTimestamp
     private Date updateTime;
