@@ -2,7 +2,8 @@ package com.winjean.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,9 +13,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
-@Data
 @Entity
 @Table(name = "t_role")
+@Getter
+@Setter
 public class EntityRole {
 
     @Id
@@ -39,7 +41,7 @@ public class EntityRole {
     /**
      * 是否为内置
      */
-    @Column(name = "built_in")
+    @Column(name = "built_in", columnDefinition = "bit default 0 COMMENT '是否为内置'")
     private boolean builtIn = false;
 
     /**
@@ -80,4 +82,13 @@ public class EntityRole {
     private Date updateTime;
 
     public @interface Update{}
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", name=" + name +
+                '}';
+    }
 }

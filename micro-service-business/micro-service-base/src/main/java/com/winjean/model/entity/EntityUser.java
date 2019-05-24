@@ -2,7 +2,8 @@ package com.winjean.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,9 +13,10 @@ import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.Set;
 
-@Data
 @Entity
 @Table(name = "t_user")
+@Getter
+@Setter
 public class EntityUser {
 
     @Id
@@ -50,6 +52,7 @@ public class EntityUser {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @JsonFormat(pattern="yyyy-MM-dd")
     @Column(columnDefinition = "date COMMENT '出生日期'")
+//    @Temporal(TemporalType.TIMESTAMP)
     private Date birthday;
 
     /**
@@ -90,6 +93,7 @@ public class EntityUser {
     private boolean locked = true;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "t_user_role", joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})
     private Set<EntityRole> roles;
 

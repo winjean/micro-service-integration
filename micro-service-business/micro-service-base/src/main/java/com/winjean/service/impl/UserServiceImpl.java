@@ -6,14 +6,15 @@ import com.winjean.model.entity.EntityUser;
 import com.winjean.repository.UserRepository;
 import com.winjean.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserServiceImpl implements UserService {
 
-    @Resource
+    @Autowired
     private UserRepository userRepository;
 
     @Override
@@ -88,6 +89,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true, rollbackFor = Exception.class)
     public User loadUserByUsername(String username) {
         EntityUser entityUser = userRepository.findByName(username);
 
