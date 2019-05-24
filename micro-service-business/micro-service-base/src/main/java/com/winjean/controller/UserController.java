@@ -37,11 +37,13 @@ public class UserController  {
     }
 
     @GetMapping("{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','USER_ALL','USER_SELECT')")
     public BaseResponse query(@PathVariable long id){
         return BaseResponse.getSuccessResponse(userService.query(id));
     }
 
     @PostMapping("list")
+    @PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_SELECT')")
     public BaseResponse list(@RequestBody JSONObject json){
         Page<EntityUser> page = userService.list(json);
         return BaseResponse.getSuccessResponse(page);

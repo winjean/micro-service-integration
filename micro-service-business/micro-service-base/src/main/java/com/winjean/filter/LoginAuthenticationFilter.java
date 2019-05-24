@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+//@Component
 public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 //    static final String TOKEN_PREFIX = "Bearer";
@@ -21,6 +22,8 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
     private static final String SPRING_SECURITY_RESTFUL_PASSWORD_KEY = "password";
 
     private static final String SPRING_SECURITY_RESTFUL_LOGIN_URL = "/login";
+
+
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {

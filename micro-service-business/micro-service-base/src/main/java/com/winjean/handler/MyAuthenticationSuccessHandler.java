@@ -30,5 +30,6 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
             UserDetails user = (UserDetails) principal;
             log.info("loginUser:"+user.getUsername());
         }
+
     }
 }

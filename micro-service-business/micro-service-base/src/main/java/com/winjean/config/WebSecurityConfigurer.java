@@ -5,15 +5,12 @@ import com.winjean.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
@@ -46,77 +43,110 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyAuthenticationEntryPoint authenticationEntryPoint;
 
-    @Override
-    // Request层面的配置
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                // 禁用 CSRF
-                .csrf().disable()
+//    @Autowired
+//    private LoginAuthenticationFilter loginAuthenticationFilter;
 
+//    @Bean
+//    @Override
+//    public AuthenticationManager authenticationManagerBean() throws Exception {
+//        return super.authenticationManagerBean();
+//    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        // Web层面的配置
+        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/**/favicon.ico");
+    }
+
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        // Request层面的配置
+        httpSecurity
+                // 禁用 CSRF TODO 到底是什么鬼
+                .csrf().disable()
+//                .anonymous().disable()
+//                .cors().and()
+//                .httpBasic().and()
                 // 授权异常
-                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
+//                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
 
                 //没有权限的自定义处理类
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler).and()
+//                .exceptionHandling().accessDeniedHandler(accessDeniedHandler).and()
 
                 //指定前后端分离的时候调用后台登录接口的名称
-                .formLogin().loginPage("/auth/login").loginProcessingUrl("/auth/login")
+                .formLogin()
+                .loginPage("/login")
+//                .loginProcessingUrl("/")
+                .defaultSuccessUrl("/")
+                .failureUrl("/login/error")
+                .permitAll()
                 //登录成功的自定义处理类
-                .successHandler(authenticationSuccessHandler)
+//                .successHandler(authenticationSuccessHandler)
                 //登录失败的自定义处理类
-                .failureHandler(authenticationFailureHandler)
+//                .failureHandler(authenticationFailureHandler)
+
                 .and()
 
                 //指定前后端分离的时候调用后台注销接口的名称
-//                .logout().logoutUrl("/logout")
+                .logout()//.logoutUrl("/logout")
 //                .logoutSuccessHandler(logoutSuccessHandler)
-//                .and()
+                .permitAll()
+                .and()
 
                 // 不创建会话
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
                 // 过滤请求
                 .authorizeRequests()
-                .antMatchers("/oauth/**", "/logout/**").permitAll()
+//                .antMatchers("/oauth/**", "/logout/**").permitAll()
 
                 // 系统监控
-                .antMatchers("/actuator/**").anonymous()
+//                .antMatchers("/actuator/**").anonymous()
 
                 // swagger start
-                .antMatchers("/swagger-ui.html").anonymous()
-                .antMatchers("/swagger-resources/**").anonymous()
-                .antMatchers("/webjars/**").anonymous()
-                .antMatchers("/*/api-docs").anonymous()
+//                .antMatchers("/swagger-ui.html").anonymous()
+//                .antMatchers("/swagger-resources/**").anonymous()
+//                .antMatchers("/webjars/**").anonymous()
+//                .antMatchers("/*/api-docs").anonymous()
                 // swagger end
 
                 // 接口限流测试
-                .antMatchers("/test/**").anonymous()
-                .antMatchers(HttpMethod.OPTIONS, "/**").anonymous()
-
-                .antMatchers("/druid/**").permitAll()
+//                .antMatchers("/test/**").anonymous()
+//                .antMatchers(HttpMethod.OPTIONS, "/**").anonymous()
+//
+//                .antMatchers("/druid/**").permitAll()
 
                 // 所有请求都需要认证
                 .anyRequest().authenticated()
 
                 // 防止iframe 造成跨域
-                .and().headers().frameOptions().disable()
+//                .and().headers().frameOptions().disable()
 
-//                .and().addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
-                ;
-    }
-    @Override
-    // Web层面的配置
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/**/favicon.ico");
+//                .and().addFilterBefore(loginAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .and().rememberMe()
+        ;
     }
 
     @Bean
     public PasswordEncoder passwordEncoderBean() {
-        return new BCryptPasswordEncoder();
+//        return new BCryptPasswordEncoder();
+
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return rawPassword.toString();
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return encodedPassword.equals(rawPassword.toString());
+            }
+        };
     }
 
-    @Override // 身份验证配置
+    @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // 身份验证配置
         auth.userDetailsService(userService).passwordEncoder(passwordEncoderBean());
     }
 
