@@ -34,7 +34,7 @@ public class AuthenticationController {
     @PostMapping(value = "login")
     public BaseResponse login(@Validated @RequestBody AuthorizationUser authorizationUser){
 
-        UserDetails user = userService.loadUserByUsername(authorizationUser.getUserName());
+        UserDetails user = userService.loadUserByUsername(authorizationUser.getUsername());
 
         if(!user.getPassword().equals(authorizationUser.getPassword())){
             throw new RuntimeException("密码错误");

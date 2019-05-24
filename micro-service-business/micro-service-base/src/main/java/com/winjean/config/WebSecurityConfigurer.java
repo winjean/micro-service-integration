@@ -1,9 +1,6 @@
 package com.winjean.config;
 
-import com.winjean.handler.MyAccessDeniedHandler;
-import com.winjean.handler.MyAuthenticationFailureHandler;
-import com.winjean.handler.MyAuthenticationSuccessHandler;
-import com.winjean.handler.MyLogoutSuccessHandler;
+import com.winjean.handler.*;
 import com.winjean.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -46,6 +43,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyLogoutSuccessHandler logoutSuccessHandler;
 
+    @Autowired
+    private MyAuthenticationEntryPoint authenticationEntryPoint;
+
     @Override
     // Request层面的配置
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -54,13 +54,13 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
 
                 // 授权异常
-                .exceptionHandling().authenticationEntryPoint(null).and()
+                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
 
                 //没有权限的自定义处理类
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler).and()
 
                 //指定前后端分离的时候调用后台登录接口的名称
-                .formLogin().loginProcessingUrl("/auth/login")
+                .formLogin().loginPage("/auth/login").loginProcessingUrl("/auth/login")
                 //登录成功的自定义处理类
                 .successHandler(authenticationSuccessHandler)
                 //登录失败的自定义处理类
@@ -68,9 +68,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .and()
 
                 //指定前后端分离的时候调用后台注销接口的名称
-                .logout().logoutUrl("/logout")
-                .logoutSuccessHandler(logoutSuccessHandler)
-                .and()
+//                .logout().logoutUrl("/logout")
+//                .logoutSuccessHandler(logoutSuccessHandler)
+//                .and()
 
                 // 不创建会话
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()

@@ -23,6 +23,8 @@ import java.io.IOException;
 public class MyAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        log.info("access denied handler");
+        log.info("access denied handler",accessDeniedException);
+
+        response.getWriter().write(accessDeniedException.getMessage());
     }
 }

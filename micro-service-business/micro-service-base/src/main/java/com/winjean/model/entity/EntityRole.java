@@ -83,12 +83,4 @@ public class EntityRole {
 
     public @interface Update{}
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", createTime=" + createTime +
-                ", name=" + name +
-                '}';
-    }
 }
