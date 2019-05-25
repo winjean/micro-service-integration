@@ -25,5 +25,7 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         //username and password not correct
         log.info("authentication failure handler: {}", exception.getMessage(), exception);
+
+//        response.setStatus(HttpStatus.UNAUTHORIZED.value());
     }
 }

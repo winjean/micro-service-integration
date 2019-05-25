@@ -1,6 +1,8 @@
 package com.winjean.filter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -23,7 +25,11 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 
     private static final String SPRING_SECURITY_RESTFUL_LOGIN_URL = "/login";
 
+    private AuthenticationManager authenticationManager;
 
+    public LoginAuthenticationFilter(@Autowired AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {

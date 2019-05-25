@@ -1,5 +1,6 @@
 package com.winjean.handler;
 
+import com.winjean.utils.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,6 +30,8 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         if (principal != null && principal instanceof UserDetails) {
             UserDetails user = (UserDetails) principal;
             log.info("authentication success handler login user: {}", user.getUsername());
+
+            response.setHeader(JwtTokenUtil.TOKEN_HEADER, JwtTokenUtil.generateToken(user));
         }
 
     }

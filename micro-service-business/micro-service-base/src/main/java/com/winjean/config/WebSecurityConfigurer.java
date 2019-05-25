@@ -1,17 +1,21 @@
 package com.winjean.config;
 
+import com.winjean.filter.JwtAuthorizationTokenFilter;
 import com.winjean.handler.*;
 import com.winjean.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author ：winjean
@@ -46,11 +50,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 //    @Autowired
 //    private LoginAuthenticationFilter loginAuthenticationFilter;
 
-//    @Bean
-//    @Override
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-//    }
+    @Autowired
+    private JwtAuthorizationTokenFilter jwtAuthorizationTokenFilter;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -97,7 +98,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .and()
 
                 // 不创建会话
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
                 // 过滤请求
                 .authorizeRequests()
@@ -120,14 +121,18 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/druid/**").permitAll()
 
                 // 所有请求都需要认证
-                .anyRequest().authenticated()
+                .anyRequest().authenticated().and()
 
                 // 防止iframe 造成跨域
 //                .and().headers().frameOptions().disable()
 
-//                .and().addFilterBefore(loginAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .and().rememberMe()
-        ;
+                .addFilterBefore(jwtAuthorizationTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                .rememberMe();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Bean
