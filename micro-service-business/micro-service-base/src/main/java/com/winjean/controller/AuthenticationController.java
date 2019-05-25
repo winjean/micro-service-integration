@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Slf4j
 @Controller
@@ -34,10 +36,11 @@ public class AuthenticationController {
 
     /**
      * 登录授权
-     * @param authorizationUser
+//     * @param authorizationUser
      * @return
      */
-    @RequestMapping(value = "login")
+    @RequestMapping(value = "/auth/login",method = RequestMethod.POST)
+    @ResponseBody
     public String login(/*@Validated @RequestBody AuthorizationUser authorizationUser*/){
 
 //        UserDetails user = userService.loadUserByUsername(authorizationUser.getUsername());
@@ -65,6 +68,16 @@ public class AuthenticationController {
 //        return BaseResponse.getSuccessResponse();
         return "login.html";
     }
+
+    @RequestMapping(value = "/auth/logout",method = RequestMethod.POST)
+    @ResponseBody
+    public String logout(){
+
+        SecurityContextHolder.clearContext();
+
+        return "";
+    }
+
 
     /**
      * 获取用户信息

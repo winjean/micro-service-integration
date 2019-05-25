@@ -25,6 +25,6 @@ public class MyAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
         log.info("access denied handler",accessDeniedException);
 
-        response.getWriter().write(accessDeniedException.getMessage());
+        response.getWriter().write("access denied handler: " +accessDeniedException.getMessage());
     }
 }

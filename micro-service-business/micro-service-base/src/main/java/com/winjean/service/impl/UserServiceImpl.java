@@ -116,10 +116,10 @@ public class UserServiceImpl implements UserService {
         Collection<GrantedAuthority> authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toSet());
 
         User user = new User(entityUser.getName(), entityUser.getPassword(),
-//                entityUser.isStatus(),      //是否可用
-//                entityUser.isExpired(),     //是否过期
-//                true,   //证书不过期为true
-//                entityUser.isLocked(),      //账户未锁定为true
+                entityUser.isStatus(),      //是否可用
+                entityUser.isExpired(),     //是否过期
+                true,   //证书不过期为true
+                entityUser.isLocked(),      //账户未锁定为true
                 authorities);
         return user;
     }
