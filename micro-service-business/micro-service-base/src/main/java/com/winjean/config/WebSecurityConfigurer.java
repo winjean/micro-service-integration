@@ -65,7 +65,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 // 禁用 CSRF TODO 到底是什么鬼
                 .csrf().disable()
 //                .anonymous().disable()
-//                .cors().and()
+                .cors().and()
 //                .httpBasic().and()
                 // 授权异常
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
