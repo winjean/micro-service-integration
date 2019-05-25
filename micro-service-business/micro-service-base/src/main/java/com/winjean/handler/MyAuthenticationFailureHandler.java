@@ -23,8 +23,7 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        log.info("authentication failure handler", exception);
-        response.getWriter().write("error message: " + exception.getMessage());
-//        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException==null?"Unauthorized":authException.getMessage());
+        //username and password not correct
+        log.info("authentication failure handler: {}", exception.getMessage(), exception);
     }
 }

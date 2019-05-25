@@ -79,20 +79,20 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 //                .loginProcessingUrl("/login")
 //                .successForwardUrl("/auth")
 //                .defaultSuccessUrl("/auth/",false)
-                .failureUrl("/login.html")
-                .permitAll()
+//                .failureUrl("/login.html")
                 //登录成功的自定义处理类
-//                .successHandler(authenticationSuccessHandler)
+                .successHandler(authenticationSuccessHandler)
                 //登录失败的自定义处理类
-//                .failureHandler(authenticationFailureHandler)
+                .failureHandler(authenticationFailureHandler)
 
+                .permitAll()
                 .and()
 
                 //指定前后端分离的时候调用后台注销接口的名称
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login.html")
-//                .logoutSuccessHandler(logoutSuccessHandler)
+//                .logoutSuccessUrl("/login.html")
+                .logoutSuccessHandler(logoutSuccessHandler)
                 .permitAll()
                 .and()
 

@@ -28,7 +28,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal != null && principal instanceof UserDetails) {
             UserDetails user = (UserDetails) principal;
-            log.info("loginUser:"+user.getUsername());
+            log.info("authentication success handler login user: {}", user.getUsername());
         }
 
     }

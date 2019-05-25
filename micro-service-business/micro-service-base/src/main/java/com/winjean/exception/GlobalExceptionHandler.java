@@ -5,6 +5,8 @@ import com.winjean.common.exception.ExceptionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -33,6 +35,18 @@ public class GlobalExceptionHandler {
     public BaseResponse globalExceptionHandler(Exception e) throws Exception {
         log.error(ExceptionUtil.getTrace(e));
         return BaseResponse.getFailureResponse(e.getMessage());
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public Object accessDeniedExceptionHandler(ReflectionException e) throws Exception {
+        log.error(ExceptionUtil.getTrace(e));
+        return BaseResponse.getFailureResponse("范围拒绝:" + e.getMessage());
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public Object authenticationExceptionHandler(ReflectionException e) throws Exception {
+        log.error(ExceptionUtil.getTrace(e));
+        return BaseResponse.getFailureResponse("认证失败:" + e.getMessage());
     }
 
     @ExceptionHandler(ReflectionException.class)
