@@ -20,7 +20,7 @@ public class JwtTokenUtil implements Serializable {
     private static final long serialVersionUID = -3301605591108950415L;
     private static Clock clock = DefaultClock.INSTANCE;
 
-    private static String secret = "winjean";
+    private static String secret = "WINJEAN";
 
     private static Long expiration = 24 * 60 * 60 * 1000L;
 
