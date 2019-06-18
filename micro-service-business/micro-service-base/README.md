@@ -1,3 +1,5 @@
+##使用了spring security + JWT
+
 ## spring security流程:
 * 用户登陆，会被AuthenticationProcessingFilter拦截，
 调用AuthenticationManager的实现，而且AuthenticationManager会调用ProviderManager来获取用户验证信息
