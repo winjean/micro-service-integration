@@ -309,6 +309,7 @@
         <module>micro-service-business</module>
 
         <module>micro-service-common</module>
+        <module>micro-service-dictionary</module>
 
         <module>micro-service-sample</module>
         <module>micro-service-test</module>
