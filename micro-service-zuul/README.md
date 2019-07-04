@@ -3,6 +3,7 @@ Zuul的主要功能是路由转发和过滤器
 zuul默认和Ribbon结合实现了负载均衡的功能  
 zuul有以下功能：  
 Authentication  
+rate limit  
 Insights  
 Stress Testing  
 Canary Testing  
