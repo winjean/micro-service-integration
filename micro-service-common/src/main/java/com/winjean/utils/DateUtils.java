@@ -1,8 +1,7 @@
 package com.winjean.utils;
 
-import com.winjean.enums.DateTimeEnum;
+import com.winjean.enums.DateTimeFormat;
 
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -121,7 +120,7 @@ public final class DateUtils {
     }
 
     public static String getDateTime(Date date) {
-        SimpleDateFormat format = new SimpleDateFormat(DateTimeEnum.dateTime1.getValue(), Locale.CHINA);
+        SimpleDateFormat format = new SimpleDateFormat(DateTimeFormat.dateTime1.getValue(), Locale.CHINA);
         return format.format(date);
     }
 
@@ -137,10 +136,10 @@ public final class DateUtils {
      * @return
      */
     public static String formatDate(Date date) {
-        return formatDate(date,DateTimeEnum.dateTime1);
+        return formatDate(date, DateTimeFormat.dateTime1);
     }
 
-    public static String formatDate(Date date,DateTimeEnum dte) {
+    public static String formatDate(Date date, DateTimeFormat dte) {
         SimpleDateFormat format = new SimpleDateFormat(dte.getValue(), Locale.CHINA);
         return format.format(date);
     }
@@ -493,12 +492,12 @@ public final class DateUtils {
 
 
 
-    public static boolean isValidDateTime(String date, DateTimeEnum dateTimeEnum) {
+    public static boolean isValidDateTime(String date, DateTimeFormat dateTimeEnum) {
         return isValidDateTime(date, dateTimeEnum.getValue());
     }
 
     public static boolean isValidDateTime(String datetime) {
-        return isValidDateTime(datetime, DateTimeEnum.dateTime1);
+        return isValidDateTime(datetime, DateTimeFormat.dateTime1);
     }
 
 }

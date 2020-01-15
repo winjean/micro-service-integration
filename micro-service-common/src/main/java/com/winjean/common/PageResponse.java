@@ -1,6 +1,5 @@
 package com.winjean.common;
 
-import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.Data;
 
@@ -8,6 +7,7 @@ import java.util.List;
 
 @Data
 public class PageResponse<T> extends BaseResponse {
+//TODO delete
 
     @JacksonXmlProperty
     private int pageNum;

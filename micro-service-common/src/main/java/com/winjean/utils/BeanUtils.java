@@ -2,7 +2,7 @@ package com.winjean.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.common.BaseEntity;
-import com.winjean.enums.DateTimeEnum;
+import com.winjean.enums.DateTimeFormat;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
@@ -100,7 +100,7 @@ public final class BeanUtils {
     }
 
     public static Map<String, Object> convertToMap(Object object) {
-        return convertToMap(object, DateTimeEnum.dateTime1.getValue());
+        return convertToMap(object, DateTimeFormat.dateTime1.getValue());
     }
 
     public static JSONObject convertToJson(Object object) {

@@ -1,4 +1,4 @@
-package com.winjean.common.exception;
+package com.winjean.exception;
 
 /**
  * @author ：winjean

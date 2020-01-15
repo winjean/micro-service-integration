@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.winjean.common.BaseResponse;
 import com.winjean.foundation.domain.DictionaryDetail;
 import com.winjean.foundation.service.DictionaryDetailService;
+import com.winjean.logging.annotation.RecordLog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,12 +21,14 @@ public class DictionaryDetailController {
     @Autowired
     private DictionaryDetailService dictionaryDetailService;
 
+    @RecordLog("新增字典内容信息")
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN','DICTIONARY_ALL','DICTIONARY_CREATE')")
     public BaseResponse save(@Validated @RequestBody DictionaryDetail dictionaryDetail){
         return BaseResponse.getSuccessResponse(dictionaryDetailService.save(dictionaryDetail));
     }
 
+    @RecordLog("删除字典内容信息")
     @DeleteMapping("{id}")
     @PreAuthorize("hasAnyRole('ADMIN','DICTIONARY_ALL','DICTIONARY_DELETE')")
     public BaseResponse delete(@PathVariable long id){
@@ -33,18 +36,21 @@ public class DictionaryDetailController {
         return BaseResponse.getSuccessResponse();
     }
 
+    @RecordLog("更新字典内容信息")
     @PutMapping
     @PreAuthorize("hasAnyRole('ADMIN','DICTIONARY_ALL','DICTIONARY_UPDATE')")
     public BaseResponse update(@Validated(DictionaryDetail.Update.class) @RequestBody DictionaryDetail dictionaryDetail){
         return BaseResponse.getSuccessResponse(dictionaryDetailService.update(dictionaryDetail));
     }
 
+    @RecordLog("查询字典内容详情")
     @GetMapping("{id}")
     @PreAuthorize("hasAnyRole('ADMIN','DICTIONARY_ALL','DICTIONARY_SELECT')")
     public BaseResponse query(@PathVariable long id){
         return BaseResponse.getSuccessResponse(dictionaryDetailService.query(id));
     }
 
+    @RecordLog("查询字典内容列表")
     @PostMapping("list")
     @PreAuthorize("hasAnyRole('ADMIN','DICTIONARY_ALL','DICTIONARY_SELECT')")
     public BaseResponse list(@RequestBody JSONObject json, Pageable pageable){

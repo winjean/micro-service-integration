@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableJpaAuditing
 public class FoundationApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(FoundationApplication.class, args);
     }

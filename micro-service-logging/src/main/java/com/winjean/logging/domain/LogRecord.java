@@ -1,7 +1,6 @@
 package com.winjean.logging.domain;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -10,7 +9,6 @@ import java.sql.Timestamp;
 @Entity
 @Data
 @Table(name = "t_log_record")
-@NoArgsConstructor
 public class LogRecord {
 
     @Id

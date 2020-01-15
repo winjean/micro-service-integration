@@ -7,7 +7,7 @@ package com.winjean.enums;
  * @modified By：
  * @version: $version$
  */
-public enum DateTimeEnum {
+public enum DateTimeFormat {
 
     /**
      * "yyyy-MM-dd"
@@ -116,7 +116,7 @@ public enum DateTimeEnum {
         return value;
     }
 
-    DateTimeEnum(String value) {
+    DateTimeFormat(String value) {
         this.value = value;
     }
 }
