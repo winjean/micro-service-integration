@@ -1,6 +1,6 @@
 package com.winjean.repository;
 
-import com.winjean.model.entity.EntityMenu;
+import com.winjean.model.entity.Menu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -12,6 +12,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @version: $version$
  */
 
-public interface MenuRepository extends JpaRepository<EntityMenu, Long>, JpaSpecificationExecutor<EntityMenu> {
+public interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificationExecutor<Menu> {
 
 }

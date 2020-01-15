@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!--<parent>-->
-        <!--<artifactId>micro-service-integration</artifactId>-->
-        <!--<groupId>com.winjean</groupId>-->
-        <!--<version>1.0-SNAPSHOT</version>-->
+    <!--<artifactId>micro-service-integration</artifactId>-->
+    <!--<groupId>com.winjean</groupId>-->
+    <!--<version>1.0-SNAPSHOT</version>-->
     <!--</parent>-->
 
     <parent>

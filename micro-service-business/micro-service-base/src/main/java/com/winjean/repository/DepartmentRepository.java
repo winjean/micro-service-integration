@@ -1,6 +1,6 @@
 package com.winjean.repository;
 
-import com.winjean.model.entity.EntityDepartment;
+import com.winjean.model.entity.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -12,6 +12,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @version: $version$
  */
 
-public interface DepartmentRepository extends JpaRepository<EntityDepartment, Long>, JpaSpecificationExecutor<EntityDepartment> {
+public interface DepartmentRepository extends JpaRepository<Department, Long>, JpaSpecificationExecutor<Department> {
 
 }

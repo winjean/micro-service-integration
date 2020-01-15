@@ -1,18 +1,18 @@
 package com.winjean.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.model.entity.EntityMenu;
+import com.winjean.model.entity.Menu;
 import org.springframework.data.domain.Page;
 
 public interface MenuService {
 
-    EntityMenu save(EntityMenu menu);
+    Menu save(Menu menu);
 
-    EntityMenu update(EntityMenu menu);
+    Menu update(Menu menu);
 
     boolean delete(long id);
 
-    EntityMenu query(long id);
+    Menu query(long id);
 
-    Page<EntityMenu> list(JSONObject json);
+    Page<Menu> list(JSONObject json);
 }

@@ -30,9 +30,8 @@ public class EurekaTools {
                 .get()
                 .build();//创建Request 对象
 
-        Response response = null;
         try {
-            response = okHttpClient.newCall(request).execute();
+            Response response = okHttpClient.newCall(request).execute();
             if (response.isSuccessful()) {
                 String responseContent = response.body().string();
                 Matcher matcher = Pattern.compile("<homePageUrl>(.+?)</homePageUrl>").matcher(responseContent);

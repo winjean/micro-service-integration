@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -17,7 +19,7 @@ import java.util.Set;
 @Table(name = "t_role")
 @Getter
 @Setter
-public class EntityRole {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,34 +53,40 @@ public class EntityRole {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
-    private Set<EntityUser> users;
+    @OrderBy("id asc")
+    private Set<User> users;
 
     @ManyToMany
     @JoinTable(name = "t_role_permission", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "permission_id",referencedColumnName = "id")})
-    private Set<EntityPermission> permissions;
+    @OrderBy("id asc")
+    private Set<Permission> permissions;
 
     @ManyToMany
     @JoinTable(name = "t_role_menu", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "menu_id",referencedColumnName = "id")})
-    private Set<EntityMenu> menus;
+    @OrderBy("id asc")
+    private Set<Menu> menus;
 
     @ManyToMany
     @JoinTable(name = "t_role_department", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "department_id",referencedColumnName = "id")})
-    private Set<EntityDepartment> departments;
+    @OrderBy("id asc")
+    private Set<Department> departments;
 
     @Column(name = "create_user")
+    @CreatedBy
     private String createUser;
 
     @Column(name = "create_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @CreationTimestamp
+    @CreatedDate
     private Date createTime;
 
     @Column(name = "update_user")
+    @LastModifiedBy
     private String updateUser;
 
     @Column(name = "update_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @UpdateTimestamp
+    @LastModifiedDate
     private Date updateTime;
 
     public @interface Update{}

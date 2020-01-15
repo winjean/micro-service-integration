@@ -1,18 +1,18 @@
 package com.winjean.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.model.entity.EntityRole;
+import com.winjean.model.entity.Role;
 import org.springframework.data.domain.Page;
 
 public interface RoleService {
 
-    EntityRole save(EntityRole role);
+    Role save(Role role);
 
-    EntityRole update(EntityRole role);
+    Role update(Role role);
 
     boolean delete(long id);
 
-    EntityRole query(long id);
+    Role query(long id);
 
-    Page<EntityRole> list(JSONObject json);
+    Page<Role> list(JSONObject json);
 }

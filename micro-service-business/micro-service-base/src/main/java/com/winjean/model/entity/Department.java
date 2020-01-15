@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,19 +13,22 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
+@Entity
 @Getter
 @Setter
-@Entity
-@Table(name = "t_menu")
-public class EntityMenu {
+@Table(name="t_department")
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull(groups = Update.class)
     private Long id;
 
+    /**
+     * 名称
+     */
     @NotBlank
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false,unique = true)
     private String name;
 
     /**
@@ -34,47 +37,37 @@ public class EntityMenu {
     @Column(columnDefinition = "bit default 1")
     private boolean status = true;
 
-    @Column(unique = true)
-    @NotNull
-    private Long sort;
-
-    @Column(name = "path")
-    private String path;
-
-    private String component;
-
-    private String icon;
-
     /**
-     * 上级菜单ID
+     * 上级部门编号
      */
     @Column(name = "pid",nullable = false)
-    private Long pid;
+    @NotNull
+    private Long pid = 0l;
 
     /**
-     * 是否为外链 true/false
+     * 部门拥有的角色
      */
-    @Column(name = "i_frame")
-    private Boolean iFrame;
-
-    @ManyToMany(mappedBy = "menus")
+    @ManyToMany(mappedBy = "departments")
     @JsonIgnore
-    private Set<EntityRole> roles;
+    @OrderBy("id asc")
+    private Set<Role> roles;
 
     @Column(name = "create_user")
+    @OrderBy
     private String createUser;
 
     @Column(name = "create_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @CreationTimestamp
+    @CreatedDate
     private Date createTime;
 
     @Column(name = "update_user")
+    @LastModifiedBy
     private String updateUser;
 
     @Column(name = "update_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @UpdateTimestamp
+    @LastModifiedBy
     private Date updateTime;
 
     public @interface Update {}

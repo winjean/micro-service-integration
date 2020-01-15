@@ -1,6 +1,6 @@
 spring:
   datasource:
-# simple data source
+    # simple data source
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/winjean?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root

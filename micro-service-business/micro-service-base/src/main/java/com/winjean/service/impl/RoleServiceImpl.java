@@ -1,7 +1,7 @@
 package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.model.entity.EntityRole;
+import com.winjean.model.entity.Role;
 import com.winjean.repository.RoleRepository;
 import com.winjean.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ public class RoleServiceImpl implements RoleService {
     private RoleRepository roleRepository;
 
     @Override
-    public EntityRole save(EntityRole role) {
+    public Role save(Role role) {
         role = roleRepository.save(role);
         log.info("add role success.");
 
@@ -27,8 +27,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public EntityRole update(EntityRole role) {
-        EntityRole _role = query(role.getId());
+    public Role update(Role role) {
+        Role _role = query(role.getId());
         _role.setName(role.getName());
         _role.setDataScope(role.getDataScope());
         _role.setBuiltIn(role.isBuiltIn());
@@ -54,24 +54,24 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public EntityRole query(long id) {
-        Optional<EntityRole> role = roleRepository.findById(id);
+    public Role query(long id) {
+        Optional<Role> role = roleRepository.findById(id);
         log.info("query role success.");
         return role.get();
     }
 
     @Override
-    public Page<EntityRole> list(JSONObject json) {
+    public Page<Role> list(JSONObject json) {
         int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
         int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
 
-        EntityRole role = new EntityRole();
+        Role role = new Role();
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withMatcher("status", match -> match.exact());
         Example example = Example.of(role, matcher);
 
         PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
-        Page<EntityRole> list = roleRepository.findAll(example, pageable);
+        Page<Role> list = roleRepository.findAll(example, pageable);
 
         log.info("query role list success.");
         return list;

@@ -1,6 +1,6 @@
 package com.winjean.repository;
 
-import com.winjean.model.entity.EntityPermission;
+import com.winjean.model.entity.Permission;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -12,6 +12,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @version: $version$
  */
 
-public interface PermisssionRepository extends JpaRepository<EntityPermission, Long>, JpaSpecificationExecutor<EntityPermission> {
+public interface PermisssionRepository extends JpaRepository<Permission, Long>, JpaSpecificationExecutor<Permission> {
 
 }

@@ -1,18 +1,18 @@
 package com.winjean.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.model.entity.EntityDictionaryDetail;
+import com.winjean.model.entity.DictionaryDetail;
 import org.springframework.data.domain.Page;
 
 public interface DictionaryDetailService {
 
-    EntityDictionaryDetail save(EntityDictionaryDetail dictionaryDetail);
+    DictionaryDetail save(DictionaryDetail dictionaryDetail);
 
-    EntityDictionaryDetail update(EntityDictionaryDetail dictionaryDetail);
+    DictionaryDetail update(DictionaryDetail dictionaryDetail);
 
     boolean delete(long id);
 
-    EntityDictionaryDetail query(long id);
+    DictionaryDetail query(long id);
 
-    Page<EntityDictionaryDetail> list(JSONObject json);
+    Page<DictionaryDetail> list(JSONObject json);
 }

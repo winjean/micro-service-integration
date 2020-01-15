@@ -12,12 +12,12 @@
 #      defaultZone: http://admin:123456@localhost:8101/eureka
 
 spring:
-#  boot:
-#    admin:
-#      client:
-#        url: http://localhost:8501
-#        instance:
-#          prefer-ip: true
+  #  boot:
+  #    admin:
+  #      client:
+  #        url: http://localhost:8501
+  #        instance:
+  #          prefer-ip: true
 
   datasource:
     driver-class-name: com.mysql.jdbc.Driver

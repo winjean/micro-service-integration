@@ -2,7 +2,7 @@ package com.winjean.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.common.BaseResponse;
-import com.winjean.model.entity.EntityUser;
+import com.winjean.model.entity.User;
 import com.winjean.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,24 +20,26 @@ public class UserController  {
     private UserService userService;
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_SELECT')")
-    public BaseResponse save(@Validated @RequestBody EntityUser user){
+    @PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_CREATE')")
+    public BaseResponse save(@Validated @RequestBody User user){
         return BaseResponse.getSuccessResponse(userService.save(user));
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_DELETE')")
     public BaseResponse delete(@PathVariable long id){
         userService.delete(id);
         return BaseResponse.getSuccessResponse();
     }
 
     @PutMapping
-    public BaseResponse update(@Validated(EntityUser.Update.class) @RequestBody EntityUser user){
+    @PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_UPDATE')")
+    public BaseResponse update(@Validated(User.Update.class) @RequestBody User user){
         return BaseResponse.getSuccessResponse(userService.update(user));
     }
 
     @GetMapping("{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','USER_ALL','USER_SELECT')")
+    @PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_SELECT')")
     public BaseResponse query(@PathVariable long id){
         return BaseResponse.getSuccessResponse(userService.query(id));
     }
@@ -45,7 +47,7 @@ public class UserController  {
     @PostMapping("list")
     @PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_SELECT')")
     public BaseResponse list(@RequestBody JSONObject json){
-        Page<EntityUser> page = userService.list(json);
+        Page<User> page = userService.list(json);
         return BaseResponse.getSuccessResponse(page);
     }
 }

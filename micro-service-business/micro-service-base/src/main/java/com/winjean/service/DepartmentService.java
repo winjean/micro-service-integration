@@ -1,18 +1,18 @@
 package com.winjean.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.model.entity.EntityDepartment;
+import com.winjean.model.entity.Department;
 import org.springframework.data.domain.Page;
 
 public interface DepartmentService {
 
-    EntityDepartment save(EntityDepartment department);
+    Department save(Department department);
 
-    EntityDepartment update(EntityDepartment department);
+    Department update(Department department);
 
     boolean delete(long id);
 
-    EntityDepartment query(long id);
+    Department query(long id);
 
-    Page<EntityDepartment> list(JSONObject json);
+    Page<Department> list(JSONObject json);
 }

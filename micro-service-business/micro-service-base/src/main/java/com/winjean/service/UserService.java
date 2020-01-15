@@ -1,21 +1,20 @@
 package com.winjean.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.model.entity.EntityUser;
+import com.winjean.model.entity.User;
 import org.springframework.data.domain.Page;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {
 
-    EntityUser save(EntityUser user);
+    User save(User user);
 
-    EntityUser update(EntityUser user);
+    User update(User user);
 
     boolean delete(long id);
 
-    EntityUser query(long id);
+    User query(long id);
 
-    Page<EntityUser> list(JSONObject json);
+    Page<User> list(JSONObject json);
 
 }

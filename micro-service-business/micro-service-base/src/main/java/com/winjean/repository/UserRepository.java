@@ -1,6 +1,6 @@
 package com.winjean.repository;
 
-import com.winjean.model.entity.EntityUser;
+import com.winjean.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -12,11 +12,11 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @version: $version$
  */
 
-public interface UserRepository extends JpaRepository<EntityUser, Long>, JpaSpecificationExecutor<EntityUser> {
+public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 
-    EntityUser findByName(String name);
+    User findByName(String name);
 
-    EntityUser findByEmail(String email);
+    User findByEmail(String email);
 
-    EntityUser findBytelephone(String telephone);
+    User findBytelephone(String telephone);
 }

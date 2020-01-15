@@ -24,14 +24,14 @@ public class TestCase {
 
     //加密
     @Test
-    public void getPass(){
+    public void getPass() {
         String name = encryptor.encrypt("${win:false}");
         System.out.println(name); //BEJsOY+ny6/Bo+B8Rv2f9Q==
     }
 
     //解密
     @Test
-    public void passDecrypt(){
+    public void passDecrypt() {
         String username = encryptor.decrypt("Lu7307t+yqynugj+8YZQRBwGrZtoY4ym");
         System.out.println(username);
     }

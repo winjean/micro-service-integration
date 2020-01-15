@@ -1,7 +1,7 @@
 package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.model.entity.EntityDepartment;
+import com.winjean.model.entity.Department;
 import com.winjean.repository.DepartmentRepository;
 import com.winjean.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentRepository departmentRepository;
 
     @Override
-    public EntityDepartment save(EntityDepartment department) {
+    public Department save(Department department) {
         department = departmentRepository.save(department);
         log.info("add department success.");
 
@@ -28,10 +28,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public EntityDepartment update(EntityDepartment department) {
+    public Department update(Department department) {
         Assert.isTrue(department.getId() != department.getPid(),"上级部门和本部门不能为同一个");
 
-        EntityDepartment _department = query(department.getId());
+        Department _department = query(department.getId());
         _department.setName(department.getName());
         _department.setPid(department.getPid());
         _department.setRoles(department.getRoles());
@@ -53,24 +53,24 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public EntityDepartment query(long id) {
-        Optional<EntityDepartment> user = departmentRepository.findById(id);
+    public Department query(long id) {
+        Optional<Department> user = departmentRepository.findById(id);
         log.info("query department success.");
         return user.get();
     }
 
     @Override
-    public Page<EntityDepartment> list(JSONObject json) {
+    public Page<Department> list(JSONObject json) {
         int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
         int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
 
-        EntityDepartment department = new EntityDepartment();
+        Department department = new Department();
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withMatcher("status", match -> match.exact());
         Example example = Example.of(department, matcher);
 
         PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
-        Page<EntityDepartment> list = departmentRepository.findAll(example, pageable);
+        Page<Department> list = departmentRepository.findAll(example, pageable);
 
         log.info("query department list success.");
         return list;

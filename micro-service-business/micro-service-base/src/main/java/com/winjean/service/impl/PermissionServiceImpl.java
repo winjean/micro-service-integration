@@ -1,7 +1,7 @@
 package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.model.entity.EntityPermission;
+import com.winjean.model.entity.Permission;
 import com.winjean.repository.PermisssionRepository;
 import com.winjean.service.PermissionService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ public class PermissionServiceImpl implements PermissionService {
     private PermisssionRepository permisssionRepository;
 
     @Override
-    public EntityPermission save(EntityPermission permission) {
+    public Permission save(Permission permission) {
         permission = permisssionRepository.save(permission);
         log.info("add permission success.");
 
@@ -27,8 +27,8 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public EntityPermission update(EntityPermission permission) {
-        EntityPermission _permission = query(permission.getId());
+    public Permission update(Permission permission) {
+        Permission _permission = query(permission.getId());
         _permission.setName(permission.getName());
         _permission.setPid(permission.getPid());
         _permission.setNickname(permission.getNickname());
@@ -52,24 +52,24 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public EntityPermission query(long id) {
-        Optional<EntityPermission> permission = permisssionRepository.findById(id);
+    public Permission query(long id) {
+        Optional<Permission> permission = permisssionRepository.findById(id);
         log.info("query permission success.");
         return permission.get();
     }
 
     @Override
-    public Page<EntityPermission> list(JSONObject json) {
+    public Page<Permission> list(JSONObject json) {
         int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
         int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
 
-        EntityPermission permission = new EntityPermission();
+        Permission permission = new Permission();
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withMatcher("status", match -> match.exact());
         Example example = Example.of(permission, matcher);
 
         PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
-        Page<EntityPermission> list = permisssionRepository.findAll(example, pageable);
+        Page<Permission> list = permisssionRepository.findAll(example, pageable);
 
         log.info("query permission list success.");
         return list;

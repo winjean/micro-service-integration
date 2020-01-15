@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,7 +17,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Table(name="t_dictionary_detail")
-public class EntityDictionaryDetail {
+public class DictionaryDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,22 +54,24 @@ public class EntityDictionaryDetail {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dictionary_id")
     @JsonIgnoreProperties("dictionaryDetails")
-    private EntityDictionary dictionary;
+    private Dictionary dictionary;
 
     @Column(name = "create_user")
+    @CreatedBy
     private String createUser;
 
     @Column(name = "create_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @CreationTimestamp
+    @CreatedDate
     private Date createTime;
 
     @Column(name = "update_user")
+    @LastModifiedBy
     private String updateUser;
 
     @Column(name = "update_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @UpdateTimestamp
+    @LastModifiedDate
     private Date updateTime;
 
     public @interface Update {}

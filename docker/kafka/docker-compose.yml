@@ -17,7 +17,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: 172.119.0.11:2181,172.119.0.12:2181,172.119.0.13:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.71.128:9092
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-#      JMX_PORT: 9971
+    #      JMX_PORT: 9971
     volumes:
       - ./kafka1/logs:/kafka
     external_links:
@@ -44,7 +44,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: 172.119.0.11:2181,172.119.0.12:2181,172.119.0.13:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.71.128:9093
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-#      JMX_PORT: 9981
+    #      JMX_PORT: 9981
     volumes:
       - ./kafka2/logs:/kafka
     external_links:
@@ -71,7 +71,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: 172.119.0.11:2181,172.119.0.12:2181,172.119.0.13:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.71.128:9094
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-#      JMX_PORT: 9991
+    #      JMX_PORT: 9991
     volumes:
       - ./kafka3/logs:/kafka
     external_links:

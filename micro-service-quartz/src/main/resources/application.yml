@@ -13,15 +13,15 @@ spring:
     ## 编码格式，默认UTF-8
     encoding: UTF-8
     ## 迁移sql脚本文件存放路径，默认db/migration
-#    locations: db/migration
+    #    locations: db/migration
     ## 迁移sql脚本文件名称的前缀，默认V
-#    sql-migration-prefix: V
+    #    sql-migration-prefix: V
     ## 迁移sql脚本文件名称的分隔符，默认2个下划线__
-#    sql-migration-separator: __
+    #    sql-migration-separator: __
     ## 迁移sql脚本文件名称的后缀
-#    sql-migration-suffix: .sql
+    #    sql-migration-suffix: .sql
     ## 迁移时是否进行校验，默认true
-#    validate-on-migrate: true
+    #    validate-on-migrate: true
     ## 将schema_version表从数据库删除后抛出异常
     ## Caused by: org.flywaydb.core.api.FlywayException:
     ## Found non-empty schema(s) `nmg-crm` without metadata table!

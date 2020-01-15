@@ -1,12 +1,10 @@
 filebeat:
   prospectors:
-    -
-      paths:
+    - paths:
         - "/data/logs/catalina.*.out"
       input_type: filebeat-log
       document_type: tomcat-log
-    -
-      paths:
+    - paths:
         - "/data/logs/nginx*/logs/*.log"
       input_type: filebeat-log
       document_type: nginx-log

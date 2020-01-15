@@ -4,12 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Set;
 
@@ -17,7 +20,7 @@ import java.util.Set;
 @Table(name = "t_user")
 @Getter
 @Setter
-public class EntityUser {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,7 +56,7 @@ public class EntityUser {
     @JsonFormat(pattern="yyyy-MM-dd")
     @Column(columnDefinition = "date COMMENT '出生日期'")
 //    @Temporal(TemporalType.TIMESTAMP)
-    private Date birthday;
+    private Timestamp birthday;
 
     /**
      * 联系电话
@@ -95,26 +98,29 @@ public class EntityUser {
     @ManyToMany
     @JsonIgnore
     @JoinTable(name = "t_user_role", joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})
-    private Set<EntityRole> roles;
+    @OrderBy("id asc")
+    private Set<Role> roles;
 
     @OneToOne
     @JoinColumn(name = "department_id")
-    private EntityDepartment department;
+    private Department department;
 
     @Column(name = "create_user")
+    @CreatedBy
     private String createUser;
 
     @Column(name = "create_time")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @CreationTimestamp
+    @CreatedDate
     private Date createTime;
 
     @Column(name = "update_user")
+    @LastModifiedBy
     private String updateUser;
 
     @Column(name = "update_time", columnDefinition = "datetime COMMENT '更新日期'")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-    @UpdateTimestamp
+    @LastModifiedDate
     private Date updateTime;
 
     public @interface Update {}

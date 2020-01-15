@@ -3,9 +3,9 @@
 <configuration scan="true" scanPeriod="60 seconds">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <!-- 定义参数 -->
-    <property name="log.lever" value="info" />
-    <property name="log.maxHistory" value="60" />
-    <property name="log.maxFileSize" value="50MB" />
+    <property name="log.lever" value="info"/>
+    <property name="log.maxHistory" value="60"/>
+    <property name="log.maxFileSize" value="50MB"/>
     <property name="log.filePath" value="logs/"></property>
 
     <contextName>logback</contextName>
@@ -81,12 +81,12 @@
 
     <!-- 生产环境用info -->
     <root level="${log.lever}">
-        <appender-ref ref="debugAppender" />
-        <appender-ref ref="infoAppender" />
-        <appender-ref ref="errorAppender" />
+        <appender-ref ref="debugAppender"/>
+        <appender-ref ref="infoAppender"/>
+        <appender-ref ref="errorAppender"/>
     </root>
 
     <!--输出sql语句-->
-    <logger name="org.springframework.boot.autoconfigure.security" level="debug" />
-    <logger name="com.sun" level="debug" />
+    <logger name="org.springframework.boot.autoconfigure.security" level="debug"/>
+    <logger name="com.sun" level="debug"/>
 </configuration>

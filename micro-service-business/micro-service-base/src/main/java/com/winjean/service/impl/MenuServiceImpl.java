@@ -1,7 +1,7 @@
 package com.winjean.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.model.entity.EntityMenu;
+import com.winjean.model.entity.Menu;
 import com.winjean.repository.MenuRepository;
 import com.winjean.service.MenuService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ public class MenuServiceImpl implements MenuService {
     private MenuRepository menuRepository;
 
     @Override
-    public EntityMenu save(EntityMenu menu) {
+    public Menu save(Menu menu) {
         menu = menuRepository.save(menu);
         log.info("add menu success.");
 
@@ -27,8 +27,8 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public EntityMenu update(EntityMenu menu) {
-        EntityMenu _menu = query(menu.getId());
+    public Menu update(Menu menu) {
+        Menu _menu = query(menu.getId());
         _menu.setName(menu.getName());
         _menu.setSort(menu.getSort());
         _menu.setPath(menu.getPath());
@@ -55,24 +55,24 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public EntityMenu query(long id) {
-        Optional<EntityMenu> menu = menuRepository.findById(id);
+    public Menu query(long id) {
+        Optional<Menu> menu = menuRepository.findById(id);
         log.info("query menu success.");
         return menu.get();
     }
 
     @Override
-    public Page<EntityMenu> list(JSONObject json) {
+    public Page<Menu> list(JSONObject json) {
         int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
         int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
 
-        EntityMenu menu = new EntityMenu();
+        Menu menu = new Menu();
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withMatcher("status", match -> match.exact());
         Example example = Example.of(menu, matcher);
 
         PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
-        Page<EntityMenu> list = menuRepository.findAll(example, pageable);
+        Page<Menu> list = menuRepository.findAll(example, pageable);
 
         log.info("query menu list success.");
         return list;
