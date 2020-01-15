@@ -5,11 +5,16 @@ import com.winjean.foundation.domain.Department;
 import com.winjean.foundation.repository.DepartmentRepository;
 import com.winjean.foundation.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -60,19 +65,24 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Page<Department> list(JSONObject json) {
-        int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
-        int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
+    public Page<Department> list(JSONObject json, Pageable pageable) {
 
-        Department department = new Department();
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("status", match -> match.exact());
-        Example example = Example.of(department, matcher);
+        Page<Department> page = departmentRepository.findAll((root, query, criteriaBuilder) ->{
+            List<Predicate> list = new ArrayList<>();
 
-        PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
-        Page<Department> list = departmentRepository.findAll(example, pageable);
+            if(!ObjectUtils.isEmpty(json.getString("name"))){
+                list.add(criteriaBuilder.like(root.get("name").as(String.class),"%"+json.getString("name")+"%"));
+            }
+
+//            if(!ObjectUtils.isEmpty(json.getInteger().getStatus())){
+//                list.add(criteriaBuilder.equal(root.get("enabled").as(Integer.class), department.getStatus()));
+//            }
+
+            Predicate[] predicates = new Predicate[list.size()];
+            return criteriaBuilder.and(list.toArray(predicates));
+        }, pageable);
 
         log.info("query department list success.");
-        return list;
+        return page;
     }
 }

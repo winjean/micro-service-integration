@@ -3,6 +3,7 @@ package com.winjean.foundation.service;
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.foundation.domain.Menu;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface MenuService {
 
@@ -14,5 +15,5 @@ public interface MenuService {
 
     Menu query(long id);
 
-    Page<Menu> list(JSONObject json);
+    Page<Menu> list(JSONObject json, Pageable pageable);
 }

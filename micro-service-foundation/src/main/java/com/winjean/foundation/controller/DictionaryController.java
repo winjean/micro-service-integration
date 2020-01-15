@@ -7,6 +7,7 @@ import com.winjean.foundation.service.DictionaryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +47,8 @@ public class DictionaryController {
 
     @PostMapping("list")
     @PreAuthorize("hasAnyRole('ADMIN','DICTIONARY_ALL','DICTIONARY_SELECT')")
-    public BaseResponse list(@RequestBody JSONObject json){
-        Page<Dictionary> page = dictionaryService.list(json);
+    public BaseResponse list(@RequestBody JSONObject json, Pageable pageable){
+        Page<Dictionary> page = dictionaryService.list(json, pageable);
         return BaseResponse.getSuccessResponse(page);
     }
 }

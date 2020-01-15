@@ -3,6 +3,7 @@ package com.winjean.foundation.service;
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.foundation.domain.Dictionary;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface DictionaryService {
 
@@ -14,5 +15,5 @@ public interface DictionaryService {
 
     Dictionary query(long id);
 
-    Page<Dictionary> list(JSONObject json);
+    Page<Dictionary> list(JSONObject json, Pageable pageable);
 }

@@ -5,10 +5,15 @@ import com.winjean.foundation.domain.Dictionary;
 import com.winjean.foundation.repository.DictionaryRepository;
 import com.winjean.foundation.service.DictionaryService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,19 +61,19 @@ public class DictionaryServiceImpl implements DictionaryService {
     }
 
     @Override
-    public Page<Dictionary> list(JSONObject json) {
-        int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
-        int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
+    public Page<Dictionary> list(JSONObject json, Pageable pageable) {
+        Page<Dictionary> page = dictionaryRepository.findAll((root, query, criteriaBuilder) ->{
+            List<Predicate> list = new ArrayList<>();
 
-        Dictionary dictionary = new Dictionary();
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("status", match -> match.exact());
-        Example example = Example.of(dictionary, matcher);
+            if(!ObjectUtils.isEmpty(json.getString("name"))){
+                list.add(criteriaBuilder.like(root.get("name").as(String.class),"%"+json.getString("name")+"%"));
+            }
 
-        PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
-        Page<Dictionary> list = dictionaryRepository.findAll(example, pageable);
+            Predicate[] predicates = new Predicate[list.size()];
+            return criteriaBuilder.and(list.toArray(predicates));
+        }, pageable);
 
-        log.info("query dictionary  list success.");
-        return list;
+        log.info("query dictionary list success.");
+        return page;
     }
 }

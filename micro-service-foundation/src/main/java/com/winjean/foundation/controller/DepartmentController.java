@@ -8,6 +8,7 @@ import com.winjean.foundation.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -47,8 +48,8 @@ public class DepartmentController {
 
     @PostMapping("list")
     @PreAuthorize("hasAnyRole('ADMIN','DEPARTMENT_ALL','DEPARTMENT_SELECT')")
-    public BaseResponse list(@RequestBody JSONObject json){
-        Page<Department> page = departmentService.list(json);
+    public BaseResponse list(@RequestBody JSONObject json, Pageable pageable){
+        Page<Department> page = departmentService.list(json, pageable);
         return BaseResponse.getSuccessResponse(page);
     }
 }

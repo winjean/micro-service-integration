@@ -7,10 +7,15 @@ import com.winjean.foundation.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -64,22 +69,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> list(JSONObject json) {
-        int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
-        int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
+    public Page<User> list(JSONObject json, Pageable pageable) {
+        Page<User> page = userRepository.findAll((root, query, criteriaBuilder) ->{
+            List<Predicate> list = new ArrayList<>();
 
-//        User user = new User();
-//        ExampleMatcher matcher = ExampleMatcher.matching()
-////                .withIgnorePaths("status")
-//                .withMatcher("status", match -> match.exact());
-//        Example example = Example.of(user, matcher);
-//
-//        PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
-//        Page<User> list = userRepository.findAll(example, pageable);
-//
-//        log.info("query user list success.");
-//        return list;
-        return null;
+            if(!ObjectUtils.isEmpty(json.getString("name"))){
+                list.add(criteriaBuilder.like(root.get("name").as(String.class),"%"+json.getString("name")+"%"));
+            }
+
+            Predicate[] predicates = new Predicate[list.size()];
+            return criteriaBuilder.and(list.toArray(predicates));
+        }, pageable);
+
+        log.info("query user list success.");
+        return page;
     }
 
     @Override
@@ -92,7 +95,7 @@ public class UserServiceImpl implements UserService {
         }
 
         if(null == entityUser){
-            entityUser = userRepository.findBytelephone(username);
+            entityUser = userRepository.findByTelephone(username);
         }
 
         if (entityUser == null) {

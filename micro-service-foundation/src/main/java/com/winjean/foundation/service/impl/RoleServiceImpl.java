@@ -1,14 +1,20 @@
 package com.winjean.foundation.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.winjean.foundation.domain.Dictionary;
 import com.winjean.foundation.domain.Role;
 import com.winjean.foundation.repository.RoleRepository;
 import com.winjean.foundation.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,19 +67,19 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Page<Role> list(JSONObject json) {
-        int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
-        int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
+    public Page<Role> list(JSONObject json, Pageable pageable) {
+        Page<Role> page = roleRepository.findAll((root, query, criteriaBuilder) ->{
+            List<Predicate> list = new ArrayList<>();
 
-        Role role = new Role();
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("status", match -> match.exact());
-        Example example = Example.of(role, matcher);
+            if(!ObjectUtils.isEmpty(json.getString("name"))){
+                list.add(criteriaBuilder.like(root.get("name").as(String.class),"%"+json.getString("name")+"%"));
+            }
 
-        PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
-        Page<Role> list = roleRepository.findAll(example, pageable);
+            Predicate[] predicates = new Predicate[list.size()];
+            return criteriaBuilder.and(list.toArray(predicates));
+        }, pageable);
 
         log.info("query role list success.");
-        return list;
+        return page;
     }
 }

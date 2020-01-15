@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -18,6 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name="t_dictionary")
+@EntityListeners(AuditingEntityListener.class)
 public class Dictionary {
 
     @Id

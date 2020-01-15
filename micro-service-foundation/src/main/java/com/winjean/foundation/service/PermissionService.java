@@ -3,6 +3,7 @@ package com.winjean.foundation.service;
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.foundation.domain.Permission;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface PermissionService {
 
@@ -14,5 +15,5 @@ public interface PermissionService {
 
     Permission query(long id);
 
-    Page<Permission> list(JSONObject json);
+    Page<Permission> list(JSONObject json, Pageable pageable);
 }

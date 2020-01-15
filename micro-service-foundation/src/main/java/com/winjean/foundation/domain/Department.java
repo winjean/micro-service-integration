@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -17,6 +18,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name="t_department")
+@EntityListeners(AuditingEntityListener.class)
 public class Department {
 
     @Id

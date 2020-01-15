@@ -7,6 +7,7 @@ import com.winjean.foundation.service.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +47,8 @@ public class MenuController {
 
     @PostMapping("list")
     @PreAuthorize("hasAnyRole('ADMIN','MENU_ALL','MENU_SELECT')")
-    public BaseResponse list(@RequestBody JSONObject json){
-        Page<Menu> page = menuService.list(json);
+    public BaseResponse list(@RequestBody JSONObject json, Pageable pageable){
+        Page<Menu> page = menuService.list(json, pageable);
         return BaseResponse.getSuccessResponse(page);
     }
 }
