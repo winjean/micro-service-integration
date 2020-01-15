@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
@@ -40,7 +39,6 @@ public class UserServiceImpl implements UserService {
         _user.setBirthday(user.getBirthday());
         _user.setTelephone(user.getTelephone());
         _user.setSex(user.getSex());
-        _user.setEmail(user.getEmail());
         _user.setEmail(user.getEmail());
         _user.setDepartment(user.getDepartment());
         _user.setRoles(user.getRoles());
@@ -73,8 +71,8 @@ public class UserServiceImpl implements UserService {
         Page<User> page = userRepository.findAll((root, query, criteriaBuilder) ->{
             List<Predicate> list = new ArrayList<>();
 
-            if(!ObjectUtils.isEmpty(json.getString("name"))){
-                list.add(criteriaBuilder.like(root.get("name").as(String.class),"%"+json.getString("name")+"%"));
+            if(null != json.getString("name")){
+                list.add(criteriaBuilder.like(root.get("name").as(String.class),"%" + json.getString("name") + "%"));
             }
 
             Predicate[] predicates = new Predicate[list.size()];

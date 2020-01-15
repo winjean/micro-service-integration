@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
 import javax.persistence.criteria.Predicate;
@@ -68,8 +67,8 @@ public class PermissionServiceImpl implements PermissionService {
         Page<Permission> page = permisssionRepository.findAll((root, query, criteriaBuilder) ->{
             List<Predicate> list = new ArrayList<>();
 
-            if(!ObjectUtils.isEmpty(json.getString("name"))){
-                list.add(criteriaBuilder.like(root.get("name").as(String.class),"%"+json.getString("name")+"%"));
+            if(null != json.getString("name")){
+                list.add(criteriaBuilder.like(root.get("name").as(String.class),"%" + json.getString("name") + "%"));
             }
 
             Predicate[] predicates = new Predicate[list.size()];

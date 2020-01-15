@@ -59,17 +59,17 @@ public class Role {
     private Set<User> users;
 
     @ManyToMany
-    @JoinTable(name = "t_role_permission", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "permission_id",referencedColumnName = "id")})
+    @JoinTable(name = "r_role_permission", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "permission_id",referencedColumnName = "id")})
     @OrderBy("id asc")
     private Set<Permission> permissions;
 
     @ManyToMany
-    @JoinTable(name = "t_role_menu", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "menu_id",referencedColumnName = "id")})
+    @JoinTable(name = "r_role_menu", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "menu_id",referencedColumnName = "id")})
     @OrderBy("id asc")
     private Set<Menu> menus;
 
     @ManyToMany
-    @JoinTable(name = "t_role_department", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "department_id",referencedColumnName = "id")})
+    @JoinTable(name = "r_role_department", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "department_id",referencedColumnName = "id")})
     @OrderBy("id asc")
     private Set<Department> departments;
 

@@ -1,7 +1,6 @@
 package com.winjean.foundation.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.winjean.foundation.domain.Dictionary;
 import com.winjean.foundation.domain.Role;
 import com.winjean.foundation.repository.RoleRepository;
 import com.winjean.foundation.service.RoleService;
@@ -9,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
 import javax.persistence.criteria.Predicate;
@@ -71,8 +69,8 @@ public class RoleServiceImpl implements RoleService {
         Page<Role> page = roleRepository.findAll((root, query, criteriaBuilder) ->{
             List<Predicate> list = new ArrayList<>();
 
-            if(!ObjectUtils.isEmpty(json.getString("name"))){
-                list.add(criteriaBuilder.like(root.get("name").as(String.class),"%"+json.getString("name")+"%"));
+            if(null != json.getString("name")){
+                list.add(criteriaBuilder.like(root.get("name").as(String.class),"%" + json.getString("name") + "%"));
             }
 
             Predicate[] predicates = new Predicate[list.size()];
