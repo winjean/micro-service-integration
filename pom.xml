@@ -309,12 +309,13 @@
         <module>micro-service-business</module>
 
         <module>micro-service-foundation</module>
+        <module>micro-service-logging</module>
         <module>micro-service-common</module>
-        <module>micro-service-dictionary</module>
+        <!--<module>micro-service-dictionary</module>-->
 
-        <module>micro-service-sample</module>
+        <!--<module>micro-service-sample</module>-->
         <module>micro-service-test</module>
-        <module>micro-service-quartz</module>
-        <module>micro-service-activiti</module>
+        <!--<module>micro-service-quartz</module>-->
+        <!--<module>micro-service-activiti</module>-->
     </modules>
 </project>

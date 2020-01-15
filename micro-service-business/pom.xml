@@ -20,14 +20,14 @@
     </properties>
 
     <modules>
-        <module>micro-service-user</module>
-        <module>micro-service-role</module>
-        <module>micro-service-permission</module>
-        <module>micro-service-module</module>
-        <module>micro-service-kafka</module>
-        <module>micro-service-mongo</module>
-        <module>micro-service-websocket</module>
-        <module>micro-service-base</module>
+        <!--<module>micro-service-user</module>-->
+        <!--<module>micro-service-role</module>-->
+        <!--<module>micro-service-permission</module>-->
+        <!--<module>micro-service-module</module>-->
+        <!--<module>micro-service-kafka</module>-->
+        <!--<module>micro-service-mongo</module>-->
+        <!--<module>micro-service-websocket</module>-->
+        <!--<module>micro-service-base</module>-->
     </modules>
 
     <profiles>
