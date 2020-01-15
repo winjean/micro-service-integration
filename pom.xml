@@ -308,6 +308,7 @@
 
         <module>micro-service-business</module>
 
+        <module>micro-service-foundation</module>
         <module>micro-service-common</module>
         <module>micro-service-dictionary</module>
 

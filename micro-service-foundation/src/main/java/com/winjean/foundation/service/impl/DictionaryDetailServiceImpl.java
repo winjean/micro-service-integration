@@ -1,0 +1,75 @@
+package com.winjean.foundation.service.impl;
+
+import com.alibaba.fastjson.JSONObject;
+import com.winjean.foundation.domain.DictionaryDetail;
+import com.winjean.foundation.repository.DictionaryDetailRepository;
+import com.winjean.foundation.service.DictionaryDetailService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.*;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.Optional;
+
+@Service
+@Slf4j
+public class DictionaryDetailServiceImpl implements DictionaryDetailService {
+
+    @Resource
+    private DictionaryDetailRepository dictionaryDetailRepository;
+
+    @Override
+    public DictionaryDetail save(DictionaryDetail dictionaryDetail) {
+        dictionaryDetail = dictionaryDetailRepository.save(dictionaryDetail);
+        log.info("add dictionary detail success.");
+
+        return dictionaryDetail;
+    }
+
+    @Override
+    public DictionaryDetail update(DictionaryDetail detail) {
+        DictionaryDetail _detail = query(detail.getId());
+        _detail.setLabel(detail.getLabel());
+        _detail.setValue(detail.getValue());
+        _detail.setSort(detail.getSort());
+        _detail.setStatus(detail.isStatus());
+        _detail.setUpdateUser("update_user");
+
+        _detail = dictionaryDetailRepository.save(_detail);
+
+        log.info("update dictionary detail success.");
+        return _detail;
+    }
+
+    @Override
+    public boolean delete(long id) {
+        dictionaryDetailRepository.deleteById(id);
+
+        log.info("delete dictionary detail success.");
+        return true;
+    }
+
+    @Override
+    public DictionaryDetail query(long id) {
+        Optional<DictionaryDetail> user = dictionaryDetailRepository.findById(id);
+        log.info("query dictionary detail success.");
+        return user.get();
+    }
+
+    @Override
+    public Page<DictionaryDetail> list(JSONObject json) {
+        int page = json.getInteger("page") == null ? 1 : json.getInteger("page");
+        int size = json.getInteger("size") == null ? 10 : json.getInteger("size");
+
+        DictionaryDetail dictionaryDetail = new DictionaryDetail();
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("status", match -> match.exact());
+        Example example = Example.of(dictionaryDetail, matcher);
+
+        PageRequest pageable= PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
+        Page<DictionaryDetail> list = dictionaryDetailRepository.findAll(example, pageable);
+
+        log.info("query dictionary detail list success.");
+        return list;
+    }
+}
