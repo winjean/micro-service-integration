@@ -6,7 +6,6 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 
 /**
- * Created by fp295 on 2018/6/16.
  * 自定义AbstractAuthenticationToken，
  */
 public class MyAuthenticationToken extends AbstractAuthenticationToken {

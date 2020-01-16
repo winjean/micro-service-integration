@@ -10,8 +10,8 @@ package com.winjean.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -19,9 +19,16 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+/**
+ * @EnableResourceServer会给Spring Security的FilterChan添加一个OAuth2AuthenticationProcessingFilter，
+ * OAuth2AuthenticationProcessingFilter会使用OAuth2AuthenticationManager来验证token。
+ * OAuth2AuthenticationManager#authenticate(Authentication authentication)
+ *
+ */
+
 @Configuration
 @EnableResourceServer
-@Order(6)
+@EnableOAuth2Client
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
     @Override

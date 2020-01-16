@@ -1,7 +1,7 @@
 server:
   port: 8401
-#  servlet:
-#    context-path: "/oauth"
+  servlet:
+    context-path: "/@project.name@"
 
 eureka:
   client:
@@ -11,14 +11,14 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
 
 spring:
-  boot:
-    admin:
-      client:
-        url: http://localhost:8501
-        #        username: admin
-        #        password: 123456
-        instance:
-          prefer-ip: true
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8501
+#        #        username: admin
+#        #        password: 123456
+#        instance:
+#          prefer-ip: true
 
   datasource:
     # simple data source

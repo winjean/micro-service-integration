@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 
-/**
- * Created by fp295 on 2018/4/16.
- */
 public abstract class BaseUserDetailService implements UserDetailsService {
 
 //    @Autowired

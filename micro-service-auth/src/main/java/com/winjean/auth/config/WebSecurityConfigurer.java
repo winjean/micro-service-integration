@@ -43,9 +43,15 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("demoUser1").password("123456").authorities("USER").build());
         manager.createUser(User.withUsername("demoUser2").password("123456").authorities("USER").build());
+//        manager.createUser(User.withUsername("admin").password("admin").authorities("WRIGTH").build());
         return manager;
     }
 
+    /**
+     * 用户验证
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -54,7 +60,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 //                .withUser("guest").password(new BCryptPasswordEncoder().encode("guest")).authorities("WRIGTH_READ")
 //                .and()
                 .passwordEncoder(passwordEncoder())
-                .withUser("admin").password(passwordEncoder().encode("admin")).authorities("WRIGTH_READ", "WRIGTH_WRITE");
+                .withUser("admin").password(passwordEncoder().encode("admin")).authorities("WRIGTH", "WRIGTH_WRITE");
 
 //        auth.authenticationProvider(phoneAuthenticationProvider());
     }

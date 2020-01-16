@@ -2,9 +2,6 @@ package com.winjean.auth.service;
 
 import org.springframework.stereotype.Service;
 
-/**
- * Created by fp295 on 2018/11/25.
- */
 @Service
 public class PhoneUserDetailService extends BaseUserDetailService {
 

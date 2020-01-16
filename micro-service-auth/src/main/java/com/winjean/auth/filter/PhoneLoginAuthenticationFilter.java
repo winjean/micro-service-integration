@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by fp295 on 2018/6/16.
  * 验证码登陆：
  *       post: /phoneLogin?phone=13000000000&verifyCode=1000
  */

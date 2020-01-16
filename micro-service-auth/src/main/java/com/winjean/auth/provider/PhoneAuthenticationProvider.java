@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
- * Created by fp295 on 2018/11/25.4
  * 手机验证码登陆
  */
 public class PhoneAuthenticationProvider extends MyAbstractUserDetailsAuthenticationProvider {

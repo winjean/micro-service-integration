@@ -4,9 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.winjean.foundation.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService extends UserDetailsService {
+public interface UserService /*extends UserDetailsService*/ {
 
     User save(User user);
 

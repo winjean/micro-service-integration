@@ -43,10 +43,10 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
                 .withClient("zuul_server")
                 .secret(passwordEncoder().encode("secret"))
                 .scopes("WRIGTH", "read","select")/*.autoApprove(true)*/
-                .authorities("WRIGTH_READ", "WRIGTH_WRITE","client")
-                .redirectUris("http://www.baidu.com")
+                .authorities("WRIGTH", "WRIGTH_WRITE","client")
+                .redirectUris("http://localhost:8401/auth/api/test")
                 .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code","client_credentials")
-                .resourceIds("oauth2-resource")
+                .resourceIds("oauth2-resource", "WRIGTH")
                 .accessTokenValiditySeconds(1200)
                 .refreshTokenValiditySeconds(50000);
     }

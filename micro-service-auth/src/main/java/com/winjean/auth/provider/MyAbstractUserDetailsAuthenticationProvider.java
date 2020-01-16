@@ -20,7 +20,6 @@ import org.springframework.security.core.userdetails.cache.NullUserCache;
 import org.springframework.util.Assert;
 
 /**
- * Created by fp295 on 2018/6/16.
  * 自定义 AuthenticationProvider， 以使用自定义的 MyAuthenticationToken
  */
 public abstract class MyAbstractUserDetailsAuthenticationProvider implements AuthenticationProvider, InitializingBean, MessageSourceAware {

@@ -12,7 +12,6 @@ import java.io.IOException;
 
 
 /**
- * Created by fp295 on 2018/6/16.
  * 登陆成功处理，移动端登陆成功后还需做绑定操作
  */
 public class MyLoginAuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {

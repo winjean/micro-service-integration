@@ -8,9 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
@@ -83,29 +81,29 @@ public class UserServiceImpl implements UserService {
         return page;
     }
 
-    @Override
-    @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public org.springframework.security.core.userdetails.User loadUserByUsername(String username) {
-        User entityUser = userRepository.findByName(username);
+//    @Override
+//    @Transactional(readOnly = true, rollbackFor = Exception.class)
+//    public org.springframework.security.core.userdetails.User loadUserByUsername(String username) {
+//        User entityUser = userRepository.findByName(username);
+//
+//        if(null == entityUser){
+//            entityUser = userRepository.findByEmail(username);
+//        }
+//
+//        if(null == entityUser){
+//            entityUser = userRepository.findByTelephone(username);
+//        }
+//
+//        if (entityUser == null) {
+//            throw new UsernameNotFoundException(username);
+//        }
+//
+//        org.springframework.security.core.userdetails.User user = transverter(entityUser);
+//
+//        return user;
+//    }
 
-        if(null == entityUser){
-            entityUser = userRepository.findByEmail(username);
-        }
-
-        if(null == entityUser){
-            entityUser = userRepository.findByTelephone(username);
-        }
-
-        if (entityUser == null) {
-            throw new UsernameNotFoundException(username);
-        }
-
-        org.springframework.security.core.userdetails.User user = transverter(entityUser);
-
-        return user;
-    }
-
-    private org.springframework.security.core.userdetails.User transverter(User entityUser){
+//    private org.springframework.security.core.userdetails.User transverter(User entityUser){
 
 //        Set<Role> roles = entityUser.getRoles();
 //        Collection<GrantedAuthority> authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toSet());
@@ -117,6 +115,6 @@ public class UserServiceImpl implements UserService {
 //                entityUser.isLocked(),      //账户未锁定为true
 //                authorities);
 //        return user;
-        return null;
-    }
+//        return null;
+//    }
 }

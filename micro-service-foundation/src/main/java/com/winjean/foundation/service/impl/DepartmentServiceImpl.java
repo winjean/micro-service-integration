@@ -58,9 +58,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department query(long id) {
-        Optional<Department> user = departmentRepository.findById(id);
+        Optional<Department> optional = departmentRepository.findById(id);
+        Assert.isTrue(optional.isPresent(), "部门信息不存在");
         log.info("query department success.");
-        return user.get();
+        return optional.get();
     }
 
     @Override

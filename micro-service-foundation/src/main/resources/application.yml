@@ -4,6 +4,10 @@ spring:
   profiles:
     active: "@profileActive@"
 
+server:
+  servlet:
+    context-path: /@project.name@
+
 #定义详情给服务端和eureka注册中心显示
 info:
   app:
