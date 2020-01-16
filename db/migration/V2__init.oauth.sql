@@ -79,6 +79,7 @@ CREATE TABLE credentials_authorities (
   authorities_id bigint not null
 );
 
+drop table if exists ClientDetails;
 create table ClientDetails (
   appId VARCHAR(256) PRIMARY KEY,
   resourceIds VARCHAR(256),

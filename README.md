@@ -7,17 +7,15 @@
 * micro-service-turbine 8701
 * micro-service-gateway 8801
 
-* micro-service-user 7101
-* micro-service-role 7201
-* micro-service-permission 7301
-* micro-service-module 7401
+* micro-service-foundation 7101 
+基础服务：user、role、permission、menu、department、dictionary
 * micro-service-kafka 7501
 
 
 ## micro-service-integration
 * 使用版本  
     + Spring Cloud Finchley
-    + Spring Boot 2.0.3
+    + Spring Boot 2.0.6.RELEASE
     
 * 服务注册与发行  
 Eureka
