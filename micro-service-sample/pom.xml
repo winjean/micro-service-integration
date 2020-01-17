@@ -4,18 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!--<parent>-->
-    <!--<artifactId>micro-service-integration</artifactId>-->
-    <!--<groupId>com.winjean</groupId>-->
-    <!--<version>1.0-SNAPSHOT</version>-->
-    <!--</parent>-->
-
     <parent>
+        <groupId>com.winjean</groupId>
+        <artifactId>micro-service-integration</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!--<parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.6.RELEASE</version>
         <relativePath/>
-    </parent>
+    </parent>-->
 
     <artifactId>micro-service-sample</artifactId>
     <name>micro-service-sample</name>
@@ -33,26 +33,14 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <profileActive>test</profileActive>
-            </properties>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <profileActive>prod</profileActive>
-            </properties>
-        </profile>
     </profiles>
 
     <dependencies>
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-
+<!--
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>

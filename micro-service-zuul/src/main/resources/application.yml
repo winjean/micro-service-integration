@@ -14,17 +14,17 @@ zuul:
     connect-timeout-millis: 20000
     socket-timeout-millis: 20000
   routes:
+    service-sample:
+      path: /sample/**
+      serviceId: micro-service-sample
     service-zuul:
       path: /zuul/**
       serviceId: micro-service-zuul
-    service-user:
-      path: /user/**
-      serviceId: micro-service-user
-    service-role:
-      path: /role/**
-      serviceId: micro-service-role
+    service-foundation:
+      path: /foundation/**
+      serviceId: micro-service-foundation
     service-oauth:
-      path: /oauth/**
+      path: /micro-service-auth/**
       serviceId: micro-service-auth
 
   ws:

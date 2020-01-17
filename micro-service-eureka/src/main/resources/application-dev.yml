@@ -2,7 +2,7 @@ server:
   port: 8101
 
 spring:
-  profiles: winjean1
+  profiles: service-1
 #  boot:
 #    admin:
 #      client:
@@ -35,7 +35,7 @@ server:
   port: 8102
 
 spring:
-  profiles: winjean2
+  profiles: service-2
 #  boot:
 #    admin:
 #      client:

@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>micro-service-auth</artifactId>
-    <name>auth</name>
+    <name>micro-service-auth</name>
     <packaging>jar</packaging>
     <description>micro-service-auth</description>
 

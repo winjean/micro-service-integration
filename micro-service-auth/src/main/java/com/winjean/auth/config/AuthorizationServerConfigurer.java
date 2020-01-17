@@ -40,8 +40,8 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
         //用来配置客户端详情服务（ClientDetailsService），客户端详情信息在这里进行初始化，你能够把客户端详情信息写死在这里或者是通过数据库来存储调取详情信息。
         clients
                 .inMemory()
-                .withClient("zuul_server")
-                .secret(passwordEncoder().encode("secret"))
+                .withClient("zuul")
+                .secret(passwordEncoder().encode("123456"))
                 .scopes("WRIGTH", "read","select")/*.autoApprove(true)*/
                 .authorities("WRIGTH", "WRIGTH_WRITE","client")
                 .redirectUris("http://localhost:8401/auth/api/test")
