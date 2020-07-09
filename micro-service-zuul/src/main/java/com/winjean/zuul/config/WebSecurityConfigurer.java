@@ -23,6 +23,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
             .authorizeRequests()
             .antMatchers("/oauth/**").permitAll()
+            .antMatchers("/micro-service-auth/**").permitAll()
             .antMatchers("/**").authenticated()
             .and()
             .httpBasic();

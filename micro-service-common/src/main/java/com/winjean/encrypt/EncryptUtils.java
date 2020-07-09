@@ -1,4 +1,4 @@
-package com.winjean.utils;
+package com.winjean.encrypt;
 
 import org.apache.http.util.Asserts;
 

@@ -46,6 +46,7 @@ security:
       user-authorization-uri: http://localhost:8401/micro-service-auth/oauth/authorize #授权端点
       client-id: zuul #OAuth2客户端ID
       client-secret: 123456 #OAuth2客户端密钥
+      grant-type: password
     resource:
       jwt:
         key-value: springcloud123 #使用对称加密方式，默认算法为HS256

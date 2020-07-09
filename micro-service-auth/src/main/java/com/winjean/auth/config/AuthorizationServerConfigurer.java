@@ -44,8 +44,9 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
                 .secret(passwordEncoder().encode("123456"))
                 .scopes("WRIGTH", "read","select")/*.autoApprove(true)*/
                 .authorities("WRIGTH", "WRIGTH_WRITE","client")
-                .redirectUris("http://localhost:8401/auth/api/test")
+                .redirectUris("http://localhost:8401/micro-service-auth/authorization/code")
                 .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code","client_credentials")
+//                .authorizedGrantTypes("password")
                 .resourceIds("oauth2-resource", "WRIGTH")
                 .accessTokenValiditySeconds(1200)
                 .refreshTokenValiditySeconds(50000);

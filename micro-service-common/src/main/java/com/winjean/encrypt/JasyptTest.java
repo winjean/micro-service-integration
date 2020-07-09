@@ -1,4 +1,4 @@
-package com.winjean.utils;
+package com.winjean.encrypt;
 
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.EnvironmentPBEConfig;
