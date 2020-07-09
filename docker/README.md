@@ -8,7 +8,7 @@
  docker ps      默认显示运行的容器  
  docker ps –a   显示所有容器
  docker rm container_id 删除容器
- docker rmi container_id  删除镜像
+ docker rmi image_id  删除镜像
  docker tag image:tag image:tag 使用tag命令重新打包镜像
  
  
