@@ -86,16 +86,16 @@
         <!--<artifactId>spring-cloud-starter-openfeign</artifactId>-->
         <!--</dependency>-->
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!--<dependency>-->
         <!--<groupId>org.springframework.boot</groupId>-->
@@ -108,10 +108,10 @@
         </dependency>-->
 
         <!-- database begin -->
-        <dependency>
+        <!--<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!-- alibaba的druid数据库连接池 -->
         <dependency>
@@ -153,11 +153,11 @@
             <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>-->
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.winjean</groupId>
             <artifactId>micro-service-common</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
