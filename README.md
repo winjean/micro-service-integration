@@ -1,6 +1,5 @@
 * micro-service-eureka 8101
 * micro-service-zuul 8201
-* micro-service-config 8301
 * micro-service-auth 8401
 * micro-service-admin 8501
 * micro-service-Zipkin 8601
@@ -14,17 +13,19 @@
 
 ## micro-service-integration
 * 使用版本  
-    + Spring Cloud Finchley
-    + Spring Boot 2.0.6.RELEASE
+    + Spring Cloud 2021.0.1
+    + Spring Boot 2.6.3
+    + spring cloud alibaba  2021.0.1.0
     
 * 服务注册与发行  
-Eureka
+nacos
 
 * 服务消费  
-feign
+open feign
 
 * 负载均衡
-
+    spring-cloud-starter-loadbalancer
+    
 * 断路器  
 Histrix
 
