@@ -13,24 +13,3 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #修改创建的表类型为InnoDB
     open-in-view: true
 
-#  cloud:
-#    config:
-#      name: service-user
-#      label: dev
-#      profile: dev
-#      uri: http://localhost:8851/
-
-
-#定义详情给服务端和eureka注册中心显示
-info:
-  app:
-    groupId: "@project.groupId@"
-    artifactId: "@artifactId@"
-    version: "@project.version@"
-    name: "@project.name@"
-    description: "@project.description@"
-    parent-version: "@project.parent.version@"
-    java:
-      source: "@java.version@"
-      target: "@java.version@"
-
