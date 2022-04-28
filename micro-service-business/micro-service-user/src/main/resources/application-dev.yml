@@ -9,20 +9,6 @@ spring:
         metadata: # 元数据，用于权限服务实时获取各个服务的所有接口
           management.context-path: ${server.servlet.context-path:}${spring.mvc.servlet.path:}${management.endpoints.web.base-path:}
 
-
-#eureka:
-#  instance:
-#    instance-id: ${spring.cloud.client.ip-address}:${server.port}:@project.version@  #${springboot.attribute} @maven.attribute@
-#    #    metadata-map:
-#    #      "user.name": admin         #These two are needed so that the server
-#    #      "user.password": 123456 #can access the protected client endpoints
-#
-#    leaseRenewalIntervalInSeconds: 10
-#    health-check-url-path: /actuator/health
-#  client:
-#    service-url:
-#      defaultZone: http://admin:123456@localhost:8101/eureka
-
 #spring:
 #  boot:
 #    admin:
@@ -36,8 +22,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/micro_user?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-#    password: ENC(onfrnTyfM9OPgA7mgNoFDQ==)
-    password: winjean
+    password: ENC(uQjy0VXGGW7GfVpYkREBbg==)
 
     # 数据库连接池配置
     type: com.alibaba.druid.pool.DruidDataSource
@@ -131,9 +116,11 @@ spring:
 #      password: TX_CX
 
 
-#jasypt:
-#  encryptor:
-#    password: winjean
+jasypt:
+  encryptor:
+    password: my_salt
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
 
 #management:
 #  endpoints:

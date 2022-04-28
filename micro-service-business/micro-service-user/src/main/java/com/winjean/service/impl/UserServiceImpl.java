@@ -12,6 +12,10 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author winjean
+ */
+
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
