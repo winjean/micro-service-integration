@@ -2,7 +2,7 @@ package com.winjean.aspect;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.winjean.enums.DateTimeEnum;
+import com.winjean.enums.DateTimeFormat;
 import com.winjean.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -42,7 +42,7 @@ public class LogAspect {
 
         StringBuffer requestInfo = new StringBuffer();
         requestInfo.append("请求信息：")
-                .append(DateUtils.getDateTime(dateBegin, DateTimeEnum.dateTime11.getValue()))
+                .append(DateUtils.getDateTime(dateBegin, DateTimeFormat.dateTime11.getValue()))
                 .append(" --> URL = {" + request.getRequestURI() + "}, ")
                 .append("HTTP_METHOD = {" + request.getMethod() + "}, ")
                 .append("IP = {" + request.getRemoteAddr() + "}, ")
@@ -62,7 +62,7 @@ public class LogAspect {
         Date dateEnd = new Date();
         StringBuffer responseInfo = new StringBuffer();
         responseInfo.append("请求结果:")
-            .append(DateUtils.getDateTime(dateEnd, DateTimeEnum.dateTime11.getValue()))
+            .append(DateUtils.getDateTime(dateEnd, DateTimeFormat.dateTime11.getValue()))
             .append(",cost : " + (dateEnd.getTime() - dateBegin.getTime()))
             .append(", return value:" + value);
 

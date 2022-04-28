@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.winjean.feignClient.UserFeignClient;
 import com.winjean.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -22,12 +24,12 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @Value("${winjean}")
-    private String configValue;
+//    @Value("${winjean}")
+//    private String configValue;
 
     @GetMapping("/")
     public Object index() {
-        return "role index";
+        return "role service index";
     }
 
     @PostMapping("add")
@@ -36,7 +38,7 @@ public class RoleController {
         roleService.addRole(json);
         userFeignClient.addUser(json);
 
-        json.put("configValue",configValue);
+//        json.put("configValue",configValue);
 
         return json;
     }
@@ -49,7 +51,6 @@ public class RoleController {
         while (names.hasMoreElements()){
             System.out.println(names.nextElement() +"---"+request.getHeader(names.nextElement()));
         }
-
 
         return json;
     }

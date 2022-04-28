@@ -6,8 +6,6 @@ import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author ：winjean
@@ -16,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @modified By：
  * @version: $version$
  */
-@Configuration
+//@Configuration
 public class Http2HttpsConfig {
 
     @Value("${server.port}")
@@ -53,7 +51,7 @@ public class Http2HttpsConfig {
 //        return null;
 //    }
 
-    @Bean
+//    @Bean
     public TomcatServletWebServerFactory tomcatServletWebServerFactory(){
         TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory(){
 
@@ -77,7 +75,7 @@ public class Http2HttpsConfig {
         return tomcat;
     }
 
-    @Bean
+//    @Bean
     public Connector httpConnector(){
         Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
         connector.setScheme("http");

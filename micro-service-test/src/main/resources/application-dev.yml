@@ -1,2 +1,12 @@
 server:
   port: 9999
+spring:
+  cloud:
+    nacos:
+      discovery:
+        username: ovibos
+        password: ovibos
+        server-addr: 10.20.4.61:8848
+        namespace: 79179eca-ae8f-4bb7-bce3-fdb0b6dedd01
+        metadata: # 元数据，用于权限服务实时获取各个服务的所有接口
+          management.context-path: ${server.servlet.context-path:}${spring.mvc.servlet.path:}${management.endpoints.web.base-path:}

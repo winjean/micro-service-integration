@@ -1,56 +1,70 @@
 spring:
   application:
     name: "@artifactId@"
-
   profiles:
     active: "@profileActive@"
-
   cloud:
     gateway:
       default-filters:
-      #      discovery:
-      #        locator:
-      #          enabled: true
-      #          lower-case-service-id: true
+            discovery:
+              locator:
+                enabled: true
+                lower-case-service-id: true
       routes:
-        - id: micro-service-sample
-          uri: lb://micro-service-sample
-          predicates:  #Path，Query，Method，Header，After，Before，Between，Cookie，Host，RemoteAddr
-            - Path=/sample/**
-            - Query=param,value
-            #        - Cookie=chocolate, value
-            #        - Header=X-Request-Id, \d+
-            #        - Host=**.somehost.org
-            - Method=GET
-          #        - RemoteAddr=192.168.1.1/24
+        - id: micro-service-user
+          uri: lb://micro-service-user
+          predicates:
+            - Path=/user/**
           filters:
             - StripPrefix=1
-            - JwtCheck
-            - name: Hystrix
-              args:
-                name: authHystrixCommand
-                fallbackUri: forward:/www.baidu.com
-            - name: Retry
-              args:
-                retries: 3 #重试次数，默认3，不包含本次
-                status: 404 #重试response code，默认没有
-                statusSeries: 500 #重试response code的系列，100（info），200（success），300（redirect），400（client error），500（server error），默认500
-                method: GET #重试的request请求，默认GET
 
-        - id: websocket
-          uri: lb:ws://micro-service-websocket
+        - id: micro-service-role
+          uri: lb://micro-service-role
           predicates:
-            - Path=/websocket/**
+            - Path=/role/**
+          filters:
+            - StripPrefix=1
+
+
+#        - id: micro-service-sample
+#          uri: lb://micro-service-sample
+#          predicates:  #Path，Query，Method，Header，After，Before，Between，Cookie，Host，RemoteAddr
+#            - Path=/sample/**
+#            - Query=param,value
+#            #        - Cookie=chocolate, value
+#            #        - Header=X-Request-Id, \d+
+#            #        - Host=**.somehost.org
+#            - Method=GET
+#          #        - RemoteAddr=192.168.1.1/24
+#          filters:
+#            - StripPrefix=1
+#            - JwtCheck
+#            - name: Hystrix
+#              args:
+#                name: authHystrixCommand
+#                fallbackUri: forward:/www.baidu.com
+#            - name: Retry
+#              args:
+#                retries: 3 #重试次数，默认3，不包含本次
+#                status: 404 #重试response code，默认没有
+#                statusSeries: 500 #重试response code的系列，100（info），200（success），300（redirect），400（client error），500（server error），默认500
+#                method: GET #重试的request请求，默认GET
+
+#        - id: websocket
+#          uri: lb:ws://micro-service-websocket
+#          predicates:
+#            - Path=/websocket/**
+
 
 #定义详情给服务端和eureka注册中心显示
-info:
-  app:
-    groupId: "@project.groupId@"
-    artifactId: "@artifactId@"
-    version: "@project.version@"
-    name: "@project.name@"
-    description: "@project.description@"
-    parent-version: "@project.parent.version@"
-    java:
-      source: "@java.version@"
-      target: "@java.version@"
+#info:
+#  app:
+#    groupId: "@project.groupId@"
+#    artifactId: "@artifactId@"
+#    version: "@project.version@"
+#    name: "@project.name@"
+#    description: "@project.description@"
+#    parent-version: "@project.parent.version@"
+#    java:
+#      source: "@java.version@"
+#      target: "@java.version@"

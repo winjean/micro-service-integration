@@ -2,10 +2,8 @@ package com.winjean.mapper;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.Page;
 import com.winjean.model.entity.UserEntity;
 import com.winjean.model.request.RequestUserInsert;
-import com.winjean.model.response.UserQueryResponse;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -58,8 +56,8 @@ public interface UserMapper {
             "</script>")
     int deleteUsers(@Param("jsons") List<JSONObject> jsons);
 
-    @Select("select id,user_name as name,birthday,email,sex,telephone,create_user as createUser,create_time as createTime from t_user")
-    Page<UserQueryResponse> searchUsers();
+//    @Select("select id,user_name as name,birthday,email,sex,telephone,create_user as createUser,create_time as createTime from t_user")
+//    Page<UserQueryResponse> searchUsers();
 
     @Select("select id,user_name as name,birthday,email,sex,telephone,create_user as createUser,create_time as createTime from t_user where id=#{id}")
     JSONObject searchUser(UserEntity user);

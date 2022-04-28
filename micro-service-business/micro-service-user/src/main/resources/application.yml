@@ -19,14 +19,14 @@ spring:
 
 
 #定义详情给服务端和eureka注册中心显示
-info:
-  app:
-    groupId: "@project.groupId@"
-    artifactId: "@artifactId@"
-    version: "@project.version@"
-    name: "@project.name@"
-    description: "@project.description@"
-    parent-version: "@project.parent.version@"
-    java:
-      source: "@java.version@"
-      target: "@java.version@"
+#info:
+#  app:
+#    groupId: "@project.groupId@"
+#    artifactId: "@artifactId@"
+#    version: "@project.version@"
+#    name: "@project.name@"
+#    description: "@project.description@"
+#    parent-version: "@project.parent.version@"
+#    java:
+#      source: "@java.version@"
+#      target: "@java.version@"

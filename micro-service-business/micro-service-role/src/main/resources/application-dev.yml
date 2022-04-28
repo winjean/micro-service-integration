@@ -1,25 +1,35 @@
 spring:
+  cloud:
+    nacos:
+      discovery:
+        username: ovibos
+        password: ovibos
+        server-addr: 10.20.4.61:8848
+        namespace: 79179eca-ae8f-4bb7-bce3-fdb0b6dedd01
+        metadata: # 元数据，用于权限服务实时获取各个服务的所有接口
+          management.context-path: ${server.servlet.context-path:}${spring.mvc.servlet.path:}${management.endpoints.web.base-path:}
+
 #  boot:
 #    admin:
 #      client:
 #        url: http://localhost:8501
 #        instance:
 #          prefer-ip: true
-  cloud:
-    config:
+#    config:
 #      discovery:
 #        enabled: true
 #        service-id: micro-service-config
 #      uri: http://10.20.7.26:8301
-      label: master
-      profile: dev
+#      label: master
+#      profile: dev
 
   datasource:
     # simple data source
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/winjean?useUnicode=true&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/micro_role?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-    password: ENC(onfrnTyfM9OPgA7mgNoFDQ==)
+#    password: ENC(onfrnTyfM9OPgA7mgNoFDQ==)
+    password: winjean
 
     # 数据库连接池配置
     type: com.alibaba.druid.pool.DruidDataSource
@@ -40,23 +50,23 @@ spring:
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000 # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
       use-global-data-source-stat: true # 合并多个DruidDataSource的监控数据
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://admin:123456@localhost:8101/eureka
-  instance:
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://admin:123456@localhost:8101/eureka
+#  instance:
+#    instance-id: ${spring.cloud.client.ip-address}:${server.port}
 
-jasypt:
-  encryptor:
-    password: winjean
+#jasypt:
+#  encryptor:
+#    password: winjean
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: ALWAYS
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    health:
+#      show-details: ALWAYS
 

@@ -1,7 +1,6 @@
 package com.winjean.exception;
 
 import com.winjean.common.BaseResponse;
-import com.winjean.common.exception.ExceptionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.converter.HttpMessageNotReadableException;

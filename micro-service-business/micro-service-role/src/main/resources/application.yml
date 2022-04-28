@@ -1,11 +1,11 @@
 server:
   port: 7201
-  ssl:
-#    keytool -genkey -alias springboot -keypass 123456 -keyalg RSA -keysize 1024 -validity 3650 -keystore E:/tmp/springboottest.keystore -storepass 123456
-    key-store: classpath:springboottest.keystore
-    key-password: 123456
-    key-store-type: JKS
-    key-alias: springboot
+#  ssl:
+##    keytool -genkey -alias springboot -keypass 123456 -keyalg RSA -keysize 1024 -validity 3650 -keystore E:/tmp/springboottest.keystore -storepass 123456
+#    key-store: classpath:springboottest.keystore
+#    key-password: 123456
+#    key-store-type: JKS
+#    key-alias: springboot
 
 spring:
 #  output:
@@ -19,20 +19,20 @@ spring:
 #    config:
 #      fail-fast: true
 
-feign:
-  hystrix:
-    #  feign fallback valid
-    enabled: true
+#feign:
+#  hystrix:
+#    #  feign fallback valid
+#    enabled: true
 
 #定义详情给服务端和eureka注册中心显示
-info:
-  app:
-    groupId: "@project.groupId@"
-    artifactId: "@artifactId@"
-    version: "@project.version@"
-    name: "@project.name@"
-    description: "@project.description@"
-    parent-version: "@project.parent.version@"
-    java:
-      source: "@java.version@"
-      target: "@java.version@"
+#info:
+#  app:
+#    groupId: "@project.groupId@"
+#    artifactId: "@artifactId@"
+#    version: "@project.version@"
+#    name: "@project.name@"
+#    description: "@project.description@"
+#    parent-version: "@project.parent.version@"
+#    java:
+#      source: "@java.version@"
+#      target: "@java.version@"

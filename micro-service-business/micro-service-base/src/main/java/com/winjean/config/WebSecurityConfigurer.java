@@ -2,12 +2,9 @@ package com.winjean.config;
 
 import com.winjean.filter.JwtAuthorizationTokenFilter;
 import com.winjean.handler.*;
-import com.winjean.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -29,8 +26,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
     @Autowired
     private MyAccessDeniedHandler accessDeniedHandler;
@@ -130,10 +127,10 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .rememberMe();
     }
 
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+//    @Bean
+//    public AuthenticationManager authenticationManagerBean() throws Exception {
+//        return super.authenticationManagerBean();
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoderBean() {
@@ -152,11 +149,11 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         };
     }
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // 身份验证配置
-        auth.userDetailsService(userService).passwordEncoder(passwordEncoderBean());
-    }
+//    @Override
+//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        // 身份验证配置
+//        auth.userDetailsService(userService).passwordEncoder(passwordEncoderBean());
+//    }
 
 //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

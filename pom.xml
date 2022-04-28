@@ -15,6 +15,7 @@
     <properties>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
+        <spring-cloud-loadbalancer.version>3.1.1</spring-cloud-loadbalancer.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -63,21 +64,27 @@
                 <scope>import</scope>
             </dependency>
 
-            <!--<dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+                <version>${spring-cloud-loadbalancer.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.marcosbarbero.cloud</groupId>
                 <artifactId>spring-cloud-zuul-ratelimit</artifactId>
                 <version>${spring-cloud-zuul-ratelimit.version}</version>
-            </dependency>-->
+            </dependency>
 
-            <!--<dependency>
+            <dependency>
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-dependencies</artifactId>
                 <version>${spring-boot-admin.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>-->
+            </dependency>
 
-            <!-- <dependency>
+            <!--<dependency>
                  <groupId>org.springframework.cloud</groupId>
                  <artifactId>spring-cloud-config-dependencies</artifactId>
                  <version>${spring-cloud-config.version}</version>
@@ -86,11 +93,11 @@
              </dependency>-->
 
             <!-- alibaba的druid数据库连接池 -->
-            <!--<dependency>
+            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid}</version>
-            </dependency>-->
+            </dependency>
 
             <!--<dependency>
                 <groupId>com.github.pagehelper</groupId>
@@ -98,43 +105,43 @@
                 <version>${pagehelper}</version>
             </dependency>-->
 
-            <!--<dependency>
+            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
-            </dependency>-->
+            </dependency>
 
-            <!--<dependency>
+            <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>2.6</version>
-            </dependency>-->
+            </dependency>
 
-            <!--<dependency>
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
                 <version>4.3</version>
-            </dependency>-->
+            </dependency>
 
-            <!--<dependency>
+            <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis}</version>
-            </dependency>-->
+            </dependency>
 
-            <!--<dependency>
+            <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
                 <version>${log4j.version}</version>
-            </dependency>-->
+            </dependency>
 
-            <!--<dependency>
+            <dependency>
                 <groupId>com.github.ulisesbocchio</groupId>
                 <artifactId>jasypt-spring-boot-starter</artifactId>
                 <version>2.1.0</version>
-            </dependency>-->
+            </dependency>
 
-            <!--<dependency>
+            <dependency>
                 <groupId>com.fasterxml.jackson.jaxrs</groupId>
                 <artifactId>jackson-jaxrs-xml-provider</artifactId>
                 <version>2.8.10</version>
@@ -148,32 +155,32 @@
                         <artifactId>woodstox-core-asl</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>-->
+            </dependency>
 
-            <!--<dependency>
+            <dependency>
                 <groupId>com.fasterxml.jackson.dataformat</groupId>
                 <artifactId>jackson-dataformat-xml</artifactId>
                 <version>2.9.6</version>
-            </dependency>-->
+            </dependency>
 
-            <!--<dependency>
+            <dependency>
                 <groupId>com.fasterxml.jackson.dataformat</groupId>
                 <artifactId>jackson-dataformat-csv</artifactId>
                 <version>2.9.6</version>
-            </dependency>-->
+            </dependency>
 
             <!-- swagger start -->
-            <!--<dependency>
+            <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger2.version}</version>
-            </dependency>-->
+            </dependency>
 
-            <!--<dependency>
+            <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger2.version}</version>
-            </dependency>-->
+            </dependency>
 
             <!--<dependency>
                 <groupId>io.springfox</groupId>
@@ -195,10 +202,7 @@
 
     <dependencies>
 
-        <!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>-->
+
 
         <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -215,16 +219,16 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>-->
 
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>-->
+        </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-        </dependency>-->
+        </dependency>
 
         <!-- <dependency>
              <groupId>de.codecentric</groupId>
@@ -236,21 +240,21 @@
             <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>-->
 
-        <!--<dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>-->
+        </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-        </dependency>-->
+        </dependency>
 
         <!-- 配置文件密码加密 -->
-        <!--<dependency>
+        <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
-        </dependency>-->
+        </dependency>
 
         <!--<dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
@@ -267,15 +271,15 @@
             </exclusions>
         </dependency>-->
 
-        <!--<dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
-        </dependency>-->
+        </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-csv</artifactId>
-        </dependency>-->
+        </dependency>
 
         <!-- swagger start -->
         <!--<dependency>
@@ -316,8 +320,8 @@
     </build>
 
     <modules>
-        <!--<module>micro-service-gateway</module>-->
-        <module>micro-service-nacos-discovery</module>
+        <module>micro-service-gateway</module>
+        <!--<module>micro-service-nacos-discovery</module>-->
         <!--<module>micro-service-eureka</module>-->
         <!--<module>micro-service-zuul</module>-->
         <!--<module>micro-service-admin</module>-->
@@ -325,13 +329,13 @@
         <!--<module>micro-service-zipkin</module>-->
         <!--<module>micro-service-config</module>-->
         <!--<module>micro-service-turbine</module>-->
-        <!--<module>micro-service-business</module>-->
-        <!--<module>micro-service-foundation</module>-->
-        <!--<module>micro-service-logging</module>-->
-        <!--<module>micro-service-common</module>-->
-        <!--<module>micro-service-dictionary</module>-->
+        <module>micro-service-business</module>
+        <module>micro-service-foundation</module>
+        <module>micro-service-logging</module>
+        <module>micro-service-common</module>
+        <module>micro-service-dictionary</module>
         <!--<module>micro-service-sample</module>-->
-        <!--<module>micro-service-test</module>-->
+        <module>micro-service-test</module>
         <!--<module>micro-service-quartz</module>-->
         <!--<module>micro-service-activiti</module>-->
     </modules>

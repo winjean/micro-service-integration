@@ -1,10 +1,8 @@
 package com.winjean.filter;
 
-import com.winjean.service.UserService;
 import com.winjean.utils.JwtTokenUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,8 +20,8 @@ import java.io.IOException;
 @Component
 public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
@@ -43,7 +41,8 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
 
         if (principal != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            UserDetails userDetails = userService.loadUserByUsername(principal);
+//            UserDetails userDetails = userService.loadUserByUsername(principal);
+            UserDetails userDetails = null;
 
             if (JwtTokenUtil.validateToken(authToken, userDetails)) {
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());

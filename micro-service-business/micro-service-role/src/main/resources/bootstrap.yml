@@ -1,4 +1,4 @@
-spring:
-  cloud:
-    config:
-      uri: http://10.20.7.26:8301
+#spring:
+#  cloud:
+#    config:
+#      uri: http://10.20.7.26:8301

@@ -18,10 +18,10 @@ public class UserController  {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/")
+    @GetMapping(value = {"/","/index"})
     @ResponseBody
     public String test() {
-        return "index";
+        return "user service index";
     }
 
     @PostMapping("insert")
