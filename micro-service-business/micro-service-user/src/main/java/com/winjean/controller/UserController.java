@@ -1,5 +1,7 @@
 package com.winjean.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.fastjson.JSONObject;
 import com.winjean.common.BaseResponse;
 import com.winjean.model.request.RequestUserInsert;
@@ -26,6 +28,16 @@ public class UserController  {
     @ResponseBody
     public String test() {
         return "user service index";
+    }
+
+
+    @GetMapping("/rateLimit")
+    @SentinelResource(value = "resource",blockHandler = "handler")
+    public String resource(){
+        return "sssss";
+    }
+    public String handler(BlockException blockException){
+        return  "handle-"+blockException.getClass().getName();
     }
 
     @PostMapping("insert")
