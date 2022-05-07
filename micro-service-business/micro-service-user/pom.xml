@@ -72,6 +72,12 @@
         </dependency>
 
         <dependency>
+            <!-- 将sentinel 配置的规则持久化到nacos数据库中 -->
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>

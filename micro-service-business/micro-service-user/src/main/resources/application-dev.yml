@@ -10,10 +10,19 @@ spring:
           management.context-path: ${server.servlet.context-path:}${spring.mvc.servlet.path:}${management.endpoints.web.base-path:}
     sentinel:
       transport:
-        dashboard: localhost:8888
+        dashboard: localhost:8080
         port: 8719
-
-#spring:
+        heartbeat-interval-ms: 10000
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 10.20.4.61:8848
+            namespace: 79179eca-ae8f-4bb7-bce3-fdb0b6dedd01
+            dataId: winjean
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+  #spring:
 #  boot:
 #    admin:
 #      client:
