@@ -29,7 +29,7 @@ open feign
     
 * 断路器  
 采用Sentinel  
-Histrix已经进入维护期  
+Hystrix已经进入维护期  
 Sentinel直接使用用户线程进行限制，相比Hystrix的线程池隔离，减少了线程切换的开销。  
 Sentinel的DashBoard提供了在线更改限流规则的配置，也更加的优化  
 https://www.jianshu.com/p/7616fbc915af  
